@@ -20,7 +20,7 @@ export function Product({ content }: { content: HomePage["product"] }) {
   });
 
   return (
-    <section aria-labelledby="product-title">
+    <section aria-label={content.eyebrow}>
       <Container bordered className="pt-14 lg:pt-[50px]">
         <Reveal className="mb-6 px-6 sm:px-8 lg:mb-[50px] lg:px-[50px]">
         <SectionHeading

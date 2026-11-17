@@ -33,7 +33,7 @@ export default function FaqPage() {
           {faqPage.groups.map((group) => (
             <section key={group.id} id={slug(group.label)} aria-label={group.label} className="scroll-mt-20">
               <Reveal className="px-6 pt-10 pb-2 lg:px-8 lg:pt-[48px]">
-                <Eyebrow>{group.label}</Eyebrow>
+                <Eyebrow as="h2">{group.label}</Eyebrow>
               </Reveal>
               <Accordion items={group.items} variant="dashed" defaultOpen={group.id === "getting-started" ? 0 : null} />
             </section>

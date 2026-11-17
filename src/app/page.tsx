@@ -8,6 +8,7 @@ import { LogoStrip } from "@/components/sections/logo-strip";
 import { Product } from "@/components/sections/product";
 import { Stats } from "@/components/sections/stats";
 import { Testimonial } from "@/components/sections/testimonial";
+import { JsonLd } from "@/components/json-ld";
 import { homePage } from "@/config/pages/home";
 import { createMetadata } from "@/lib/metadata";
 
@@ -20,6 +21,14 @@ export const metadata = createMetadata({
 export default function HomePage() {
   return (
     <>
+      {/* The home FAQ answers are visible on the page, so FAQPage data is allowed here. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: homePage.faq.items.map((i) => ({ "@type": "Question", name: i.question, acceptedAnswer: { "@type": "Answer", text: i.answer } })),
+        }}
+      />
       <Hero content={homePage.hero} backgroundSrc={homePage.hero.background} />
       <LogoStrip content={homePage.logos} />
       <Product content={homePage.product} />

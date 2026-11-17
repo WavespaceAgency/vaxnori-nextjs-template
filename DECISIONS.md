@@ -193,3 +193,18 @@ template rules needed a change. It will move into the README in Phase 8.
   that follows the scroll, "How to control this" callouts. Terms "Description of Service" had no body in Figma – written.
   Typos fixed: "Vaxnori Al", "cookies tor sessions".
 - **404:** no Figma frame – built from the inner-page hero pattern with two buttons. Unknown blog/job slugs also show it.
+
+## Phase 6 – SEO and accessibility
+- **SEO files:** `src/app/sitemap.ts` (all pages + every post and job, automatic), `robots.ts`, `manifest.ts`,
+  generated share images `opengraph-image.tsx` / `twitter-image.tsx` (site) and one per blog post with its title
+  (`src/lib/og.tsx` draws them in the site style). Site URL comes from Vercel automatically (no env vars).
+- **Metadata:** every page has title (template "Page | Vaxnori AI"), description, canonical, Open Graph and Twitter card;
+  the 404 is `noindex`. Fixed: Home lost its default title, and pages with their own Open Graph lost the share image.
+- **Structured data:** Organization + WebSite (all pages), FAQPage (Home + FAQ – answers are visible), BlogPosting, JobPosting.
+- **Accessibility:** axe-core (WCAG 2.1 AA + best practice) on 13 pages × desktop and phone → **0 violations**.
+  Fixes: accessible orange darkened to `#CC340B` (4.5:1 on white and on `#FBFBFB`); green fills `#15803D`;
+  orange text in mockups uses the accessible orange; placeholder logos use the `subtle` grey and are named images;
+  Home landmarks named by eyebrow (Product / How it works share Figma's heading text); FAQ group titles are `h2`;
+  newsletter field has a visible focus ring.
+- **Keyboard:** Tab reaches every link, button, tab and field with a visible focus ring; skip link first.
+- **Reduced motion:** loops stop on their final frame, marquee becomes a static row, reveals are instant.

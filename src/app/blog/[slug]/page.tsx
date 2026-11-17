@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (!getPostSlugs().includes(slug)) return {};
   const { meta } = await loadPost(slug);
-  return createMetadata({ path: `/blog/${slug}`, title: meta.title, description: meta.excerpt, type: "article" });
+  return createMetadata({ path: `/blog/${slug}`, title: meta.title, description: meta.excerpt, type: "article", image: `/blog/${slug}/opengraph-image` });
 }
 
 export default async function PostPage({ params }: Props) {

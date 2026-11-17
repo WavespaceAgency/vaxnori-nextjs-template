@@ -145,7 +145,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
                     >
                       {/* Green sweeps in from the left on "Live" (no muddy colour mix) */}
                       <m.span
-                        className="absolute inset-0 origin-left bg-[#22a061]"
+                        className="absolute inset-0 origin-left bg-[#15803d]"
                         initial={false}
                         animate={{ scaleX: live ? 1 : 0 }}
                         transition={live ? { duration: 0.8, ease: EASE_IN_OUT, delay: 0.25 + i * 0.1 } : { duration: 0 }}

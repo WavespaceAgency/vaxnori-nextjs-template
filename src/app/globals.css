@@ -10,8 +10,8 @@
 :root {
   /* Brand */
   --brand: #ff4820; /* Figma "Primary" – decorative fills, icons, large shapes */
-  --brand-strong: #d9380e; /* Buttons + small brand text (white text passes 4.5:1) */
-  --brand-hover: #bf300b;
+  --brand-strong: #cc340b; /* Buttons + small brand text (4.5:1+ on white and on #fbfbfb) */
+  --brand-hover: #b02d09;
   --brand-soft: #fff1ec;
 
   /* Neutrals */
@@ -29,6 +29,8 @@
   --status-todo: #6941c6;
   --status-todo-bg: #f9f5ff;
   --status-done: #047857;
+  /* Solid green for "Approved / Sent / Done" fills with white text (4.5:1+) */
+  --success: #15803d;
   --status-done-bg: #edf9f4;
   --status-queued: #0369a1;
   --status-queued-bg: #eef7fe;
@@ -56,6 +58,7 @@
   --color-status-todo: var(--status-todo);
   --color-status-todo-bg: var(--status-todo-bg);
   --color-status-done: var(--status-done);
+  --color-success: var(--success);
   --color-status-done-bg: var(--status-done-bg);
   --color-status-queued: var(--status-queued);
   --color-status-queued-bg: var(--status-queued-bg);

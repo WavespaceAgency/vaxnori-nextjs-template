@@ -10,7 +10,7 @@ import { StepCard } from "./how-it-works-cards";
  */
 export function HowItWorks({ content }: { content: HomePage["howItWorks"] }) {
   return (
-    <section aria-labelledby="how-title">
+    <section aria-label={content.eyebrow}>
       <Container bordered className="pt-14 pb-14 lg:pt-[100px] lg:pb-[100px]">
         <Reveal className="px-[25px] sm:px-8 lg:px-[50px]">
           <SectionHeading id="how-title" eyebrow={content.eyebrow} title={content.title} accent={content.accent} titleClassName="max-w-[420px]" />

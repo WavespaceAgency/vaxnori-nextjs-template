@@ -20,11 +20,11 @@ function PlaceholderLogo({ name, shape }: LogoItem) {
     diamond: <path d="M12 2 22 12 12 22 2 12 12 2Z" />,
   }[shape];
   return (
-    <span className="flex items-center gap-2 text-[#9a9a9a] transition-colors duration-300 hover:text-ink">
+    <span role="img" aria-label={name} className="flex items-center gap-2 text-subtle transition-colors duration-300 hover:text-ink">
       <svg viewBox="0 0 24 24" className="size-5 lg:size-6" fill="currentColor" aria-hidden="true">
         {mark}
       </svg>
-      <span className="font-heading-flex text-xl leading-none font-semibold tracking-[-0.03em] lg:text-[26px]">{name}</span>
+      <span aria-hidden="true" className="font-heading-flex text-xl leading-none font-semibold tracking-[-0.03em] lg:text-[26px]">{name}</span>
     </span>
   );
 }

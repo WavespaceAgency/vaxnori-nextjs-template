@@ -40,7 +40,7 @@ export function NewsletterForm({ label, placeholder, button, success }: Newslett
       </label>
       <div
         className={cn(
-          "flex items-center gap-2 rounded-field border border-line bg-surface py-1 pr-1 pl-4 transition-colors focus-within:border-ink",
+          "flex items-center gap-2 rounded-field border border-line bg-surface py-1 pr-1 pl-4 transition-[border-color,box-shadow] focus-within:border-ink focus-within:ring-2 focus-within:ring-brand-strong/30",
           error && "border-brand-strong",
         )}
       >

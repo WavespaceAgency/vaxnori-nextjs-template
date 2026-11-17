@@ -138,7 +138,7 @@ function GrowMockup({ v }: { v: Extract<Visual, { type: "grow" }> }) {
                 <div className="flex h-[39px] items-center gap-3 rounded-card border border-[#efefef] bg-surface px-3.5 shadow-card" style={{ width: ROW_WIDTHS[i] }}>
                   <span className="text-[13px] text-subtle">{String(i + 1).padStart(2, "0")}</span>
                   <span className="flex-1 text-[13px] font-medium text-ink">{row.label}</span>
-                  <span className="font-heading-italic text-[15px] font-medium text-brand tabular-nums">
+                  <span className="font-heading-italic text-[15px] font-medium text-brand-strong tabular-nums">
                     <RollingNumber value={show ? row.value : 0} duration={show ? 0.9 : 0} />
                   </span>
                 </div>
@@ -155,7 +155,7 @@ function GrowMockup({ v }: { v: Extract<Visual, { type: "grow" }> }) {
               <m.span
                 className="rounded-[4px] py-1.5 text-center text-[11px] font-medium text-white"
                 initial={false}
-                animate={{ backgroundColor: sent ? "#22a061" : "#ff4820", scale: sent ? [0.94, 1] : 1 }}
+                animate={{ backgroundColor: sent ? "#15803d" : "#ff4820", scale: sent ? [0.94, 1] : 1 }}
                 transition={{ backgroundColor: { duration: 0.25, ease: "easeOut" }, scale: SOFT_SPRING }}
               >
                 <SwapText id={sent ? "s" : "a"}>{sent ? v.sent : v.approve}</SwapText>
