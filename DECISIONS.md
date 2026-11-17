@@ -138,3 +138,7 @@ template rules needed a change. It will move into the README in Phase 8.
     activity items ship one by one, the counter climbs, progress fills to 75% then turns green "Website live 100%".
 - Loops only run while on screen (`useLoop` + `useInView`), so they cost nothing off-screen.
 - With "reduce motion" on, the final state is shown without movement.
+- **Smoother, video-like loops** (`src/components/motion/smooth.tsx`): numbers roll (`RollingNumber`), labels cross-fade
+  (`SwapText`), typing uses a motion value with a caret (`TypeText`), items use a soft spring, bars use a slow
+  ease-in-out (0.45, 0, 0.2, 1). Elements keep their place (no layout jumps) and each card fades out softly at the end
+  of a loop before it restarts. The cursor glides in, presses with a ripple and drifts away.

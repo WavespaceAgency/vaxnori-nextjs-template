@@ -1,19 +1,19 @@
 "use client";
 
-import { AnimatePresence, m } from "motion/react";
+import { m } from "motion/react";
 import { useRef } from "react";
 import { LogoMark } from "@/components/icons";
 import { LineIcon } from "@/components/icons/line-icons";
-import { EASE } from "@/components/motion/reveal";
+import { EASE_IN_OUT, RollingNumber, SwapText } from "@/components/motion/smooth";
 import { useLoop } from "@/components/motion/use-loop";
 import type { HomePage } from "@/config/pages/home";
 import { cn } from "@/lib/utils";
 
 type Mockup = HomePage["hero"]["mockup"];
 
-const card = "rounded-card border bg-surface shadow-card transition-[border-color,box-shadow] duration-500";
+const card = "rounded-card border bg-surface shadow-card transition-[border-color,box-shadow] duration-700 ease-[cubic-bezier(0.45,0,0.2,1)]";
 const chip = "rounded-[3px] border border-line bg-[#fcfcfc] px-1.5 py-0.5 text-[10px] leading-[14px] font-semibold tracking-[0.02em] text-subtle";
-const STEP_MS = [3200, 3200, 3200, 3600];
+const STEP_MS = [3400, 3400, 3400, 4200];
 
 /** Card border: orange glow when the step is working on this card. */
 const glow = (on: boolean) =>
@@ -43,7 +43,7 @@ const statusTone = {
  */
 export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgroundSrc: string }) {
   const ref = useRef<HTMLElement>(null);
-  const index = useLoop(ref, STEP_MS, 3);
+  const { phase: index } = useLoop(ref, STEP_MS, 3);
   const step = mockup.steps[index];
   const [launchTask, outreachTask] = mockup.tasks;
   const live = "live" in step && step.live;
@@ -69,32 +69,23 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
         <span
           key={index}
           aria-hidden="true"
-          className="absolute top-0 left-0 size-[7px] rounded-full bg-brand shadow-[0_0_0_3px_rgb(255_72_32/0.2)] motion-safe:[animation:dot-travel_1.4s_var(--ease-out-expo)_both]"
+          className="absolute top-0 left-0 size-[7px] rounded-full bg-brand shadow-[0_0_0_3px_rgb(255_72_32/0.2)] motion-safe:[animation:dot-travel_1.8s_cubic-bezier(0.45,0,0.2,1)_both]"
           style={{ offsetPath: `path("${PATHS[step.highlight]}")`, offsetRotate: "0deg" }}
         />
 
         {/* Step pill */}
         <div className={cn(card, "absolute top-[14px] left-[50px] flex w-[214px] items-center gap-2 rounded-full border-[#efefef] px-3 py-1.5")}>
           <span className="size-1.5 rounded-full bg-brand" />
-          <AnimatePresence mode="wait" initial={false}>
-            <m.span
-              key={step.label}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3, ease: EASE }}
-              className="flex-1 text-[11px] leading-4 font-semibold text-ink"
-            >
-              Step {index + 1}/{mockup.steps.length} · {step.label}
-            </m.span>
-          </AnimatePresence>
+          <SwapText id={step.label} className="flex-1 text-[11px] leading-4 font-semibold text-ink">
+            Step {index + 1}/{mockup.steps.length} · {step.label}
+          </SwapText>
           <span className="flex items-center gap-1" aria-hidden="true">
             {mockup.steps.map((s, i) => (
               <m.span
                 key={s.label}
                 className="h-1.5 rounded-full"
                 animate={{ width: i === index ? 18 : 6, backgroundColor: i <= index ? "#ff4820" : "#ffc7b8" }}
-                transition={{ duration: 0.4, ease: EASE }}
+                transition={{ duration: 0.7, ease: EASE_IN_OUT }}
               />
             ))}
           </span>
@@ -131,7 +122,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
         <div className={cn(card, "absolute top-[146px] left-[50px] flex w-[534px] flex-col gap-4 border-[#efefef] px-4 py-3.5")}>
           <div className="flex items-center justify-between border-b border-line pb-4">
             <p className="text-[13px] leading-4 font-bold tracking-[0.02em] text-ink">{mockup.checklistTitle}</p>
-            <p className="text-[11px] leading-[14px] font-semibold text-subtle tabular-nums">{step.progress}%</p>
+            <RollingNumber value={step.progress} suffix="%" className="text-[11px] leading-[14px] font-semibold text-subtle tabular-nums" />
           </div>
           <ul className="flex flex-col gap-3">
             {mockup.rows.map((row, i) => {
@@ -145,12 +136,12 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
                       className="block h-full rounded-full"
                       initial={false}
                       animate={{ width: `${value}%`, backgroundColor: live ? "#22a061" : "#ff4820" }}
-                      transition={{ duration: 0.9, ease: EASE, delay: i * 0.06 }}
+                      transition={{ duration: 1.3, ease: EASE_IN_OUT, delay: i * 0.08 }}
                     />
                   </span>
                   <span className="flex w-[68px] shrink-0 justify-end">
-                    <span className={cn("rounded-[3px] px-1.5 py-0.5 text-[10px] leading-[14px] font-semibold whitespace-nowrap transition-colors duration-500", statusTone[status])}>
-                      {mockup.statusLabels[status]}
+                    <span className={cn("rounded-[3px] px-1.5 py-0.5 text-[10px] leading-[14px] font-semibold whitespace-nowrap transition-colors duration-700", statusTone[status])}>
+                      <SwapText id={status}>{mockup.statusLabels[status]}</SwapText>
                     </span>
                   </span>
                 </li>
@@ -190,17 +181,17 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
           <div
             role="status"
             className={cn(
-              "flex w-[168px] items-start gap-2 rounded-card bg-ink px-2.5 py-2 shadow-card transition-shadow duration-500",
+              "flex w-[168px] items-start gap-2 rounded-card bg-ink px-2.5 py-2 shadow-card transition-shadow duration-700",
               live && "shadow-[0_0_0_3px_rgb(34_160_97/0.35),0_10px_30px_-8px_rgb(34_160_97/0.6)]",
             )}
           >
             <LineIcon name="sparkle" className="mt-px size-3.5 shrink-0 text-brand motion-safe:animate-spin-slow" />
-            <AnimatePresence mode="wait" initial={false}>
-              <m.div key={step.toast.title} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.3, ease: EASE }}>
-                <p className={cn("text-xs leading-[14px] font-semibold text-white", !live && "motion-safe:animate-pulse-soft")}>{step.toast.title}</p>
-                <p className={cn("text-[11px] leading-4", live ? "text-[#4ade80]" : "text-white/60")}>{step.toast.subtitle}</p>
-              </m.div>
-            </AnimatePresence>
+            <SwapText id={step.toast.title}>
+              <span className="block">
+                <span className={cn("block text-xs leading-[14px] font-semibold text-white", !live && "motion-safe:animate-pulse-soft")}>{step.toast.title}</span>
+                <span className={cn("block text-[11px] leading-4", live ? "text-[#4ade80]" : "text-white/60")}>{step.toast.subtitle}</span>
+              </span>
+            </SwapText>
           </div>
         </div>
       </div>
