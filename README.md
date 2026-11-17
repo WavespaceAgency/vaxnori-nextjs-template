@@ -6,7 +6,7 @@ A free, open-source Next.js (App Router) template for AI and SaaS products: 13 p
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FWavespaceAgency%2Fvaxnori-nextjs-template&project-name=vaxnori-nextjs-template&repository-name=vaxnori-nextjs-template)
 
-**Live demo:** https://vaxnori-nextjs-template.vercel.app
+**Live demo:** https://vaxnori-ai.vercel.app
 
 No environment variables, no database and no paid services are needed to deploy.
 

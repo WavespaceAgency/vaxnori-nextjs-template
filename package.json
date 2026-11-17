@@ -5,7 +5,7 @@
   "description": "Vaxnori AI \u2013 a free, open-source Next.js (App Router) template for AI and SaaS products.",
   "license": "MIT",
   "author": "Wavespace",
-  "homepage": "https://vaxnori-nextjs-template.vercel.app",
+  "homepage": "https://vaxnori-ai.vercel.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/WavespaceAgency/vaxnori-nextjs-template.git"
