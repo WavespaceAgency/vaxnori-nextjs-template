@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { LogoMarkAlt } from "@/components/icons";
 import { LineIcon, type LineIconName } from "@/components/icons/line-icons";
 import { HiringProcess } from "@/components/careers/careers-sections";
-import { Reveal } from "@/components/motion/reveal";
+import { HeroReveal } from "@/components/motion/hero-reveal";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { careersPage } from "@/config/pages/careers";
@@ -64,16 +64,16 @@ export default async function JobPage({ params }: Props) {
           </span>
         </nav>
 
-        <Reveal y={20} scale className="relative mt-6 aspect-[1137/390] overflow-hidden rounded-[4px] max-sm:aspect-[16/9]">
+        <HeroReveal className="relative mt-6 aspect-[1137/390] overflow-hidden rounded-[4px] max-sm:aspect-[16/9]">
           <Image src={t.cover} alt={t.coverAlt} fill priority sizes="(min-width: 1280px) 1137px, 100vw" className="object-cover" />
-        </Reveal>
+        </HeroReveal>
         <span aria-hidden="true" className="relative z-10 -mt-10 ml-6 flex size-20 items-center justify-center rounded-full border-4 border-surface bg-brand text-white lg:ml-[55px]">
           <LogoMarkAlt className="size-9" />
         </span>
 
         <div className="grid gap-10 pt-6 pb-14 lg:grid-cols-[minmax(0,732px)_288px] lg:justify-between lg:px-[55px] lg:pb-[100px]">
           <div>
-            <Reveal className="border-b border-dashed border-line pb-8">
+            <HeroReveal className="border-b border-dashed border-line pb-8">
               <h1 className="font-heading-flex text-[32px] leading-10 font-medium tracking-[-0.03em] text-ink lg:text-[40px] lg:leading-[44px]">{meta.title}</h1>
               <p className="mt-2 text-base text-muted">{meta.location.includes("Remote") ? "Remote in US or EU unless noted" : meta.location}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
@@ -83,14 +83,14 @@ export default async function JobPage({ params }: Props) {
                   </li>
                 ))}
               </ul>
-            </Reveal>
+            </HeroReveal>
             <div className="[&_h2]:mt-8 [&_h2]:mb-2 [&_h2]:text-xl [&_h2]:leading-7 [&_p]:my-2 [&_p]:text-[15px] [&_p]:leading-6 [&_ul]:my-2 [&_ul]:gap-1 [&_ul]:text-sm [&_ul]:leading-6">
               <Content />
             </div>
           </div>
 
           <aside className="max-lg:order-first">
-            <Reveal delay={0.15} className="rounded-card lg:sticky lg:top-24 border border-line bg-surface p-5 shadow-card">
+            <HeroReveal delay={0.15} className="rounded-card lg:sticky lg:top-24 border border-line bg-surface p-5 shadow-card">
               <p className="text-xs tracking-[0.04em] text-subtle uppercase">{t.compensation}</p>
               <p className="mt-2 font-heading-flex text-2xl font-medium tracking-[-0.03em] text-ink">{meta.salary}</p>
               <p className="mt-1 text-xs leading-4 text-muted">{meta.equity}</p>
@@ -111,7 +111,7 @@ export default async function JobPage({ params }: Props) {
               <Button href={t.apply.href} className="mt-6 w-full">
                 {t.apply.label}
               </Button>
-            </Reveal>
+            </HeroReveal>
           </aside>
         </div>
       </Container>

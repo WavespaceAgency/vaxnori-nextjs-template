@@ -208,3 +208,18 @@ template rules needed a change. It will move into the README in Phase 8.
   newsletter field has a visible focus ring.
 - **Keyboard:** Tab reaches every link, button, tab and field with a visible focus ring; skip link first.
 - **Reduced motion:** loops stop on their final frame, marquee becomes a static row, reveals are instant.
+
+## Phase 7 – QA and performance
+- **QA sweep:** 15 pages × 9 widths (320–1920) = 135 page views: no sideways scroll, no JS errors, no broken images;
+  all 23 internal links return 200. axe: 0 violations. Figma match unchanged (Home within 0–8px per section).
+- **Performance fixes:**
+  - Above-the-fold reveals (Home hero, page heroes, post and job headers) are CSS-only (`HeroReveal`), so the main
+    content paints immediately instead of waiting for JavaScript. Same values as the Framer site.
+  - Motion's animation engine loads asynchronously (`LazyMotion features={() => import(...)}`) → Total Blocking Time
+    on Home 1,080 ms → 10 ms.
+  - Heading font: dropped the `slnt` axis (254 KB → 136 KB). The small italic step numbers use synthesized italic.
+    `opsz` is kept because it makes headings match Figma's widths.
+- **Lighthouse (mobile, applied throttling, local production build):** Home 93/100/100/100, Pricing 98, Blog post 99,
+  Careers 99, Contact 98 (Performance/Accessibility/Best Practices/SEO). Lighthouse's default *simulated* mode
+  under-reports on localhost (it treats every file as a dependency because they load in <75 ms); the real recorded
+  LCP is 66 ms. Re-check on the live Vercel URL.

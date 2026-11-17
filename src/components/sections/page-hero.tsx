@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Reveal } from "@/components/motion/reveal";
+import { HeroReveal } from "@/components/motion/hero-reveal";
 import { Eyebrow } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -45,11 +45,11 @@ export function PageHero({
 
         <div className="relative px-[21px] pt-[72px] text-center sm:px-8 lg:pt-8">
           {eyebrow || mobileEyebrow ? (
-            <Reveal delay={0.1} className={eyebrow ? undefined : "lg:hidden"}>
+            <HeroReveal delay={0.1} className={eyebrow ? undefined : "lg:hidden"}>
               <Eyebrow className="mb-2 justify-center lg:mb-3">{eyebrow ?? mobileEyebrow}</Eyebrow>
-            </Reveal>
+            </HeroReveal>
           ) : null}
-          <Reveal delay={0.2}>
+          <HeroReveal delay={0.2}>
           <h1
             id="page-title"
             className={cn(
@@ -59,17 +59,17 @@ export function PageHero({
           >
             {title} <span className={cn("font-pixel-line text-accent-text", !accentInline && "block")}>{accent}</span>
           </h1>
-          </Reveal>
+          </HeroReveal>
           {description ? (
-            <Reveal delay={0.3}>
+            <HeroReveal delay={0.3}>
               <p className="mx-auto mt-4 max-w-[692px] text-sm leading-5 text-muted sm:mt-5 sm:text-lead sm:leading-[27px]">{description}</p>
-            </Reveal>
+            </HeroReveal>
           ) : null}
         </div>
 
         {primaryCta || secondaryCta ? (
           <div className="mt-[42px] border-y border-dashed border-line py-8 lg:mt-9">
-            <Reveal delay={0.4} className="flex flex-wrap justify-center gap-4 px-4">
+            <HeroReveal delay={0.4} className="flex flex-wrap justify-center gap-4 px-4">
               {primaryCta ? (
                 <Button href={primaryCta.href} size="lg">
                   {primaryCta.label}
@@ -80,7 +80,7 @@ export function PageHero({
                   {secondaryCta.label}
                 </Button>
               ) : null}
-            </Reveal>
+            </HeroReveal>
           </div>
         ) : null}
         {children}

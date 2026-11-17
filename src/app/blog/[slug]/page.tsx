@@ -6,7 +6,7 @@ import { PostCard } from "@/components/blog/post-card";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { socialIcons } from "@/components/icons";
 import { LineIcon } from "@/components/icons/line-icons";
-import { Reveal } from "@/components/motion/reveal";
+import { HeroReveal } from "@/components/motion/hero-reveal";
 import { CornerSquares } from "@/components/sections/hero";
 import { Container } from "@/components/ui/container";
 import { blogPage } from "@/config/pages/blog";
@@ -58,7 +58,7 @@ export default async function PostPage({ params }: Props) {
         <CornerSquares side="left" />
         <CornerSquares side="right" />
         <div className="relative px-6 pt-[72px] text-center sm:px-8 lg:pt-8">
-          <Reveal delay={0.1}>
+          <HeroReveal delay={0.1}>
             <nav aria-label="Breadcrumb" className="flex justify-center gap-2 text-xs tracking-[0.02em] text-subtle uppercase lg:text-sm">
               <Link href="/blog" className="hover:text-ink">
                 {blogPage.post.breadcrumb}
@@ -68,15 +68,15 @@ export default async function PostPage({ params }: Props) {
                 {meta.category}
               </span>
             </nav>
-          </Reveal>
-          <Reveal delay={0.2}>
+          </HeroReveal>
+          <HeroReveal delay={0.2}>
             <h1 className="mx-auto mt-3 max-w-[786px] font-heading-flex text-[32px] leading-10 font-medium tracking-[-0.03em] text-ink sm:text-5xl sm:leading-[1.1] lg:text-display">
               {meta.shortTitle ?? meta.title}{" "}
               {meta.accent ? <span className="block font-pixel-line text-accent-text">{meta.accent}</span> : null}
             </h1>
-          </Reveal>
+          </HeroReveal>
         </div>
-        <Reveal delay={0.3} className="mt-9 border-y border-dashed border-line py-8">
+        <HeroReveal delay={0.3} className="mt-9 border-y border-dashed border-line py-8">
           <div className="flex items-center justify-center gap-3.5">
             <Image src={meta.author.avatar} alt="" width={48} height={48} className="size-12 rounded-full object-cover" />
             <div className="text-left">
@@ -86,9 +86,9 @@ export default async function PostPage({ params }: Props) {
               </p>
             </div>
           </div>
-        </Reveal>
+        </HeroReveal>
         <div className="bg-dots p-4 sm:p-6 lg:p-9">
-          <Reveal delay={0.4} y={20} scale>
+          <HeroReveal delay={0.4}>
             <Image
               src={meta.image}
               alt={meta.imageAlt}
@@ -99,7 +99,7 @@ export default async function PostPage({ params }: Props) {
               sizes="(min-width: 1280px) 1160px, 100vw"
               className="h-auto w-full"
             />
-          </Reveal>
+          </HeroReveal>
         </div>
       </Container>
 
