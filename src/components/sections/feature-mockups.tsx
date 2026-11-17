@@ -156,7 +156,7 @@ function GrowMockup({ v }: { v: Extract<Visual, { type: "grow" }> }) {
                 className="rounded-[4px] py-1.5 text-center text-[11px] font-medium text-white"
                 initial={false}
                 animate={{ backgroundColor: sent ? "#22a061" : "#ff4820", scale: sent ? [0.94, 1] : 1 }}
-                transition={{ backgroundColor: { duration: 0.6, ease: EASE_IN_OUT }, scale: SOFT_SPRING }}
+                transition={{ backgroundColor: { duration: 0.25, ease: "easeOut" }, scale: SOFT_SPRING }}
               >
                 <SwapText id={sent ? "s" : "a"}>{sent ? v.sent : v.approve}</SwapText>
               </m.span>

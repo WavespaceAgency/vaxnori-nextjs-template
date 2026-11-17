@@ -149,3 +149,7 @@ template rules needed a change. It will move into the README in Phase 8.
   Run – recurring task switches to "Sent", digest numbers roll up (211 / 9.2k / 14) and the chart grows in a wave.
   Numbers reset invisibly while the card is faded out, so only the count-up is seen.
   All text is in `homePage.features[].visual`. The old PNG/WebP exports stay as a fallback (used if `visual` is removed).
+- **Hero dot fix:** the travelling dot's paths now start and end ~16px inside the cards, so it slides out from behind
+  one card and disappears behind the next (checked in the browser: at rest it is covered and at opacity 0).
+- **No muddy colours:** orange → green changes on bars are a left-to-right green sweep (no colour blending through
+  brown); button colour changes are short (0.25s).

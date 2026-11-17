@@ -139,7 +139,7 @@ function ApproveCard({ card: c }: { card: Extract<Step["card"], { type: "approve
             className="relative flex-1 overflow-hidden rounded-[4px] py-1.5 text-center text-[10px] leading-4 font-medium text-white"
             initial={false}
             animate={{ backgroundColor: approved ? "#22a061" : "#d9380e", scale: phase === 2 ? 0.95 : 1 }}
-            transition={{ backgroundColor: { duration: 0.6, ease: EASE_IN_OUT }, scale: SOFT_SPRING }}
+            transition={{ backgroundColor: { duration: 0.25, ease: "easeOut" }, scale: SOFT_SPRING }}
           >
             {/* click ripple */}
             <m.span
@@ -212,11 +212,18 @@ function ActivityCard({ card: c }: { card: Extract<Step["card"], { type: "activi
           >
             <span className="h-1 overflow-hidden rounded-full bg-[#f3f3f3]">
               <m.span
-                className="block h-full rounded-full"
+                className="relative block h-full overflow-hidden rounded-full bg-brand"
                 initial={false}
-                animate={{ width: `${phase < 4 ? 0 : live ? 100 : c.progress.value}%`, backgroundColor: live ? "#22a061" : "#ff4820" }}
+                animate={{ width: `${phase < 4 ? 0 : live ? 100 : c.progress.value}%` }}
                 transition={{ duration: phase < 4 ? 0 : 1.3, ease: EASE_IN_OUT }}
-              />
+              >
+                <m.span
+                  className="absolute inset-0 origin-left bg-[#22a061]"
+                  initial={false}
+                  animate={{ scaleX: live ? 1 : 0 }}
+                  transition={live ? { duration: 0.8, ease: EASE_IN_OUT, delay: 0.5 } : { duration: 0 }}
+                />
+              </m.span>
             </span>
           </Row>
         </Appear>

@@ -19,12 +19,16 @@ const STEP_MS = [3400, 3400, 3400, 4200];
 const glow = (on: boolean) =>
   on ? "border-brand shadow-[0_0_0_3px_rgb(255_72_32/0.12),0_8px_24px_-8px_rgb(255_72_32/0.35)]" : "border-[#efefef]";
 
-/** Connector paths (Figma coordinates of the 980×402 canvas). */
+/**
+ * Paths for the travelling dot (Figma coordinates of the 980×402 canvas).
+ * Each path starts and ends ~16px INSIDE a card, so the dot slides out from behind one card
+ * and disappears behind the next (cards are drawn on top of the dot).
+ */
 const PATHS = {
-  agent: "M258 79H321",
-  launch: "M561 79H656",
-  outreach: "M584 250H640V213H826V246",
-  none: "M441 117V146",
+  agent: "M242 79H337", // client pill → agent card
+  launch: "M545 79H672", // agent card → "Launch website" task
+  outreach: "M568 250H640V213H826V262", // checklist → "Outreach" task
+  none: "M441 101V162", // agent card → checklist (Live step)
 } as const;
 
 function statusOf(value: number) {
@@ -69,7 +73,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
         <span
           key={index}
           aria-hidden="true"
-          className="absolute top-0 left-0 size-[7px] rounded-full bg-brand shadow-[0_0_0_3px_rgb(255_72_32/0.2)] motion-safe:[animation:dot-travel_1.8s_cubic-bezier(0.45,0,0.2,1)_both]"
+          className="absolute top-0 left-0 size-[7px] rounded-full bg-brand shadow-[0_0_0_3px_rgb(255_72_32/0.2)] motion-safe:[animation:dot-travel_2s_cubic-bezier(0.45,0,0.2,1)_0.15s_both] motion-reduce:hidden"
           style={{ offsetPath: `path("${PATHS[step.highlight]}")`, offsetRotate: "0deg" }}
         />
 
@@ -133,11 +137,19 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
                   <span className="w-16 shrink-0 text-[11px] leading-[14px] font-medium text-muted">{row}</span>
                   <span className="h-[5px] flex-1 overflow-hidden rounded-full bg-[#f3f3f3]">
                     <m.span
-                      className="block h-full rounded-full"
+                      className="relative block h-full overflow-hidden rounded-full bg-brand"
                       initial={false}
-                      animate={{ width: `${value}%`, backgroundColor: live ? "#22a061" : "#ff4820" }}
+                      animate={{ width: `${value}%` }}
                       transition={{ duration: 1.3, ease: EASE_IN_OUT, delay: i * 0.08 }}
-                    />
+                    >
+                      {/* Green sweeps in from the left on "Live" (no muddy colour mix) */}
+                      <m.span
+                        className="absolute inset-0 origin-left bg-[#22a061]"
+                        initial={false}
+                        animate={{ scaleX: live ? 1 : 0 }}
+                        transition={live ? { duration: 0.8, ease: EASE_IN_OUT, delay: 0.25 + i * 0.1 } : { duration: 0 }}
+                      />
+                    </m.span>
                   </span>
                   <span className="flex w-[68px] shrink-0 justify-end">
                     <span className={cn("rounded-[3px] px-1.5 py-0.5 text-[10px] leading-[14px] font-semibold whitespace-nowrap transition-colors duration-700", statusTone[status])}>
