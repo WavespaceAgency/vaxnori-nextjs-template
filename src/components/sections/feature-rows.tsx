@@ -1,5 +1,7 @@
 import { Reveal } from "@/components/motion/reveal";
 import Image from "next/image";
+import { ScaleToFit } from "@/components/motion/scale-to-fit";
+import { FeatureMockup } from "./feature-mockups";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import type { HomePage } from "@/config/pages/home";
@@ -46,14 +48,22 @@ export function FeatureRows({ content, accentBreakMobile = false }: { content: r
                   flipped ? "lg:order-1" : "lg:justify-self-end",
                 )}
               >
-                <Image
-                  src={feature.image.src}
-                  alt={feature.image.alt}
-                  width={1008}
-                  height={800}
-                  sizes="(min-width: 1280px) 504px, (min-width: 1024px) 40vw, 100vw"
-                  className="h-auto w-full transition-transform duration-700 ease-out hover:scale-[1.02]"
-                />
+                {"visual" in feature && feature.visual ? (
+                  <div role="img" aria-label={feature.image.alt}>
+                    <ScaleToFit width={504} height={400}>
+                      <FeatureMockup visual={feature.visual} />
+                    </ScaleToFit>
+                  </div>
+                ) : (
+                  <Image
+                    src={feature.image.src}
+                    alt={feature.image.alt}
+                    width={1008}
+                    height={800}
+                    sizes="(min-width: 1280px) 504px, (min-width: 1024px) 40vw, 100vw"
+                    className="h-auto w-full transition-transform duration-700 ease-out hover:scale-[1.02]"
+                  />
+                )}
               </Reveal>
             </article>
           );

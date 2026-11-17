@@ -240,6 +240,21 @@ export const homePage = {
       accent: "before your coffee cools.",
       description:
         "Vaxnori reads your idea and drafts positioning, brand voice, and a visual identity. It shortlists domains, incorporates the LLC, and asks for your sign-off at every irreversible step.",
+      visual: {
+        type: "launch",
+        checklistTitle: "Launch checklist",
+        tasks: [
+          { label: "Positioning & brand voice", status: "Drafted", tone: "todo" },
+          { label: "Visual identity", status: "Done", tone: "done" },
+          { label: "Buy mobain.co · $14/yr", status: "Needs Sign off", tone: "progress" },
+          { label: "File Delaware LLC", status: "Queued", tone: "queued" },
+        ],
+        queuedLabel: "Queued",
+        identityTitle: "Identity",
+        brand: "Mobain",
+        voice: ["Warm · plain-spoken", "Never cute"],
+        colors: ["#ff4820", "#ffcf00", "#e8e1d6", "#f7f5f1"],
+      },
       image: {
         src: "/images/home/feature-launch.webp",
         alt: "Launch checklist with brand voice, visual identity, domain and LLC tasks, and a brand colour palette",
@@ -251,6 +266,20 @@ export const homePage = {
       accent: "customers by name.",
       description:
         "Market research, prospect lists, and outreach written in your brand voice — coordinated so the story stays consistent from cold email to landing page. You review before anything sends.",
+      visual: {
+        type: "grow",
+        funnel: [
+          { label: "Buyers researched", value: 312 },
+          { label: "Fit the brand", value: 104 },
+          { label: "Emailed this week", value: 42 },
+          { label: "Calls booked", value: 3 },
+        ],
+        draftLabel: "Draft · In your brand voice",
+        draft: "\"Steve — you stock small-batch bakers. We make one cookie, very well. Six samples, no invoice?\"",
+        hold: "Hold",
+        approve: "Approve",
+        sent: "Sent ✓",
+      },
       image: {
         src: "/images/home/feature-grow.webp",
         alt: "Outreach funnel: 312 buyers researched, 104 fit the brand, 42 emailed, 3 calls booked, with a draft email waiting for approval",
@@ -262,6 +291,24 @@ export const homePage = {
       accent: "on a schedule.",
       description:
         "Support inboxes triaged, analytics summarized every Monday, invoices chased, filings reminded. Recurring work becomes recurring tasks — with a human veto on all of it.",
+      visual: {
+        type: "run",
+        recurringTitle: "Recurring",
+        recurringNote: "This week",
+        recurring: [
+          { day: "Mon", label: "Positioning & brand voice", done: "Sent" },
+          { day: "Tue", label: "Visual identity", done: "" },
+        ],
+        queuedLabel: "Queued",
+        digestTitle: "Monday digest",
+        metrics: [
+          { value: 211, decimals: 0, suffix: "", label: "Signups" },
+          { value: 9.2, decimals: 1, suffix: "k", label: "Weekly active" },
+          { value: 14, decimals: 0, suffix: "", label: "Tickets closed" },
+        ],
+        /** Pairs of bars (orange, yellow), height in % of the chart. */
+        bars: [[36, 58], [47, 68], [55, 68], [64, 97], [73, 88], [74, 83], [64, 47]],
+      },
       image: {
         src: "/images/home/feature-run.webp",
         alt: "Recurring weekly tasks and a Monday digest with signups, weekly active users and closed tickets",

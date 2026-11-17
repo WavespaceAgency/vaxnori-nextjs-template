@@ -9,18 +9,18 @@ export const EASE_IN_OUT = [0.45, 0, 0.2, 1] as const;
 export const SOFT_SPRING = { type: "spring", stiffness: 210, damping: 26, mass: 0.9 } as const;
 
 /** A number that rolls smoothly to its new value (e.g. 18% → 51%). */
-export function RollingNumber({ value, suffix = "", className }: { value: number; suffix?: string; className?: string }) {
+export function RollingNumber({ value, suffix = "", decimals = 0, duration = 1.1, className }: { value: number; suffix?: string; decimals?: number; duration?: number; className?: string }) {
   const mv = useMotionValue(value);
-  const text = useTransform(mv, (v) => `${Math.round(v)}${suffix}`);
+  const text = useTransform(mv, (v) => `${v.toFixed(decimals)}${suffix}`);
   const reduce = useReducedMotion();
   useEffect(() => {
-    if (reduce) {
+    if (reduce || duration === 0) {
       mv.set(value);
       return;
     }
-    const controls = animate(mv, value, { duration: 1.1, ease: EASE_IN_OUT });
+    const controls = animate(mv, value, { duration, ease: EASE_IN_OUT });
     return () => controls.stop();
-  }, [value, mv, reduce]);
+  }, [value, mv, reduce, duration]);
   return <m.span className={className}>{text}</m.span>;
 }
 

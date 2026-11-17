@@ -142,3 +142,10 @@ template rules needed a change. It will move into the README in Phase 8.
   (`SwapText`), typing uses a motion value with a caret (`TypeText`), items use a soft spring, bars use a slow
   ease-in-out (0.45, 0, 0.2, 1). Elements keep their place (no layout jumps) and each card fades out softly at the end
   of a loop before it restarts. The cursor glides in, presses with a ripple and drifts away.
+- **Feature rows (Launch / Grow / Run)** are now live HTML mockups (`feature-mockups.tsx`) at the Figma size 504×400,
+  scaled on phones, looping like the live site:
+  Launch – statuses fill in one by one, brand name, colour swatches and voice appear;
+  Grow – funnel rows count up one by one, the draft email slides in, Approve turns into a green "Sent ✓";
+  Run – recurring task switches to "Sent", digest numbers roll up (211 / 9.2k / 14) and the chart grows in a wave.
+  Numbers reset invisibly while the card is faded out, so only the count-up is seen.
+  All text is in `homePage.features[].visual`. The old PNG/WebP exports stay as a fallback (used if `visual` is removed).
