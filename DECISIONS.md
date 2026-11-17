@@ -153,3 +153,25 @@ template rules needed a change. It will move into the README in Phase 8.
   one card and disappears behind the next (checked in the browser: at rest it is covered and at opacity 0).
 - **No muddy colours:** orange → green changes on bars are a left-to-right green sweep (no colour blending through
   brown); button colour changes are short (0.25s).
+
+## Phase 4 – Blog and Careers
+- **Content in MDX** (`@next/mdx`, no plugins): `src/content/blog/*.mdx` (8 sample posts) and `src/content/careers/*.mdx`
+  (6 sample jobs). Each file exports `meta`; the file name is the URL. Loader: `src/lib/content.ts` (server only);
+  browser-safe types/helpers: `src/lib/content-types.ts`. MDX styles + `<Figure>`, `<Callout>`, `<Timeline>` live in `src/mdx-components.tsx`.
+- All 25 pages are static (blog posts and jobs prerendered). Unknown slugs show the 404 page (`notFound()` – Cache Components
+  does not allow `dynamicParams`).
+- **Blog:** featured post (animated launch mockup), category tabs that filter with animation, 3-column cards,
+  "Load older posts" (6 per page). Added a Changelog sample post so every tab has content and the button shows (as in Figma).
+  Card titles are full titles with CSS truncation (Figma had hand-typed "…").
+  Categories cleaned up: Figma labelled most cards "Launch play"; each post now has a real category matching the tabs.
+  Figma's blog CTA reused the careers text; the template uses the Home CTA.
+- **Blog post:** breadcrumb, split title, author, hero image, 680px reading column, "On this page" (highlights while
+  reading), share links, quote and numbered list styles, "Keep reading" (2 newest other posts, reusing card images),
+  BlogPosting JSON-LD.
+- **Careers:** Pace / Scope / Contact are vertical tabs (Figma), each with an animated mockup; roles table (cards on phones,
+  benefits shown first on phones – as in the mobile frame); benefits grid; CTA; hiring process.
+  "What come with it" → "What comes with it".
+- **Job page:** breadcrumb, cover, logo badge, tags, MDX body, sticky compensation card (above the text on phones),
+  JobPosting JSON-LD, hiring process. Figma's second "What we're looking for" heading → "Your first 90 days".
+  Typos fixed: "Vaxnori Al", "Youd", "sprawi".
+- Hydration-safe loops: animated mockups render the same first frame on server and client (`useHydrated`).

@@ -2,6 +2,7 @@
 
 import { useInView, useReducedMotion } from "motion/react";
 import { useEffect, useState, type RefObject } from "react";
+import { useHydrated } from "./use-hydrated";
 
 /**
  * Steps through `durations` (ms per phase) in a loop while `ref` is on screen.
@@ -9,7 +10,9 @@ import { useEffect, useState, type RefObject } from "react";
  * With reduced motion it stays on `staticPhase`.
  */
 export function useLoop(ref: RefObject<Element | null>, durations: readonly number[], staticPhase = durations.length - 1) {
-  const reduce = useReducedMotion();
+  const hydrated = useHydrated();
+  // Only trust the reduced-motion setting after hydration, so server and client render the same first frame.
+  const reduce = useReducedMotion() && hydrated;
   const inView = useInView(ref, { amount: 0.3 });
   const [state, setState] = useState({ phase: 0, cycle: 0 });
 

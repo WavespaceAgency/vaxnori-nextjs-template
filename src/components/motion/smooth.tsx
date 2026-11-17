@@ -47,7 +47,8 @@ export function SwapText({ id, children, className }: { id: string | number; chi
 /** Types `text` at a steady pace with a blinking caret. Restarts when `run` changes. */
 export function TypeText({ text, run, duration = 1.6 }: { text: string; run: number | string; duration?: number }) {
   const reduce = useReducedMotion();
-  const progress = useMotionValue(reduce ? text.length : 0);
+  // Start empty on server and client; the effect fills it in (instantly with reduced motion).
+  const progress = useMotionValue(0);
   const typed = useTransform(progress, (v) => text.slice(0, Math.round(v)));
   const caret = useTransform(progress, (v) => (v < text.length ? 1 : 0));
   useEffect(() => {

@@ -27,7 +27,7 @@ export function PageHero({
   mobileEyebrow?: string;
   title: string;
   accent: string;
-  description: string;
+  description?: string;
   primaryCta?: Cta;
   secondaryCta?: Cta;
   titleClassName?: string;
@@ -60,9 +60,11 @@ export function PageHero({
             {title} <span className={cn("font-pixel-line text-accent-text", !accentInline && "block")}>{accent}</span>
           </h1>
           </Reveal>
-          <Reveal delay={0.3}>
-            <p className="mx-auto mt-4 max-w-[692px] text-sm leading-5 text-muted sm:mt-5 sm:text-lead sm:leading-[27px]">{description}</p>
-          </Reveal>
+          {description ? (
+            <Reveal delay={0.3}>
+              <p className="mx-auto mt-4 max-w-[692px] text-sm leading-5 text-muted sm:mt-5 sm:text-lead sm:leading-[27px]">{description}</p>
+            </Reveal>
+          ) : null}
         </div>
 
         {primaryCta || secondaryCta ? (

@@ -1,0 +1,26 @@
+export const meta = {
+  title: "How we let an agent use a browser without losing sleep",
+  excerpt: "Session isolation, replayable runs, and why every click is written down.",
+  category: "Engineering",
+  date: "2026-08-21",
+  readingTime: "7 min read",
+  image: "/images/blog/agent-browser.webp",
+  imageAlt: "An AI agent recording a browser session: open website, click Get Started, fill out form, submit",
+  author: { name: "James Smith", avatar: "/images/blog/author-james.webp" },
+};
+
+A browser is the most useful tool an agent can have – and the easiest one to get wrong. This is a sample post – replace it with your own engineering write-up.
+
+## Every run gets its own session
+
+Each task starts in a clean, isolated browser profile. Nothing leaks between customers, and nothing is left behind when the task ends.
+
+## Every click is written down
+
+We log each step as it happens: the page, the action and a screenshot. If something goes wrong, you can replay the run and see exactly where.
+
+> A log you can replay is worth more than a model that is a little smarter.
+
+## Irreversible steps wait for a person
+
+Submitting a form that spends money or signs a document always stops for an approval first.
