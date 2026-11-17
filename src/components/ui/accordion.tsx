@@ -2,7 +2,7 @@
 
 import { m } from "motion/react";
 import { useId, useState, type ReactNode } from "react";
-import { EASE } from "@/components/motion/reveal";
+import { EASE, staggerItem } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 
 export type AccordionItem = { question: string; answer: ReactNode };
@@ -57,7 +57,7 @@ export function Accordion({
         const buttonId = `${baseId}-button-${index}`;
         const panelId = `${baseId}-panel-${index}`;
         return (
-          <div key={item.question} className={cn("relative transition-colors hover:bg-canvas", v.item)}>
+          <m.div key={item.question} variants={staggerItem} className={cn("relative transition-colors hover:bg-canvas", v.item)}>
             <Heading>
               <button
                 id={buttonId}
@@ -109,7 +109,7 @@ export function Accordion({
                 {item.answer}
               </m.div>
             </m.div>
-          </div>
+          </m.div>
         );
       })}
     </div>

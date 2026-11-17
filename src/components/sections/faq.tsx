@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/motion/reveal";
+import { Reveal, Stagger } from "@/components/motion/reveal";
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -22,9 +22,9 @@ export function Faq({ content, gapTop = false }: { content: FaqContent; gapTop?:
               {content.cta.label}
             </Button>
           </Reveal>
-          <Reveal delay={0.1} className="border-dashed border-line lg:border-l">
+          <Stagger gap={0.1} className="border-dashed border-line lg:border-l">
             <Accordion items={content.items} variant="dashed" />
-          </Reveal>
+          </Stagger>
         </div>
         <div aria-hidden="true" className="bg-dots h-14 border-t border-dashed border-line lg:h-[100px]" />
       </Container>

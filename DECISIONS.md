@@ -119,3 +119,10 @@ template rules needed a change. It will move into the README in Phase 8.
   (Figma reused the Home answer for the first question).
 - Figma mobile slips not copied: mobile Pricing/How FAQs show Home questions; the template keeps each page's own questions.
 - Small accessibility tweaks vs Figma: "/ month" and featured-card text use darker greys for 4.5:1 contrast.
+
+## Motion matched to the live Framer site
+- Values read from the live site (vaxnoriai.framer.website): fade from opacity 0.001 + rise 28px, 0.8s, ease [0.22, 1, 0.36, 1],
+  items 0.1s apart; mockups/images start at 97% scale + 20px; hero parts appear in order (0.1 → 0.5s); stats count up.
+- Removed my extras that the live site does not have: blur, word-by-word heading, 3D tilt, parallax.
+- Logo row is now a marquee on all screen sizes (it was static on desktop to match the Figma frame).
+- FAQ items now appear one after another, like the live site.

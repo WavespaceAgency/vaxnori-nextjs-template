@@ -34,26 +34,18 @@ export function LogoStrip({ content }: { content: HomePage["logos"] }) {
   return (
     <section aria-labelledby="logos-title">
       <Container bordered className="bg-canvas pt-6 pb-6 lg:pt-[60px] lg:pb-[64px]">
-        <Reveal as="div" y={12}>
+        <Reveal>
           <h2 id="logos-title" className="px-4 text-center text-base leading-6 text-subtle">
             {content.title}
           </h2>
         </Reveal>
-        {/* Desktop: one evenly spaced row, as in Figma */}
-        <ul className="mt-8 hidden h-[29px] items-center justify-between px-[50px] lg:flex">
-          {content.items.map((logo) => (
-            <li key={logo.name}>
-              <PlaceholderLogo {...logo} />
-            </li>
-          ))}
-        </ul>
-        {/* Phones and tablets: slow marquee (pauses on hover) */}
-        <div className="group mt-5 flex h-[26px] items-center overflow-hidden motion-safe:[mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)] lg:hidden">
+        {/* Marquee on every screen size (as on the live site). Pauses on hover; static for reduced motion. */}
+        <div className="group mt-5 flex h-[26px] items-center overflow-hidden motion-safe:[mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)] lg:mt-8 lg:h-[29px]">
           {[false, true].map((copy) => (
             <ul
               key={String(copy)}
               aria-hidden={copy || undefined}
-              className={`flex shrink-0 items-center gap-12 pr-12 motion-safe:animate-marquee group-hover:[animation-play-state:paused] ${copy ? "motion-reduce:hidden" : "motion-reduce:w-full motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-x-10 motion-reduce:gap-y-6 motion-reduce:px-4"}`}
+              className={`flex shrink-0 items-center gap-12 pr-12 motion-safe:animate-marquee group-hover:[animation-play-state:paused] lg:gap-[88px] lg:pr-[88px] ${copy ? "motion-reduce:hidden" : "motion-reduce:w-full motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-x-10 motion-reduce:gap-y-6 motion-reduce:px-4"}`}
             >
               {content.items.map((logo) => (
                 <li key={logo.name}>

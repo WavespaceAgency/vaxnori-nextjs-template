@@ -1,8 +1,6 @@
 import type { CSSProperties } from "react";
 import { Reveal } from "@/components/motion/reveal";
-import { SplitWords } from "@/components/motion/split-words";
 import { ScaleToFit } from "@/components/motion/scale-to-fit";
-import { Tilt } from "@/components/motion/tilt";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import type { HomePage } from "@/config/pages/home";
@@ -39,14 +37,15 @@ export function Hero({ content, backgroundSrc }: { content: HomePage["hero"]; ba
         <CornerSquares side="right" />
 
         <div className="relative px-[21px] pt-[72px] text-center sm:px-8 lg:pt-8">
+          <Reveal delay={0.1}>
           <h1
             id="hero-title"
             className="mx-auto max-w-[288px] font-heading-flex text-[32px] leading-10 font-medium tracking-[-0.03em] text-ink sm:max-w-[642px] sm:text-5xl sm:leading-[1.1] lg:text-display"
           >
-            <SplitWords text={content.title} />{" "}
-            <SplitWords text={content.accent} delay={0.25} className="block font-pixel-line text-accent-text" />
+            {content.title} <span className="block font-pixel-line text-accent-text">{content.accent}</span>
           </h1>
-          <Reveal delay={0.35} y={16}>
+          </Reveal>
+          <Reveal delay={0.2}>
             <p className="mx-auto mt-4 max-w-[596px] text-sm leading-5 text-muted sm:mt-5 sm:text-lead sm:leading-[27px]">
               {content.description}{" "}
               <strong className="font-medium text-ink">{content.descriptionHighlight}</strong>
@@ -55,7 +54,7 @@ export function Hero({ content, backgroundSrc }: { content: HomePage["hero"]; ba
         </div>
 
         <div className="mt-[42px] border-y border-dashed border-line py-8 lg:mt-9">
-          <Reveal delay={0.5} y={16} className="flex flex-wrap justify-center gap-4 px-4">
+          <Reveal delay={0.3} className="flex flex-wrap justify-center gap-4 px-4">
             <Button href={content.primaryCta.href} size="lg">
               {content.primaryCta.label}
             </Button>
@@ -66,12 +65,10 @@ export function Hero({ content, backgroundSrc }: { content: HomePage["hero"]; ba
         </div>
 
         <div className="p-6 sm:p-8 lg:p-[50px]">
-          <Reveal delay={0.6} y={40} scale>
-            <Tilt>
-              <ScaleToFit width={1140} className="aspect-[1140/648] lg:aspect-[1140/562]">
-                <HeroMockup mockup={content.mockup} backgroundSrc={backgroundSrc} />
-              </ScaleToFit>
-            </Tilt>
+          <Reveal delay={0.5} y={0}>
+            <ScaleToFit width={1140} className="aspect-[1140/648] lg:aspect-[1140/562]">
+              <HeroMockup mockup={content.mockup} backgroundSrc={backgroundSrc} />
+            </ScaleToFit>
           </Reveal>
         </div>
       </Container>

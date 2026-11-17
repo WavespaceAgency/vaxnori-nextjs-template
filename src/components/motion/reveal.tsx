@@ -3,8 +3,11 @@
 import { m, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 
-/** Shared easing for the whole site (soft "ease-out-expo"). */
-export const EASE = [0.16, 1, 0.3, 1] as const;
+/** Shared easing – the same curve the Vaxnori Framer site uses. */
+export const EASE = [0.22, 1, 0.36, 1] as const;
+
+/** Start state: 0.001 (not 0) keeps text eligible for LCP, like Framer does. */
+const HIDDEN = 0.001;
 
 const tags = { div: m.div, li: m.li, ul: m.ul, ol: m.ol, article: m.article, figure: m.figure, section: m.section, span: m.span } as const;
 type Tag = keyof typeof tags;
@@ -22,17 +25,18 @@ type RevealProps = {
   id?: string;
 };
 
-/** Fades, un-blurs and lifts its content the first time it scrolls into view. */
-export function Reveal({ children, as = "div", className, delay = 0, y = 24, scale = false, id }: RevealProps) {
+/** Fades and lifts its content (28px) the first time it scrolls into view. `scale` = mockup style (97%, 20px). */
+export function Reveal({ children, as = "div", className, delay = 0, y, scale = false, id }: RevealProps) {
+  const lift = y ?? (scale ? 20 : 28);
   const Component = tags[as];
   return (
     <Component
       id={id}
       className={className}
-      initial={{ opacity: 0, y, scale: scale ? 0.96 : 1, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.9, delay, ease: EASE }}
+      initial={{ opacity: HIDDEN, y: lift, scale: scale ? 0.97 : 1 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.8, delay, ease: EASE }}
     >
       {children}
     </Component>
@@ -46,17 +50,19 @@ const container: Variants = {
   }),
 };
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: EASE } },
+/** Exported so other components (e.g. the accordion) can join a <Stagger>. */
+export const staggerItem: Variants = {
+  hidden: { opacity: HIDDEN, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
 };
+const item = staggerItem;
 
 /** Parent for a group of items that appear one after another. */
 export function Stagger({
   children,
   as = "div",
   className,
-  gap = 0.08,
+  gap = 0.1,
   delay = 0,
   amount = 0.15,
 }: {

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/motion/reveal";
-import { SplitWords } from "@/components/motion/split-words";
 import { Eyebrow } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -46,10 +45,11 @@ export function PageHero({
 
         <div className="relative px-[21px] pt-[72px] text-center sm:px-8 lg:pt-8">
           {eyebrow || mobileEyebrow ? (
-            <Reveal y={8} className={eyebrow ? undefined : "lg:hidden"}>
+            <Reveal delay={0.1} className={eyebrow ? undefined : "lg:hidden"}>
               <Eyebrow className="mb-2 justify-center lg:mb-3">{eyebrow ?? mobileEyebrow}</Eyebrow>
             </Reveal>
           ) : null}
+          <Reveal delay={0.2}>
           <h1
             id="page-title"
             className={cn(
@@ -57,17 +57,17 @@ export function PageHero({
               titleClassName,
             )}
           >
-            <SplitWords text={title} />{" "}
-            <SplitWords text={accent} delay={0.25} className={cn("font-pixel-line text-accent-text", !accentInline && "block")} />
+            {title} <span className={cn("font-pixel-line text-accent-text", !accentInline && "block")}>{accent}</span>
           </h1>
-          <Reveal delay={0.35} y={16}>
+          </Reveal>
+          <Reveal delay={0.3}>
             <p className="mx-auto mt-4 max-w-[692px] text-sm leading-5 text-muted sm:mt-5 sm:text-lead sm:leading-[27px]">{description}</p>
           </Reveal>
         </div>
 
         {primaryCta || secondaryCta ? (
           <div className="mt-[42px] border-y border-dashed border-line py-8 lg:mt-9">
-            <Reveal delay={0.5} y={16} className="flex flex-wrap justify-center gap-4 px-4">
+            <Reveal delay={0.4} className="flex flex-wrap justify-center gap-4 px-4">
               {primaryCta ? (
                 <Button href={primaryCta.href} size="lg">
                   {primaryCta.label}

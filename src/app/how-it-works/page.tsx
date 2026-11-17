@@ -17,7 +17,7 @@ export default function HowItWorksPage() {
     <>
       <PageHero {...howItWorksPage.hero}>
         <div id="video" className="scroll-mt-20 p-6 sm:p-8 lg:px-[50px] lg:pt-[50px] lg:pb-[60px]">
-          <Reveal delay={0.6} y={40} scale>
+          <Reveal delay={0.5} y={0}>
             <VideoBlock video={howItWorksPage.video} />
           </Reveal>
         </div>
