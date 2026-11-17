@@ -17,6 +17,7 @@ export const fontSans = Inter({
 /** Headings. */
 export const fontHeading = Google_Sans_Flex({
   subsets: ["latin"],
+  axes: ["opsz", "slnt"], // opsz: display cut for big headings (as in Figma); slnt: italic
   display: "swap",
   variable: "--font-google-sans-flex",
   // Next.js has no fallback metrics for this font yet.

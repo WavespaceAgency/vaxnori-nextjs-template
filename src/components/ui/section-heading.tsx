@@ -13,6 +13,8 @@ export type HeadingContent = {
 
 type SectionHeadingProps = HeadingContent & {
   as?: "h1" | "h2" | "h3";
+  /** Show the short line before the eyebrow (Figma hides it on feature rows). */
+  eyebrowLine?: boolean;
   /** id on the heading, for aria-labelledby on the section. */
   id?: string;
   size?: "display" | "h2";
@@ -22,12 +24,13 @@ type SectionHeadingProps = HeadingContent & {
   tone?: "dark" | "light";
   className?: string;
   titleClassName?: string;
+  descriptionClassName?: string;
   children?: ReactNode;
 };
 
 const titleSizes = {
   display: "text-[2.5rem] leading-[1.1] tracking-[-0.03em] sm:text-5xl lg:text-display",
-  h2: "text-[2rem] leading-[1.125] tracking-[-0.03em] lg:text-h2",
+  h2: "text-2xl leading-7 tracking-[-0.03em] lg:text-h2 lg:leading-[44px]",
 };
 
 /** Heading pattern used across the design: eyebrow, title + pixel-font accent, description. */
@@ -37,6 +40,7 @@ export function SectionHeading({
   accent,
   description,
   as: Tag = "h2",
+  eyebrowLine = true,
   id,
   size = "h2",
   align = "left",
@@ -44,11 +48,16 @@ export function SectionHeading({
   tone = "dark",
   className,
   titleClassName,
+  descriptionClassName,
   children,
 }: SectionHeadingProps) {
   return (
-    <div className={cn("flex flex-col gap-3", align === "center" && "items-center text-center", className)}>
-      {eyebrow ? <Eyebrow tone={tone === "dark" ? "brand" : "light"}>{eyebrow}</Eyebrow> : null}
+    <div className={cn("flex flex-col gap-2 lg:gap-3", align === "center" && "items-center text-center", className)}>
+      {eyebrow ? (
+        <Eyebrow tone={tone === "dark" ? "brand" : "light"} line={eyebrowLine}>
+          {eyebrow}
+        </Eyebrow>
+      ) : null}
       <Tag
         id={id}
         className={cn(
@@ -75,7 +84,7 @@ export function SectionHeading({
         ) : null}
       </Tag>
       {description ? (
-        <p className={cn("max-w-xl text-base leading-6", tone === "dark" ? "text-muted" : "text-white/70", align === "center" && "mx-auto")}>
+        <p className={cn("mt-2 max-w-[473px] text-sm leading-[22px] lg:mt-1 lg:text-base lg:leading-6", tone === "dark" ? "text-muted" : "text-white/70", align === "center" && "mx-auto", descriptionClassName)}>
           {description}
         </p>
       ) : null}

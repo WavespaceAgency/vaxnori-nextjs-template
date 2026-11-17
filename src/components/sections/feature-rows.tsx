@@ -1,4 +1,3 @@
-import { Parallax } from "@/components/motion/parallax";
 import { Reveal } from "@/components/motion/reveal";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
@@ -16,16 +15,17 @@ export function FeatureRows({ content }: { content: HomePage["features"] }) {
           return (
             <article
               key={feature.eyebrow}
-              className="grid items-center gap-10 border-t border-dashed border-line px-4 py-12 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-[50px] lg:py-[100px]"
+              className={cn("grid items-center gap-8 border-t border-dashed border-line px-6 py-14 first:border-t-0 sm:px-8 lg:gap-20 lg:px-[50px] lg:py-[100px]", flipped ? "lg:grid-cols-[504fr_556fr]" : "lg:grid-cols-[556fr_504fr]")}
             >
-              <Reveal className={cn("max-w-[556px]", flipped && "lg:order-2 lg:justify-self-end")}>
+              <Reveal className={cn("max-w-[556px]", flipped && "lg:order-2")}>
               <SectionHeading
                 eyebrow={feature.eyebrow}
                 title={feature.title}
                 accent={feature.accent}
                 description={feature.description}
                 as="h2"
-                accentBreak
+                eyebrowLine={false}
+                descriptionClassName="max-lg:leading-5"
               />
               </Reveal>
               <Reveal
@@ -36,16 +36,14 @@ export function FeatureRows({ content }: { content: HomePage["features"] }) {
                   flipped ? "lg:order-1" : "lg:justify-self-end",
                 )}
               >
-                <Parallax offset={18}>
                 <Image
                   src={feature.image.src}
                   alt={feature.image.alt}
                   width={1008}
                   height={800}
                   sizes="(min-width: 1280px) 504px, (min-width: 1024px) 40vw, 100vw"
-                  className="h-auto w-full scale-[1.06] transition-transform duration-700 ease-out hover:scale-[1.09]"
+                  className="h-auto w-full transition-transform duration-700 ease-out hover:scale-[1.02]"
                 />
-                </Parallax>
               </Reveal>
             </article>
           );

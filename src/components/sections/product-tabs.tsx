@@ -49,7 +49,7 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
           role="tablist"
           aria-label="Product features"
           onKeyDown={onKeyDown}
-          className="flex gap-1 overflow-x-auto px-4 [scrollbar-width:none] sm:gap-4 lg:px-[50px]"
+          className="flex overflow-x-auto [scrollbar-width:none] sm:gap-4 sm:px-4 lg:pl-[50px]"
         >
           {tabs.map((tab, index) => {
             const selected = index === active;
@@ -67,7 +67,7 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
                 tabIndex={selected ? 0 : -1}
                 onClick={() => setActive(index)}
                 className={cn(
-                  "relative shrink-0 px-4 py-5 text-base leading-6 whitespace-nowrap transition-colors duration-300 focus-visible:-outline-offset-4",
+                  "relative flex-1 border-b border-transparent px-4 py-4 text-[15px] leading-6 whitespace-nowrap transition-colors duration-300 first:pl-6 last:pr-6 focus-visible:-outline-offset-4 sm:flex-none sm:first:pl-4 sm:last:pr-4 lg:py-5 lg:text-base",
                   selected ? "text-ink" : "text-subtle hover:text-ink",
                 )}
               >
@@ -82,7 +82,7 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
                   <m.span
                     layoutId={`${baseId}-underline`}
                     transition={{ type: "spring", stiffness: 400, damping: 34 }}
-                    className="absolute inset-x-0 -bottom-px h-px bg-ink"
+                    className="absolute inset-x-0 bottom-0 h-px bg-ink"
                     aria-hidden="true"
                   />
                 ) : null}
@@ -102,7 +102,7 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
             aria-labelledby={`${baseId}-tab-${tab.id}`}
             hidden={!selected}
             tabIndex={0}
-            className="grid items-center gap-10 px-4 py-12 focus-visible:-outline-offset-4 sm:px-8 lg:grid-cols-[minmax(0,421px)_minmax(0,619px)] lg:justify-between lg:px-[50px] lg:py-[100px]"
+            className="grid items-center gap-6 px-6 pt-6 pb-14 focus-visible:-outline-offset-4 sm:px-8 lg:grid-cols-[minmax(0,421px)_minmax(0,619px)] lg:justify-between lg:gap-10 lg:px-[50px] lg:py-[100px]"
           >
             {/* The key changes when a tab opens, so its animation plays again. Content of hidden tabs stays in the HTML. */}
                 <m.div
@@ -110,20 +110,20 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
                   initial={{ opacity: 0, x: -16, filter: "blur(4px)" }}
                   animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.6, ease: EASE }}
-                  className="flex flex-col gap-5"
+                  className="flex flex-col gap-4 lg:gap-5"
                 >
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-2 lg:gap-3">
                     <h3 className="font-heading-flex text-h4 font-medium text-ink">{tab.title}</h3>
-                    <p className="text-base leading-6 text-muted">{tab.description}</p>
+                    <p className="text-sm leading-[22px] text-muted lg:text-base lg:leading-6">{tab.description}</p>
                   </div>
-                  <ul className="flex flex-col gap-2">
+                  <ul className="flex max-w-[278px] flex-col gap-2 sm:max-w-none">
                     {tab.points.map((point, i) => (
                       <m.li
                         key={point}
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.15 + i * 0.08, ease: EASE }}
-                        className="flex items-start gap-2.5 text-base leading-6 text-muted"
+                        className="flex items-start gap-2.5 text-sm leading-[22px] text-muted lg:text-base lg:leading-6"
                       >
                         <CheckCircle className="mt-0.5 size-5 shrink-0 text-brand" />
                         {point}
@@ -137,7 +137,7 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.7, ease: EASE }}
                 className={cn(
-                  "aspect-[619/401] w-full overflow-hidden border border-[#e6e6e6] bg-surface shadow-frame",
+                  "aspect-[322/208] w-full overflow-hidden border-[0.5px] lg:aspect-[619/401] border-[#e6e6e6] bg-surface shadow-frame",
                   tab.tallOnMobile && "max-sm:aspect-auto max-sm:min-h-80",
                 )}
               >

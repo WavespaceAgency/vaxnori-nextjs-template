@@ -73,3 +73,26 @@ template rules needed a change. It will move into the README in Phase 8.
   tab buttons no longer jump (a hidden medium-weight copy keeps each tab's width fixed).
 - **FAQ accordion** is now a button-based accordion (`aria-expanded`, `aria-controls`). Closed answers stay in the HTML for SEO.
 - Product image renamed to `product-workspace.webp` so no old cached copy (with the personal name) can be served.
+
+## Pixel-perfect pass (Home, desktop 1440 + mobile 402)
+- Method: every section was screenshotted side by side with the Figma frame and measured. Result: each section is
+  within 0–5px of the Figma height on desktop and within 0–9px on mobile.
+- **Font fix:** Google Sans Flex now loads its `opsz` axis (and `slnt` for italic step numbers). Without it the
+  headings were ~2.5% wider than Figma and wrapped differently. Now "It logs into the accounts" = 406.5px (Figma 407px).
+- Removed `text-wrap: balance/pretty` – Figma does not balance lines.
+- **Content now follows Figma exactly** (owner's choice "Figma, but legal-safe, typos fixed"):
+  - How it works heading is again "From one sentence to a running company." (same as Product, as in Figma).
+  - Nav "Contact Us", email hello@vaxnori.co, mobile menu = Figma list (no extra About link / button).
+  - Kept legal fixes only: placeholder logos, generic integration icons, "Hi there" instead of a personal name,
+    "trusted by teams like these" instead of "100K+ partners", no Log in button (no log-in page).
+  - Figma copy-paste slips on mobile were NOT copied: the mobile FAQ and feature rows reuse the How-it-works heading in Figma;
+    the template keeps the real headings. The mobile footer button says "Get Started" in Figma; the template uses "Subscribe" everywhere.
+- **Two brand marks, as in Figma:** heart (`/brand/mark.svg`) on desktop nav + desktop footer; diamond (`/brand/mark-alt.svg`)
+  on mobile nav, mobile menu, mobile footer and the stats cell.
+- **Hero preview:** one fixed 1140×562 composition (exact Figma positions), scaled down on small screens by `ScaleToFit`
+  (taller 1140×648 frame on phones, as in the Figma mobile frame). Background is the exact Figma crop at 2x.
+- Active tab: black 1px bottom border inside the tab, above the dashed line (Figma).
+- Stats grid uses Figma's exact column widths (294/552/294 and 392/393/355).
+- Footer: fixed 308px top row, left-aligned socials, Figma background crop, grid behind the mark, wordmark at the exact
+  Figma size (1216×207, real text so it changes with the brand name).
+- Feature images: parallax removed (it enlarged the images vs Figma); hover zoom kept.

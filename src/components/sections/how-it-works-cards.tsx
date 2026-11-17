@@ -11,10 +11,10 @@ const card = "rounded-card border border-[#efefef] bg-surface shadow-card";
 
 function Row({ icon, label, meta, className, style }: { icon: Parameters<typeof LineIcon>[0]["name"]; label: string; meta: string; className?: string; style?: CSSProperties }) {
   return (
-    <div className={cn(card, "flex items-center gap-2 px-2.5 py-2", className)} style={style}>
+    <div className={cn(card, "flex items-center gap-2 px-2.5 py-[7px]", className)} style={style}>
       <LineIcon name={icon} className="size-3.5 text-muted" />
-      <span className="flex-1 text-[11px] leading-4 font-medium text-ink">{label}</span>
-      <span className="text-[10px] leading-4 text-subtle">{meta}</span>
+      <span className="flex-1 text-[10px] leading-[14px] font-medium text-ink">{label}</span>
+      <span className="text-[9px] leading-[14px] text-subtle">{meta}</span>
     </div>
   );
 }

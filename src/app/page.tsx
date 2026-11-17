@@ -9,7 +9,6 @@ import { Product } from "@/components/sections/product";
 import { Stats } from "@/components/sections/stats";
 import { Testimonial } from "@/components/sections/testimonial";
 import { homePage } from "@/config/pages/home";
-import { siteConfig } from "@/config/site";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
@@ -21,7 +20,7 @@ export const metadata = createMetadata({
 export default function HomePage() {
   return (
     <>
-      <Hero content={homePage.hero} backgroundSrc={siteConfig.footer.background.desktop} />
+      <Hero content={homePage.hero} backgroundSrc={homePage.hero.background} />
       <LogoStrip content={homePage.logos} />
       <Product content={homePage.product} />
       <Stats content={homePage.stats} />

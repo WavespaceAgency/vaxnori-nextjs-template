@@ -8,7 +8,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-surface">
       {/* Desktop (1024px and up) */}
-      <div className="mx-auto hidden h-nav max-w-[108rem] items-stretch justify-between lg:flex">
+      <div className="mx-auto hidden h-[51.5px] max-w-[108rem] items-stretch justify-between lg:flex">
         <nav aria-label="Main" className="flex items-stretch">
           <div className="flex items-center border-r border-line px-4">
             <Logo />
@@ -21,9 +21,9 @@ export function Navbar() {
       </div>
 
       {/* Mobile and tablet */}
-      <div className="flex h-15 items-center justify-between px-4 sm:px-6 lg:hidden">
-        <Logo showName size="xs" />
-        <MobileMenu links={siteConfig.nav.mobile} cta={siteConfig.cta} />
+      <div className="flex h-11 items-center justify-between px-4 sm:px-6 lg:hidden">
+        <Logo showName size="xs" alt />
+        <MobileMenu links={siteConfig.nav.mobile} />
       </div>
     </header>
   );

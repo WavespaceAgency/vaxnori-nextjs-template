@@ -11,18 +11,20 @@ const variants = {
   /** Dashed rows with large questions (home page FAQ). */
   dashed: {
     root: "",
-    item: "border-b border-dashed border-line last:border-b-0",
-    button: "px-4 py-6 sm:px-8",
-    question: "font-heading-flex text-h4 font-medium text-ink",
-    answer: "px-4 pr-14 pb-6 sm:px-8 sm:pr-20",
+    item: "border-b border-dashed border-line px-6 py-6 last:border-b-0 lg:px-8 lg:py-8",
+    hit: "before:-inset-x-6 before:-top-6 before:-bottom-3 lg:before:-inset-x-8 lg:before:-top-8 lg:before:-bottom-4",
+    question: "font-heading-flex text-lg leading-6 font-medium tracking-[-0.03em] text-ink lg:text-h4",
+    answer: "pt-2 pr-[72px] text-sm leading-[22px] lg:pr-[56px] lg:text-base lg:leading-6",
+    icon: "top-6 right-6 lg:top-1/2 lg:right-8 lg:-translate-y-1/2",
   },
   /** Simple rows with solid lines. */
   simple: {
     root: "border-y border-line",
-    item: "border-b border-line last:border-b-0",
-    button: "py-5",
+    item: "border-b border-line py-5 last:border-b-0",
+    hit: "before:-inset-x-2 before:-top-5 before:-bottom-2.5",
     question: "text-base leading-6 font-medium text-ink",
-    answer: "pr-10 pb-5",
+    answer: "pt-2 pr-10 text-base leading-6",
+    icon: "top-5 right-0",
   },
 } as const;
 
@@ -55,7 +57,7 @@ export function Accordion({
         const buttonId = `${baseId}-button-${index}`;
         const panelId = `${baseId}-panel-${index}`;
         return (
-          <div key={item.question} className={v.item}>
+          <div key={item.question} className={cn("relative transition-colors hover:bg-canvas", v.item)}>
             <Heading>
               <button
                 id={buttonId}
@@ -64,24 +66,30 @@ export function Accordion({
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : index)}
                 className={cn(
-                  "flex min-h-11 w-full items-center justify-between gap-6 text-left transition-colors hover:bg-canvas focus-visible:-outline-offset-2",
-                  v.button,
+                  // The ::before layer makes the whole row clickable (44px+ touch target).
+                  "relative flex w-full items-center justify-between gap-6 pr-10 text-left before:absolute before:content-[''] focus-visible:outline-offset-4",
+                  v.hit,
                 )}
               >
                 <span className={v.question}>{item.question}</span>
-                <span
-                  aria-hidden="true"
-                  className="relative flex size-5 shrink-0 items-center justify-center rounded-full border-[1.5px] border-brand text-brand"
-                >
-                  <span className="absolute h-[1.5px] w-2 bg-current" />
-                  <m.span
-                    className="absolute h-2 w-[1.5px] bg-current"
-                    animate={{ scaleY: isOpen ? 0 : 1, rotate: isOpen ? 90 : 0 }}
-                    transition={{ duration: 0.35, ease: EASE }}
-                  />
-                </span>
               </button>
             </Heading>
+            {/* Icon stays vertically centred in the whole row (as in Figma) */}
+            <span
+              aria-hidden="true"
+              className={cn(
+                "pointer-events-none absolute flex size-6 items-center justify-center rounded-full border-[1.5px] border-brand text-brand",
+                v.icon,
+              )}
+            >
+              <span className="absolute h-[1.5px] w-2.5 bg-current" />
+              <m.span
+                className="absolute h-2.5 w-[1.5px] bg-current"
+                animate={{ scaleY: isOpen ? 0 : 1, rotate: isOpen ? 90 : 0 }}
+                transition={{ duration: 0.35, ease: EASE }}
+              />
+            </span>
+
             <m.div
               id={panelId}
               role="region"
@@ -96,7 +104,7 @@ export function Accordion({
               <m.div
                 animate={{ y: isOpen ? 0 : -8 }}
                 transition={{ duration: 0.45, ease: EASE }}
-                className={cn("text-base leading-6 text-muted", v.answer)}
+                className={cn("text-muted", v.answer)}
               >
                 {item.answer}
               </m.div>

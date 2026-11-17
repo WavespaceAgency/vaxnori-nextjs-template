@@ -14,26 +14,26 @@ const pop = "motion-safe:animate-pop-in delay-var";
 
 /**
  * Animated product preview shown under the hero.
- * From 1280px wide it uses the exact positions from the Figma frame (980×402);
- * on smaller screens the cards stack.
+ * Drawn at the exact Figma size (1140×562) and scaled down to fit smaller screens
+ * by <ScaleToFit> (as in the Figma mobile frame).
  */
 export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgroundSrc: string }) {
   const [launchTask, outreachTask] = mockup.tasks;
   return (
     <figure
       aria-label={mockup.label}
-      className="relative overflow-hidden bg-[#fbbf24] bg-cover bg-center p-4 sm:p-10 xl:aspect-[1140/562] xl:p-0"
+      className="relative h-full w-[1140px] overflow-hidden bg-[#fbbf24] bg-cover bg-center"
       style={{ backgroundImage: `url(${backgroundSrc})` }}
     >
-      <div className="bg-dots relative flex flex-col gap-3 p-4 sm:p-6 xl:absolute xl:inset-x-20 xl:top-20 xl:block xl:h-[402px] xl:p-0">
+      <div className="bg-dots absolute inset-x-20 top-1/2 h-[402px] -translate-y-1/2">
         {/* Connector lines (wide screens only) */}
         <svg
           aria-hidden="true"
           viewBox="0 0 980 402"
-          className="pointer-events-none absolute inset-0 hidden size-full text-line-strong xl:block"
+          className="pointer-events-none absolute inset-0 size-full text-line-strong"
           fill="none"
         >
-          <g stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="motion-safe:[&>path]:animate-dash">
+          <g stroke="currentColor" strokeWidth="1">
             <path d="M258 79H321" />
             <path d="M441 117V146" />
             <path d="M561 79H656" />
@@ -43,10 +43,10 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
         </svg>
 
         {/* Row 1 on small screens: client + agent */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start xl:contents">
+        <div className="contents">
           {/* Client pill */}
           <div
-            className={cn(card, pop, "flex items-center gap-1.5 px-3 py-2 sm:w-52 xl:absolute xl:top-[63px] xl:left-[50px] xl:w-[207px]")}
+            className={cn(card, pop, "absolute top-[63px] left-[50px] flex w-[207px] items-center gap-1.5 px-3 py-2")}
             style={delay(150)}
           >
             <span className="text-[11px] leading-[14px] text-subtle">{mockup.client.label}</span>
@@ -56,7 +56,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
 
           {/* Agent card */}
           <div
-            className={cn(card, pop, "flex flex-col gap-2.5 px-2.5 py-2 sm:flex-1 xl:absolute xl:top-10 xl:left-[321px] xl:w-60")}
+            className={cn(card, pop, "absolute top-10 left-[321px] flex w-60 flex-col gap-2.5 px-2.5 py-2")}
             style={delay(300)}
           >
             <div className="flex items-center gap-2">
@@ -67,10 +67,6 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
                 <p className="text-xs leading-[14px] font-semibold text-ink">{mockup.agent.name}</p>
                 <p className="text-[11px] leading-4 text-subtle">{mockup.agent.subtitle}</p>
               </div>
-              <span className="relative ml-auto flex size-2" aria-hidden="true">
-                <span className="absolute inline-flex size-full rounded-full bg-status-done opacity-60 motion-safe:animate-ping" />
-                <span className="relative inline-flex size-2 rounded-full bg-status-done" />
-              </span>
             </div>
             <div className="flex gap-1">
               {mockup.agent.tags.map((tag) => (
@@ -84,7 +80,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
 
         {/* Launch checklist */}
         <div
-          className={cn(card, pop, "flex flex-col gap-4 px-4 py-3.5 xl:absolute xl:top-[146px] xl:left-[50px] xl:w-[534px]")}
+          className={cn(card, pop, "absolute top-[146px] left-[50px] flex w-[534px] flex-col gap-4 px-4 py-3.5")}
           style={delay(450)}
         >
           <div className="flex items-center justify-between border-b border-line pb-4">
@@ -111,7 +107,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
 
         {/* Task: launch website */}
         <div
-          className={cn(card, pop, "hidden flex-col gap-2.5 px-2.5 py-2 sm:flex xl:absolute xl:top-10 xl:left-[656px] xl:w-60")}
+          className={cn(card, pop, "absolute top-10 left-[656px] flex w-60 flex-col gap-2.5 px-2.5 py-2")}
           style={delay(600)}
         >
           <div>
@@ -134,7 +130,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
           className={cn(
             card,
             pop,
-            "hidden rounded-full px-2.5 py-1 text-[10px] leading-4 font-semibold text-subtle xl:absolute xl:top-[148px] xl:left-[703px] xl:block",
+            "absolute top-[148px] left-[703px] rounded-full px-2.5 py-1 text-[10px] leading-4 font-semibold text-subtle",
           )}
           style={delay(750)}
         >
@@ -142,14 +138,14 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
         </span>
 
         {/* Outreach task + toast */}
-        <div className="flex flex-col items-center gap-2.5 sm:flex-row sm:items-stretch xl:absolute xl:top-[246px] xl:left-[723px] xl:w-[206px] xl:flex-col xl:items-center">
-          <div className={cn(card, pop, "w-full px-2.5 py-2 sm:flex-1 xl:flex-none")} style={delay(900)}>
+        <div className="absolute top-[246px] left-[723px] flex w-[206px] flex-col items-center gap-2.5">
+          <div className={cn(card, pop, "w-full px-2.5 py-2")} style={delay(900)}>
             <p className="text-xs leading-[14px] font-semibold text-ink">{outreachTask.title}</p>
             <p className="text-[11px] leading-4 text-subtle">{outreachTask.subtitle}</p>
           </div>
           <div
             role="status"
-            className={cn(pop, "flex w-full items-start gap-2 rounded-card bg-ink px-2.5 py-2 shadow-card sm:w-44 xl:w-[168px]")}
+            className={cn(pop, "flex w-[168px] items-start gap-2 rounded-card bg-ink px-2.5 py-2 shadow-card")}
             style={delay(1100)}
           >
             <LineIcon name="sparkle" className="mt-px size-3.5 shrink-0 text-brand motion-safe:animate-spin-slow" />

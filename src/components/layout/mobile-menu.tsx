@@ -6,14 +6,12 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CloseIcon, MenuIcon } from "@/components/icons";
 import { EASE } from "@/components/motion/reveal";
-import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import type { NavLink } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 type MobileMenuProps = {
   links: readonly NavLink[];
-  cta: NavLink;
 };
 
 const list = {
@@ -26,7 +24,7 @@ const item = {
 };
 
 /** Full-screen menu for small screens. Closes with Escape, the close button or a link click. */
-export function MobileMenu({ links, cta }: MobileMenuProps) {
+export function MobileMenu({ links }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -84,8 +82,8 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
             transition={{ duration: 0.45, ease: EASE }}
             className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-surface"
           >
-            <div className="flex items-center justify-between border-b border-line-soft px-4 py-2 sm:px-6">
-              <Logo showName size="sm" />
+            <div className="flex items-center justify-between border-b border-line-soft px-5 py-2.5 sm:px-6">
+              <Logo showName size="sm" alt />
               <button
                 ref={closeRef}
                 type="button"
@@ -109,7 +107,7 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
                         onClick={() => setOpen(false)}
                         aria-current={active ? "page" : undefined}
                         className={cn(
-                          "flex min-h-14 items-center px-4 text-base leading-6 font-medium transition-colors hover:bg-canvas sm:px-6",
+                          "flex min-h-14 items-center px-5 text-base leading-6 font-medium transition-colors hover:bg-canvas sm:px-6",
                           active ? "text-brand-strong" : "text-ink-soft",
                         )}
                       >
@@ -120,16 +118,7 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
                 })}
               </m.ul>
             </nav>
-            <m.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.35, ease: EASE }}
-              className="mt-auto border-t border-line-soft p-4 sm:px-6"
-            >
-              <Button href={cta.href} onClick={() => setOpen(false)} className="w-full" size="lg">
-                {cta.label}
-              </Button>
-            </m.div>
+
           </m.div>
         ) : null}
       </AnimatePresence>

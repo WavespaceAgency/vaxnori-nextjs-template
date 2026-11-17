@@ -21,14 +21,14 @@ export function Product({ content }: { content: HomePage["product"] }) {
 
   return (
     <section aria-labelledby="product-title">
-      <Container bordered className="pt-16 lg:pt-[100px]">
-        <Reveal className="mb-10 px-4 sm:px-8 lg:mb-[50px] lg:px-[50px]">
+      <Container bordered className="pt-14 lg:pt-[50px]">
+        <Reveal className="mb-6 px-6 sm:px-8 lg:mb-[50px] lg:px-[50px]">
         <SectionHeading
           id="product-title"
           eyebrow={content.eyebrow}
           title={content.title}
           accent={content.accent}
-          accentBreak
+          titleClassName="max-w-[420px]"
         />
         </Reveal>
         <ProductTabs tabs={tabs} />

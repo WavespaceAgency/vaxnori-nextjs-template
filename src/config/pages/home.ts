@@ -18,6 +18,8 @@ export const homePage = {
   },
 
   hero: {
+    /** Background of the product preview (exported from Figma at 2x). */
+    background: "/images/home/hero-background.webp",
     title: "From idea to launch,",
     accent: "handled for you",
     description:
@@ -35,7 +37,7 @@ export const homePage = {
         { title: "Task: Outreach", subtitle: "Assigned to agent" },
       ],
       detailsLabel: "Task Details",
-      toast: { title: "Registering…", subtitle: "mobain.co" },
+      toast: { title: "Registering...", subtitle: "Mobain.co" },
       checklist: {
         title: "Launch To-Do's",
         progress: "75%",
@@ -51,7 +53,7 @@ export const homePage = {
   },
 
   logos: {
-    title: "Built for founders and small teams everywhere",
+    title: "Vaxnori AI is trusted by teams like these",
     /** Placeholder logos. Replace with SVG files of your real customers (with permission). */
     items: [
       { name: "Acme", shape: "circle" },
@@ -75,7 +77,7 @@ export const homePage = {
         title: "Hire a department in an afternoon",
         description:
           "Sales, finance, marketing, design — each one a named agent with its own remit, tools and budget. You brief them the way you'd brief a person.",
-        points: ["Start with one agent and add roles as the work grows.", "Agent keeps its own memory of your customers."],
+        points: ["Start with one agent and add roles as the work grows.", "Agent keeps its own memory of your customers"],
         visual: {
           type: "image",
           src: "/images/home/product-workspace.webp",
@@ -142,8 +144,8 @@ export const homePage = {
 
   howItWorks: {
     eyebrow: "How it works",
-    title: "Three steps from",
-    accent: "idea to launch.",
+    title: "From one sentence to a",
+    accent: "running company.",
     steps: [
       {
         title: "Describe the idea",

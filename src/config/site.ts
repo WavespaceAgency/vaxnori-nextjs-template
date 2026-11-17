@@ -41,8 +41,15 @@ export const siteConfig = {
   url: getSiteUrl(),
   description:
     "Vaxnori AI takes care of everything from your brand identity and domain to business paperwork and website launch, built into every important step.",
-  email: "hello@example.com",
+  email: "hello@vaxnori.co",
   locale: "en_US",
+
+  /**
+   * Brand marks (SVG files in /public/brand). Figma uses two marks:
+   * `mark` (navbar, desktop footer) and `markAlt` (mobile navbar, mobile footer, stats).
+   * Use the same file twice if your brand has one mark.
+   */
+  brand: { mark: "/brand/mark.svg", markAlt: "/brand/mark-alt.svg" },
 
   /** Main call to action, used in the navbar and mobile menu. */
   cta: { label: "Get Started", href: "/pricing" },
@@ -55,17 +62,16 @@ export const siteConfig = {
       { label: "How it works", href: "/how-it-works" },
       { label: "Pricing", href: "/pricing" },
       { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "/contact" },
+      { label: "Contact Us", href: "/contact" },
     ],
-    /** Mobile menu links. */
+    /** Mobile menu links (as in the Figma mobile menu). */
     mobile: [
       { label: "Home", href: "/" },
-      { label: "About", href: "/about" },
       { label: "How it works", href: "/how-it-works" },
       { label: "Careers", href: "/careers" },
       { label: "Pricing", href: "/pricing" },
       { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "/contact" },
+      { label: "Contact Us", href: "/contact" },
     ],
   } satisfies Record<string, NavLink[]>,
 
@@ -92,7 +98,7 @@ export const siteConfig = {
         title: "Company",
         links: [
           { label: "About", href: "/about" },
-          { label: "hello@example.com", href: "mailto:hello@example.com" },
+          { label: "hello@vaxnori.co", href: "mailto:hello@vaxnori.co" },
           { label: "Contact", href: "/contact" },
         ],
       },
@@ -102,8 +108,6 @@ export const siteConfig = {
       { label: "Terms & conditions", href: "/terms" },
     ],
     copyright: `© ${year} ${legalName}`,
-    /** Decorative brand mark shown in the footer grid. Replace the file in /public. */
-    mark: "/brand/mark.svg",
     background: {
       desktop: "/images/patterns/tiles-yellow.webp",
       mobile: "/images/patterns/tiles-yellow-tall.webp",

@@ -21,39 +21,47 @@ function PlaceholderLogo({ name, shape }: LogoItem) {
   }[shape];
   return (
     <span className="flex items-center gap-2 text-[#9a9a9a] transition-colors duration-300 hover:text-ink">
-      <svg viewBox="0 0 24 24" className="size-6" fill="currentColor" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="size-5 lg:size-6" fill="currentColor" aria-hidden="true">
         {mark}
       </svg>
-      <span className="font-heading-flex text-2xl leading-none font-semibold tracking-[-0.03em]">{name}</span>
+      <span className="font-heading-flex text-xl leading-none font-semibold tracking-[-0.03em] lg:text-[26px]">{name}</span>
     </span>
   );
 }
 
 /** Row of placeholder customer logos that scrolls slowly (pauses on hover). */
 export function LogoStrip({ content }: { content: HomePage["logos"] }) {
-  const list = (hidden?: boolean) => (
-    <ul
-      aria-hidden={hidden || undefined}
-      className="flex shrink-0 items-center gap-14 pr-14 motion-safe:animate-marquee group-hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-x-10 motion-reduce:gap-y-6 motion-reduce:px-4"
-    >
-      {content.items.map((logo) => (
-        <li key={logo.name}>
-          <PlaceholderLogo {...logo} />
-        </li>
-      ))}
-    </ul>
-  );
   return (
     <section aria-labelledby="logos-title">
-      <Container bordered className="bg-canvas py-12 lg:py-[60px]">
+      <Container bordered className="bg-canvas pt-6 pb-6 lg:pt-[60px] lg:pb-[64px]">
         <Reveal as="div" y={12}>
           <h2 id="logos-title" className="px-4 text-center text-base leading-6 text-subtle">
             {content.title}
           </h2>
         </Reveal>
-        <div className="group mt-8 flex overflow-hidden motion-safe:[mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
-          {list()}
-          <div className="contents motion-reduce:hidden">{list(true)}</div>
+        {/* Desktop: one evenly spaced row, as in Figma */}
+        <ul className="mt-8 hidden h-[29px] items-center justify-between px-[50px] lg:flex">
+          {content.items.map((logo) => (
+            <li key={logo.name}>
+              <PlaceholderLogo {...logo} />
+            </li>
+          ))}
+        </ul>
+        {/* Phones and tablets: slow marquee (pauses on hover) */}
+        <div className="group mt-5 flex h-[26px] items-center overflow-hidden motion-safe:[mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)] lg:hidden">
+          {[false, true].map((copy) => (
+            <ul
+              key={String(copy)}
+              aria-hidden={copy || undefined}
+              className={`flex shrink-0 items-center gap-12 pr-12 motion-safe:animate-marquee group-hover:[animation-play-state:paused] ${copy ? "motion-reduce:hidden" : "motion-reduce:w-full motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-x-10 motion-reduce:gap-y-6 motion-reduce:px-4"}`}
+            >
+              {content.items.map((logo) => (
+                <li key={logo.name}>
+                  <PlaceholderLogo {...logo} />
+                </li>
+              ))}
+            </ul>
+          ))}
         </div>
       </Container>
     </section>

@@ -2,16 +2,16 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /** Small uppercase label above a section heading, e.g. "—— PRODUCT". */
-export function Eyebrow({ children, className, tone = "brand" }: { children: ReactNode; className?: string; tone?: "brand" | "light" }) {
+export function Eyebrow({ children, className, tone = "brand", line = true }: { children: ReactNode; className?: string; tone?: "brand" | "light"; line?: boolean }) {
   return (
     <p
       className={cn(
-        "flex items-center gap-2 text-sm leading-5 tracking-[0.02em] uppercase",
+        "flex items-center gap-2 text-xs leading-5 tracking-[0.02em] uppercase lg:text-sm",
         tone === "brand" ? "text-brand-strong" : "text-white/70",
         className,
       )}
     >
-      <span aria-hidden="true" className={cn("h-px w-[26px]", tone === "brand" ? "bg-brand" : "bg-white/50")} />
+      {line ? <span aria-hidden="true" className={cn("h-px w-[26px]", tone === "brand" ? "bg-brand" : "bg-white/50")} /> : null}
       {children}
     </p>
   );

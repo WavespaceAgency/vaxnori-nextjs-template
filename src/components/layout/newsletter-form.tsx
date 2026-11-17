@@ -33,9 +33,9 @@ export function NewsletterForm({ label, placeholder, button, success }: Newslett
           setClientError(undefined);
         }
       }}
-      className="flex w-full flex-col gap-2"
+      className="relative flex w-full flex-col gap-2"
     >
-      <label htmlFor="newsletter-email" className="text-sm leading-5 text-subtle">
+      <label htmlFor="newsletter-email" className="text-sm leading-5 text-subtle max-md:sr-only">
         {label}
       </label>
       <div
@@ -56,7 +56,7 @@ export function NewsletterForm({ label, placeholder, button, success }: Newslett
           aria-invalid={error ? true : undefined}
           aria-describedby="newsletter-status"
           onChange={() => clientError && setClientError(undefined)}
-          className="min-w-0 flex-1 bg-transparent text-base leading-6 text-ink placeholder:text-subtle focus-visible:outline-none sm:text-sm sm:leading-5"
+          className="min-w-0 flex-1 bg-transparent text-sm leading-5 text-ink placeholder:text-subtle focus-visible:outline-none"
         />
         <button type="submit" disabled={pending} className={buttonClasses({ className: "min-h-10" })}>
           {pending ? "Sending…" : button}
@@ -65,7 +65,7 @@ export function NewsletterForm({ label, placeholder, button, success }: Newslett
       <p
         id="newsletter-status"
         aria-live="polite"
-        className={cn("min-h-5 text-sm leading-5", error ? "text-brand-strong" : "text-muted")}
+        className={cn("absolute top-full left-0 mt-1 text-xs leading-4", error ? "text-brand-strong" : "text-muted")}
       >
         {error ?? (state.status === "success" ? success : "")}
       </p>
