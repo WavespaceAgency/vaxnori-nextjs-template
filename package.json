@@ -2,6 +2,11 @@
   "name": "vaxnori-nextjs-template",
   "version": "0.1.0",
   "private": true,
+  "description": "Vaxnori AI – a free, open-source Next.js (App Router) template for AI SaaS landing pages.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
