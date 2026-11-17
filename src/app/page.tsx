@@ -1,30 +1,36 @@
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { CtaBanner } from "@/components/sections/cta-banner";
+import { Faq } from "@/components/sections/faq";
+import { FeatureRows } from "@/components/sections/feature-rows";
+import { Hero } from "@/components/sections/hero";
+import { HowItWorks } from "@/components/sections/how-it-works";
+import { Integrations } from "@/components/sections/integrations";
+import { LogoStrip } from "@/components/sections/logo-strip";
+import { Product } from "@/components/sections/product";
+import { Stats } from "@/components/sections/stats";
+import { Testimonial } from "@/components/sections/testimonial";
 import { homePage } from "@/config/pages/home";
+import { siteConfig } from "@/config/site";
 import { createMetadata } from "@/lib/metadata";
 
-export const metadata = createMetadata({ path: "/" });
+export const metadata = createMetadata({
+  path: "/",
+  title: homePage.meta.title,
+  description: homePage.meta.description,
+});
 
-// Temporary hero for Phase 1. The full home page is built in Phase 2.
 export default function HomePage() {
-  const { hero } = homePage;
   return (
-    <Container bordered className="py-16 lg:py-24">
-      <SectionHeading
-        as="h1"
-        size="display"
-        align="center"
-        title={hero.title}
-        accent={hero.accent}
-        description={hero.description}
-      />
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
-        <Button href={hero.secondaryCta.href} variant="secondary">
-          {hero.secondaryCta.label}
-        </Button>
-      </div>
-    </Container>
+    <>
+      <Hero content={homePage.hero} backgroundSrc={siteConfig.footer.background.desktop} />
+      <LogoStrip content={homePage.logos} />
+      <Product content={homePage.product} />
+      <Stats content={homePage.stats} />
+      <HowItWorks content={homePage.howItWorks} />
+      <Testimonial content={homePage.testimonial} />
+      <FeatureRows content={homePage.features} />
+      <CtaBanner content={homePage.cta} />
+      <Integrations content={homePage.integrations} />
+      <Faq content={homePage.faq} />
+    </>
   );
 }

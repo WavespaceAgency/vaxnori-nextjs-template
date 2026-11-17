@@ -27,7 +27,7 @@ export const fontHeading = Google_Sans_Flex({
 /** Pixel accent words in headings (e.g. "running company."). */
 export const fontPixel = Geist_Pixel({
   subsets: ["latin"],
-  weight: "400",
+  axes: ["ELSH"], // element shape: 80 = "Line" style used in the design
   display: "swap",
   variable: "--font-geist-pixel",
   adjustFontFallback: false,

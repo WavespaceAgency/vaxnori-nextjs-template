@@ -135,7 +135,7 @@ export function Footer() {
 
         {/* Giant wordmark with grid lines */}
         <div aria-hidden="true" className="relative -mx-3 -mb-3 h-[24cqw] min-h-20 overflow-hidden md:h-[19.5cqw]">
-          <Image src="/images/footer/grid.svg" alt="" fill sizes="100vw" className="object-cover object-top" />
+          <Image src="/images/patterns/grid.svg" alt="" fill sizes="100vw" className="object-cover object-top" />
           <p className="absolute inset-x-3 -bottom-[0.18em] text-center font-heading-flex text-[22cqw] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-[#f5f5f5] select-none">
             {siteConfig.name}
           </p>

@@ -19,7 +19,19 @@
   --ink-soft: #050505;
   --muted: #5e5e5e; /* Figma "Grey 1" – body copy */
   --subtle: #737373; /* Small labels. Figma "Grey 3" (#999) darkened for 4.5:1 */
-  --accent-text: #949494; /* Large pixel accent words (>= 24px, 3:1) */
+  --accent-text: #5e5e5e; /* Pixel accent words in headings (Figma "Grey 1") */
+  --surface-muted: #f0f0f0; /* Secondary button */
+  --ink-raised: #333333; /* Dark button on black */
+
+  /* Status chips used in product mockups */
+  --status-progress: #c2410c;
+  --status-progress-bg: #fef5f0;
+  --status-todo: #6941c6;
+  --status-todo-bg: #f9f5ff;
+  --status-done: #047857;
+  --status-done-bg: #edf9f4;
+  --status-queued: #0369a1;
+  --status-queued-bg: #eef7fe;
   --surface: #ffffff; /* Figma "White" */
   --canvas: #fbfbfb; /* Figma "BG" */
   --line: #e3e3e3; /* Figma "Stroke 2" */
@@ -37,6 +49,16 @@
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
   --color-accent-text: var(--accent-text);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink-raised: var(--ink-raised);
+  --color-status-progress: var(--status-progress);
+  --color-status-progress-bg: var(--status-progress-bg);
+  --color-status-todo: var(--status-todo);
+  --color-status-todo-bg: var(--status-todo-bg);
+  --color-status-done: var(--status-done);
+  --color-status-done-bg: var(--status-done-bg);
+  --color-status-queued: var(--status-queued);
+  --color-status-queued-bg: var(--status-queued-bg);
   --color-surface: var(--surface);
   --color-canvas: var(--canvas);
   --color-line: var(--line);
@@ -49,8 +71,8 @@
   --font-pixel: var(--font-geist-pixel), ui-monospace, monospace;
 
   /* Type scale (Figma) */
-  --text-display: 3.5rem; /* 56px */
-  --text-display--line-height: 1.07;
+  --text-display: 3.75rem; /* 60px */
+  --text-display--line-height: 1.1;
   --text-display--letter-spacing: -0.03em;
   --text-h2: 2.5rem; /* 40px */
   --text-h2--line-height: 1.1;
@@ -59,8 +81,10 @@
   --text-h3--line-height: 1.125;
   --text-h3--letter-spacing: -0.03em;
   --text-h4: 1.25rem; /* 20px */
-  --text-h4--line-height: 1.4;
-  --text-h4--letter-spacing: -0.01em;
+  --text-h4--line-height: 1.2;
+  --text-h4--letter-spacing: -0.03em;
+  --text-lead: 1.125rem; /* 18px */
+  --text-lead--line-height: 1.5;
 
   /* Radius */
   --radius-button: 4px;
@@ -69,23 +93,58 @@
 
   /* Shadow (Figma effect "1") */
   --shadow-card: 0 2px 10px 0 rgb(0 0 0 / 0.03);
+  --shadow-frame: 0 2px 8px 0 rgb(0 0 0 / 0.06);
 
   /* Layout */
   --container-site: 77.5rem; /* 1240px – the bordered content column */
   --spacing-nav: 3.25rem; /* 52px nav height */
 
   /* Motion */
-  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-up: fade-up 0.8s var(--ease-out-expo) both;
+  --animate-pop-in: pop-in 0.6s var(--ease-out-expo) both;
+  --animate-grow-x: grow-x 1.4s var(--ease-out-expo) both;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-dash: dash 1.2s linear infinite;
+  --animate-step-glow: step-glow 8s ease-in-out infinite;
 
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes grow-x {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+  @keyframes step-glow {
+    0%, 30%, 100% { border-color: var(--line); box-shadow: var(--shadow-card); }
+    6%, 24% { border-color: var(--brand); box-shadow: 0 0 0 4px rgb(255 72 32 / 0.12); }
+  }
+  @keyframes dot-travel {
+    from { offset-distance: 0%; }
+    to { offset-distance: 100%; }
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -16; }
   }
 }
 
@@ -131,9 +190,48 @@
   }
 }
 
+/* Pixel accent font, "Line" style of Geist Pixel */
+@utility font-pixel-line {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-variation-settings: "ELSH" 80;
+  letter-spacing: 0;
+}
+
+/* Dotted canvas background used behind mockups */
+@utility bg-dots {
+  background-color: var(--canvas);
+  background-image: radial-gradient(circle at 1px 1px, #d9d9d9 1px, transparent 0);
+  background-size: 12px 12px;
+}
+
+/* Animation delay helper: style={{ "--delay": "200ms" }} */
+@utility delay-var {
+  animation-delay: var(--delay, 0ms);
+}
+
 @utility font-heading-flex {
   font-family: var(--font-heading);
   font-variation-settings: "GRAD" 0, "ROND" 0, "wdth" 100;
+}
+
+/*
+ * Scroll reveal – pure CSS (scroll-driven animations).
+ * Browsers without support simply show the content.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+    .reveal-scale {
+      animation: pop-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 60%;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

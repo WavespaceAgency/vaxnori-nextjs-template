@@ -105,8 +105,8 @@ export const siteConfig = {
     /** Decorative brand mark shown in the footer grid. Replace the file in /public. */
     mark: "/brand/mark.svg",
     background: {
-      desktop: "/images/footer/footer-bg.webp",
-      mobile: "/images/footer/footer-bg-mobile.webp",
+      desktop: "/images/patterns/tiles-yellow.webp",
+      mobile: "/images/patterns/tiles-yellow-tall.webp",
     },
   },
 
