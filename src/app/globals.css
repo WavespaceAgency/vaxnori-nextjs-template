@@ -196,7 +196,6 @@
   font-family: var(--font-pixel);
   font-weight: 400;
   font-variation-settings: "ELSH" 80;
-  letter-spacing: 0;
 }
 
 /* Dotted canvas background used behind mockups */

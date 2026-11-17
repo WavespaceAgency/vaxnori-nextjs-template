@@ -96,3 +96,26 @@ template rules needed a change. It will move into the README in Phase 8.
 - Footer: fixed 308px top row, left-aligned socials, Figma background crop, grid behind the mark, wordmark at the exact
   Figma size (1216×207, real text so it changes with the brand name).
 - Feature images: parallax removed (it enlarged the images vs Figma); hover zoom kept.
+
+## Phase 3 – About, How it works, Pricing
+- Built from the Figma frames and checked side by side. Desktop (1440): every section within 0–5px of Figma height.
+  Mobile (402): How it works and Pricing follow the Figma mobile frames; About has no mobile frame and follows the same mobile patterns.
+- **Shared parts:** `PageHero` (band, corner squares, centred title), `CtaBanner` (now takes any content; optional 50px gap below),
+  `Faq` (any content; optional 100px gap above), `Stats` (heading optional), `FeatureRows` (used for the Pricing "Track" row).
+- **Pixel accent letter-spacing** now inherits the heading's −3% tracking (as in Figma). This fixed the About title wrap and
+  matches every page better.
+- **About:** principles, story with timeline + framed photo, stats, team (AI-generated sample portraits), "None of these quite you?" band.
+  Typos fixed: "Vaxnori Al" → "Vaxnori AI", "dmin saved per founder per wes" → "Admin hours saved per founder per week",
+  first team member's role showed a name ("James Anderson") → "Founder & CEO".
+- **How it works:** hero + video poster with a "Play the video" bar. The video opens in an accessible dialog; add an .mp4 or
+  YouTube/Vimeo URL in `src/config/pages/how-it-works.ts` (empty = "coming soon" note, no dead link).
+  Steps: large rows on desktop; on phones the stacked Home-style step cards (as in the Figma mobile frame).
+  "How it work" → "How it works". "Porkbun" in the approve card → "Your registrar".
+  The Figma CTA on this page reused the careers text ("None of these quite you? … roles"); the template uses the Home CTA text instead.
+  FAQ answers 2–5 were written for the template (Figma only had the first).
+- **Pricing:** monthly/annual switch (prices slide when switching; annual = 20% off: $31 / $199 / $79), three plans
+  (featured Studio in the middle), comparison table (fits phones, no sideways scroll), black promise band, Track row, FAQ.
+  "Running the whole business on Kickoff." → "…on Vaxnori AI.". Pricing FAQ answers written for the template
+  (Figma reused the Home answer for the first question).
+- Figma mobile slips not copied: mobile Pricing/How FAQs show Home questions; the template keeps each page's own questions.
+- Small accessibility tweaks vs Figma: "/ month" and featured-card text use darker greys for 4.5:1 contrast.

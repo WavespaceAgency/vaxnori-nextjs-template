@@ -105,6 +105,48 @@ const paths = {
   ),
   bolt: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />,
   check: <path d="m5 12.5 4.5 4.5L19 7.5" />,
+  gitFork: (
+    <>
+      <circle cx="6" cy="5" r="2" />
+      <circle cx="18" cy="5" r="2" />
+      <circle cx="12" cy="19" r="2" />
+      <path d="M6 7v1a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V7M12 11v6" />
+    </>
+  ),
+  pencil: <path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4ZM13.5 6.5l4 4M14 20h6" />,
+  rocket: (
+    <>
+      <path d="M12 15l-3-3c1.5-4.5 4.5-7.5 10.5-8.5-1 6-4 9-8.5 10.5Z" />
+      <path d="M9 12H5l2.5-3.5H11M12 15v4l3.5-2.5V13M5.5 16.5c-1 1-1.5 3-1.5 3.5.5 0 2.5-.5 3.5-1.5" />
+    </>
+  ),
+  hourglass: <path d="M6 3h12M6 21h12M7 3c0 4 5 5.5 5 9s-5 5-5 9M17 3c0 4-5 5.5-5 9s5 5 5 9" />,
+  shield: (
+    <>
+      <path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3Z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  shieldLock: (
+    <>
+      <path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3Z" />
+      <circle cx="12" cy="11" r="1.6" />
+      <path d="M12 12.6V15" />
+    </>
+  ),
+  sliders: (
+    <>
+      <path d="M4 7h9M17 7h3M4 17h3M11 17h9" />
+      <circle cx="15" cy="7" r="2" />
+      <circle cx="9" cy="17" r="2" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="4" y="5" width="16" height="15" rx="2" />
+      <path d="M4 10h16M9 3v4M15 3v4" />
+    </>
+  ),
 } as const;
 
 export type LineIconName = keyof typeof paths;

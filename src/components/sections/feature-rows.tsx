@@ -6,7 +6,16 @@ import type { HomePage } from "@/config/pages/home";
 import { cn } from "@/lib/utils";
 
 /** Alternating text + image rows ("01 — Launch", "02 — Grow", ...). */
-export function FeatureRows({ content }: { content: HomePage["features"] }) {
+type Feature = HomePage["features"][number] | {
+  eyebrow: string;
+  title: string;
+  accent: string;
+  description: string;
+  image: { src: string; alt: string };
+  eyebrowLine?: boolean;
+};
+
+export function FeatureRows({ content, accentBreakMobile = false }: { content: readonly Feature[]; accentBreakMobile?: boolean }) {
   return (
     <section aria-label="Features">
       <Container bordered>
@@ -24,7 +33,8 @@ export function FeatureRows({ content }: { content: HomePage["features"] }) {
                 accent={feature.accent}
                 description={feature.description}
                 as="h2"
-                eyebrowLine={false}
+                accentBreakMobile={accentBreakMobile}
+                eyebrowLine={"eyebrowLine" in feature ? Boolean(feature.eyebrowLine) : false}
                 descriptionClassName="max-lg:leading-5"
               />
               </Reveal>

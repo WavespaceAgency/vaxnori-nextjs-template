@@ -27,7 +27,7 @@ export default function HomePage() {
       <HowItWorks content={homePage.howItWorks} />
       <Testimonial content={homePage.testimonial} />
       <FeatureRows content={homePage.features} />
-      <CtaBanner content={homePage.cta} />
+      <CtaBanner content={homePage.cta} mobileSplit />
       <Integrations content={homePage.integrations} />
       <Faq content={homePage.faq} />
     </>

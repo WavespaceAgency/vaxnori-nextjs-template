@@ -21,6 +21,8 @@ type SectionHeadingProps = HeadingContent & {
   align?: "left" | "center";
   /** Put the accent words on their own line. */
   accentBreak?: boolean;
+  /** Put the accent words on their own line on phones only. */
+  accentBreakMobile?: boolean;
   tone?: "dark" | "light";
   className?: string;
   titleClassName?: string;
@@ -45,6 +47,7 @@ export function SectionHeading({
   size = "h2",
   align = "left",
   accentBreak = false,
+  accentBreakMobile = false,
   tone = "dark",
   className,
   titleClassName,
@@ -75,6 +78,7 @@ export function SectionHeading({
               className={cn(
                 "font-pixel-line",
                 accentBreak && "block",
+                accentBreakMobile && "max-lg:block",
                 tone === "dark" ? "text-accent-text" : "text-white/75",
               )}
             >

@@ -1,17 +1,16 @@
 import type { CSSProperties } from "react";
-import { LineIcon } from "@/components/icons/line-icons";
+import { LineIcon, type LineIconName } from "@/components/icons/line-icons";
 import { CountUp } from "@/components/motion/count-up";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import type { HomePage } from "@/config/pages/home";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 /** Every cell draws its own right + bottom line; the grid draws the top + left line. */
 const cell = "relative h-[223px] border-r border-b border-[#ededed] bg-surface p-6 lg:h-[264px]";
 
-type StatItem = HomePage["stats"]["items"][number];
+type StatItem = { icon: LineIconName; value: string; label: string };
 
 /** Brand mark drawn in light grey, using the logo file as a mask (follows your logo). */
 function MarkCell() {
@@ -57,18 +56,27 @@ function Stat({ item, className }: { item: StatItem; className: string }) {
   );
 }
 
-export function Stats({ content }: { content: HomePage["stats"] }) {
+type StatsContent = {
+  eyebrow?: string;
+  title?: string;
+  accent?: string;
+  items: readonly StatItem[];
+};
+
+export function Stats({ content }: { content: StatsContent }) {
   const [a, b, c, d] = content.items;
 
   return (
-    <section aria-labelledby="stats-title">
+    <section aria-labelledby={content.title ? "stats-title" : undefined} aria-label={content.title ? undefined : "Key numbers"}>
       <Container bordered className="bg-canvas px-6 py-14 sm:px-8 lg:px-[50px] lg:py-[60px]">
-        <Reveal>
-          <SectionHeading id="stats-title" eyebrow={content.eyebrow} title={content.title} accent={content.accent} titleClassName="max-w-[300px] lg:max-w-[420px]" />
-        </Reveal>
+        {content.title ? (
+          <Reveal className="mb-6 lg:mb-12">
+            <SectionHeading id="stats-title" eyebrow={content.eyebrow} title={content.title} accent={content.accent} titleClassName="max-w-[300px] lg:max-w-[420px]" />
+          </Reveal>
+        ) : null}
         <Stagger
           gap={0.1}
-          className="mt-6 grid grid-cols-1 border-t border-l border-[#ededed] sm:grid-cols-2 lg:mt-12 lg:grid-cols-[294fr_98fr_393fr_61fr_294fr]"
+          className="grid grid-cols-1 border-t border-l border-[#ededed] sm:grid-cols-2 lg:grid-cols-[294fr_98fr_393fr_61fr_294fr]"
         >
           <MarkCell />
           <Stat item={a} className="max-sm:h-[205px] lg:col-span-3" />

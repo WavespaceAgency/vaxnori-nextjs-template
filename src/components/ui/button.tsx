@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn, isExternal } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost" | "dark" | "dark-raised";
+type Variant = "primary" | "secondary" | "outline" | "outline-brand" | "ghost" | "dark" | "dark-raised";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -12,6 +12,7 @@ const variants: Record<Variant, string> = {
   primary: "bg-brand-strong text-white hover:bg-brand-hover",
   secondary: "bg-surface-muted text-ink hover:bg-line",
   outline: "border border-line bg-surface text-ink hover:bg-canvas",
+  "outline-brand": "border border-brand-strong bg-surface text-brand-strong hover:bg-brand-soft",
   ghost: "text-ink hover:bg-canvas",
   dark: "bg-ink text-white hover:bg-ink/85",
   "dark-raised": "bg-ink-raised text-white hover:bg-[#444]",

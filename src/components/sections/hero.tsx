@@ -9,7 +9,7 @@ import type { HomePage } from "@/config/pages/home";
 import { HeroMockup } from "./hero-mockup";
 
 /** Faint squares in the top corners of the hero (decorative). 182px on desktop, 72px on phones (as in Figma). */
-function CornerSquares({ side }: { side: "left" | "right" }) {
+export function CornerSquares({ side }: { side: "left" | "right" }) {
   const squares = [
     [0, 0], [0, 66], [66, 0], [58, 58], [70, 122], [122, 70], [130, 6], [6, 130],
   ];
