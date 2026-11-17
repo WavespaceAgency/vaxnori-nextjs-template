@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   // Blog posts and job posts are .mdx files in src/content
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  images: {
+    // 75 = default for photos; 90 = crisp UI screenshots (blog cards, articles)
+    qualities: [75, 90],
+  },
   turbopack: {
     rules: {
       "*.css": {

@@ -43,7 +43,7 @@ const components: MDXComponents = {
   hr: () => <hr className="my-10 border-dashed border-line" />,
   /** Use <Figure src="/images/…" width={…} height={…} alt="…" /> for images in MDX. */
   Figure: ({ alt, ...props }: ImageProps) => (
-    <Image sizes="(min-width: 1024px) 724px, 100vw" className="my-8 h-auto w-full border border-line" alt={alt} {...props} />
+    <Image sizes="(min-width: 1024px) 724px, 100vw" quality={90} className="my-8 h-auto w-full border border-line" alt={alt} {...props} />
   ),
   /** Highlighted box (job posts: "Nice to have"). */
   Callout: ({ title, children }: { title: string; children: React.ReactNode }) => (

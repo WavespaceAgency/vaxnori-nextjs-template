@@ -12,6 +12,7 @@ export function PostCard({ post, readMore, priority = false }: { post: Post; rea
           alt={post.imageAlt}
           fill
           priority={priority}
+          quality={90}
           sizes="(min-width: 1024px) 364px, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         />

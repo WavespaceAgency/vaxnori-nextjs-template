@@ -95,6 +95,7 @@ export default async function PostPage({ params }: Props) {
               width={meta.imageWidth ?? 1456}
               height={meta.imageHeight ?? 800}
               priority
+              quality={90}
               sizes="(min-width: 1280px) 1160px, 100vw"
               className="h-auto w-full"
             />

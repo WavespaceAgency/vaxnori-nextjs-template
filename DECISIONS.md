@@ -175,3 +175,6 @@ template rules needed a change. It will move into the README in Phase 8.
   JobPosting JSON-LD, hiring process. Figma's second "What we're looking for" heading → "Your first 90 days".
   Typos fixed: "Vaxnori Al", "Youd", "sprawi".
 - Hydration-safe loops: animated mockups render the same first frame on server and client (`useHydrated`).
+- **Sharper blog images:** cards, article images and the post hero re-exported from Figma at 4× (3× for the hero), WebP q92,
+  and served by next/image at quality 90 (`images.qualities: [75, 90]` – required list in Next 16). Retina screens now
+  get a sharp 750px file for each 364px card.
