@@ -63,11 +63,12 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
         {/* Connector lines + the red dot that travels to the active card */}
         <svg aria-hidden="true" viewBox="0 0 980 402" className="pointer-events-none absolute inset-0 size-full text-line-strong" fill="none">
           <g stroke="currentColor" strokeWidth="1">
-            <path d="M258 79H321" />
-            <path d="M441 117V146" />
-            <path d="M561 79H656" />
-            <path d="M561 80H630V162H703" />
-            <path d="M584 250H640V213H826V246" />
+            {/* Lines sit on half pixels (x.5) so 1px strokes are crisp; shared segments use the exact same y */}
+            <path d="M258 79.5H321" />
+            <path d="M441.5 117V146" />
+            <path d="M561 79.5H656" />
+            <path d="M630.5 79.5V162.5H703" />
+            <path d="M584 250.5H640.5V213.5H826.5V246" />
           </g>
         </svg>
         <span
