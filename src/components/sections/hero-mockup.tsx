@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "motion/react";
+import Image from "next/image";
 import { useRef } from "react";
 import { LogoMark } from "@/components/icons";
 import { LineIcon } from "@/components/icons/line-icons";
@@ -56,9 +57,10 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
     <figure
       ref={ref}
       aria-label={mockup.label}
-      className="relative h-full w-[1140px] overflow-hidden bg-[#fbbf24] bg-cover bg-center"
-      style={{ backgroundImage: `url(${backgroundSrc})` }}
+      className="relative h-full w-[1140px] overflow-hidden bg-[#fbbf24]"
     >
+      {/* Priority image (preloaded) – this is the largest element on the page */}
+      <Image src={backgroundSrc} alt="" fill priority fetchPriority="high" sizes="(min-width: 1280px) 1140px, 100vw" className="object-cover" />
       <div className="bg-dots absolute inset-x-20 top-1/2 h-[402px] -translate-y-1/2">
         {/* Connector lines + the red dot that travels to the active card */}
         <svg aria-hidden="true" viewBox="0 0 980 402" className="pointer-events-none absolute inset-0 size-full text-line-strong" fill="none">
