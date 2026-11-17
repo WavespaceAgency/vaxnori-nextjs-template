@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -13,23 +14,24 @@ export function CtaBanner({ content }: { content: HomePage["cta"] }) {
           className="pointer-events-none absolute -top-24 right-[-10%] size-80 rounded-full bg-brand/25 blur-3xl motion-safe:animate-float"
         />
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <Reveal className="max-w-[640px]">
           <SectionHeading
             id="cta-title"
             title={content.title}
             accent={content.accent}
             description={content.description}
             tone="light"
-            className="reveal max-w-[640px]"
             titleClassName="text-[1.75rem] lg:text-[2.25rem]"
           />
-          <div className="reveal flex flex-wrap gap-4">
+          </Reveal>
+          <Reveal delay={0.15} className="flex flex-wrap gap-4">
             <Button href={content.secondary.href} variant="dark-raised" size="lg">
               {content.secondary.label}
             </Button>
             <Button href={content.primary.href} size="lg">
               {content.primary.label}
             </Button>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import { siteConfig } from "@/config/site";
 import { fontHeading, fontPixel, fontSans } from "./fonts";
 import "./globals.css";
@@ -41,11 +42,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to content
         </a>
-        <Navbar />
-        <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
-          {children}
-        </main>
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+            {children}
+          </main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

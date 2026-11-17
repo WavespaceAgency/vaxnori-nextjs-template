@@ -1,13 +1,13 @@
 import type { CSSProperties } from "react";
 import { LineIcon } from "@/components/icons/line-icons";
+import { GrowBar } from "@/components/motion/grow-bar";
+import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import type { HomePage } from "@/config/pages/home";
 import { cn } from "@/lib/utils";
 
 type Step = HomePage["howItWorks"]["steps"][number];
 
 const card = "rounded-card border border-[#efefef] bg-surface shadow-card";
-const reveal = "motion-safe:animate-pop-in delay-var";
-const d = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
 
 function Row({ icon, label, meta, className, style }: { icon: Parameters<typeof LineIcon>[0]["name"]; label: string; meta: string; className?: string; style?: CSSProperties }) {
   return (
@@ -31,9 +31,13 @@ function IdeaCard({ card: c }: { card: Extract<Step["card"], { type: "idea" }> }
         {c.drafted}
         <span className="h-px flex-1 bg-line-strong" />
       </p>
-      {c.tasks.map((task, i) => (
-        <Row key={task.label} {...task} className={reveal} style={d(i * 200)} />
-      ))}
+      <Stagger gap={0.18} delay={0.2} amount={0.6} className="flex flex-col gap-1.5">
+        {c.tasks.map((task) => (
+          <StaggerItem key={task.label}>
+            <Row {...task} />
+          </StaggerItem>
+        ))}
+      </Stagger>
     </div>
   );
 }
@@ -76,12 +80,14 @@ function ActivityCard({ card: c }: { card: Extract<Step["card"], { type: "activi
         <p className="text-[11px] leading-4 font-semibold text-white">{c.title}</p>
         <span className="rounded-[3px] bg-[#3d3200] px-1.5 py-0.5 text-[9px] leading-3 font-semibold text-[#ffd84d]">{c.status}</span>
       </div>
-      {c.items.map((item, i) => (
-        <div key={item.label} className="relative">
-          <span aria-hidden="true" className="absolute top-1/2 -left-4 size-[7px] -translate-y-1/2 rounded-full border border-line-strong bg-surface" />
-          <Row {...item} className={reveal} style={d(i * 250)} />
-        </div>
-      ))}
+      <Stagger gap={0.2} delay={0.2} amount={0.6} className="flex flex-col gap-1.5">
+        {c.items.map((item) => (
+          <StaggerItem key={item.label} className="relative">
+            <span aria-hidden="true" className="absolute top-1/2 -left-4 size-[7px] -translate-y-1/2 rounded-full border border-line-strong bg-surface" />
+            <Row {...item} />
+          </StaggerItem>
+        ))}
+      </Stagger>
       <div className="relative">
         <span aria-hidden="true" className="absolute top-1/2 -left-4 size-[7px] -translate-y-1/2 rounded-full border border-brand bg-brand-soft motion-safe:animate-pulse-soft" />
         <div className={cn(card, "flex flex-col gap-1.5 px-2.5 py-2")}>
@@ -91,10 +97,7 @@ function ActivityCard({ card: c }: { card: Extract<Step["card"], { type: "activi
             <span className="text-[10px] leading-4 font-semibold text-brand-strong">{c.progress.value}%</span>
           </div>
           <span className="h-1 overflow-hidden rounded-full bg-[#f3f3f3]">
-            <span
-              className="block h-full origin-left rounded-full bg-brand motion-safe:animate-grow-x"
-              style={{ width: `${c.progress.value}%` }}
-            />
+            <GrowBar value={c.progress.value} delay={0.9} className="h-full rounded-full bg-brand" />
           </span>
         </div>
       </div>

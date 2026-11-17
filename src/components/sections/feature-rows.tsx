@@ -1,3 +1,5 @@
+import { Parallax } from "@/components/motion/parallax";
+import { Reveal } from "@/components/motion/reveal";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -16,6 +18,7 @@ export function FeatureRows({ content }: { content: HomePage["features"] }) {
               key={feature.eyebrow}
               className="grid items-center gap-10 border-t border-dashed border-line px-4 py-12 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-[50px] lg:py-[100px]"
             >
+              <Reveal className={cn("max-w-[556px]", flipped && "lg:order-2 lg:justify-self-end")}>
               <SectionHeading
                 eyebrow={feature.eyebrow}
                 title={feature.title}
@@ -23,23 +26,27 @@ export function FeatureRows({ content }: { content: HomePage["features"] }) {
                 description={feature.description}
                 as="h2"
                 accentBreak
-                className={cn("reveal max-w-[556px]", flipped && "lg:order-2 lg:justify-self-end")}
               />
-              <div
+              </Reveal>
+              <Reveal
+                scale
+                delay={0.1}
                 className={cn(
-                  "reveal-scale w-full max-w-[504px] overflow-hidden rounded-[2px] border border-line-soft",
+                  "w-full max-w-[504px] overflow-hidden rounded-[2px] border border-line-soft",
                   flipped ? "lg:order-1" : "lg:justify-self-end",
                 )}
               >
+                <Parallax offset={18}>
                 <Image
                   src={feature.image.src}
                   alt={feature.image.alt}
                   width={1008}
                   height={800}
                   sizes="(min-width: 1280px) 504px, (min-width: 1024px) 40vw, 100vw"
-                  className="h-auto w-full transition-transform duration-700 ease-out hover:scale-[1.02]"
+                  className="h-auto w-full scale-[1.06] transition-transform duration-700 ease-out hover:scale-[1.09]"
                 />
-              </div>
+                </Parallax>
+              </Reveal>
             </article>
           );
         })}

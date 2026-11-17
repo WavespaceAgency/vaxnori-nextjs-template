@@ -78,7 +78,7 @@ export const homePage = {
         points: ["Start with one agent and add roles as the work grows.", "Agent keeps its own memory of your customers."],
         visual: {
           type: "image",
-          src: "/images/home/product-ai-team.webp",
+          src: "/images/home/product-workspace.webp",
           width: 1240,
           height: 803,
           alt: "Workspace showing an AI agent organising sales, finance, marketing and design teams",

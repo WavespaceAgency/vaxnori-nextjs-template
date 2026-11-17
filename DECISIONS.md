@@ -58,3 +58,18 @@ template rules needed a change. It will move into the README in Phase 8.
   - Stats: 2 columns on tablet, 1 on phones (decorative cells hidden on phones).
   - How it works: 3 columns from 768px. Integrations: 2 columns on phones/tablet, 4 on desktop.
   - Product tabs scroll sideways on small phones.
+
+## Phase 2 fixes – Motion animations
+- **Motion (`motion` 14, MIT)** added for animations CSS cannot do. Vercel Templates allows any MIT dependency.
+  It loads once through `LazyMotion` + `m` components (`src/components/motion/motion-provider.tsx`), and
+  `MotionConfig reducedMotion="user"` turns movement off for visitors who ask for less motion.
+- **Reusable animation parts** in `src/components/motion/`: `Reveal`, `Stagger`/`StaggerItem` (blur + fade + lift on scroll),
+  `CountUp` (stats), `Tilt` (3D mouse tilt), `Parallax`, `SplitWords` (word-by-word heading), `GrowBar` (progress bars).
+- Where Motion is used: hero heading (words, no opacity change so LCP is not delayed), hero mockup tilt, section reveals,
+  sliding nav hover + active line, sliding tab underline + animated tab panels, counting stats, parallax feature images,
+  FAQ open/close (height animation), mobile menu (wipe-in + staggered links), footer reveal.
+- Small looping effects (marquee, floating squares, pulses, workflow glow) stay in CSS – cheaper than JavaScript.
+- **Bugs fixed:** Stats grid borders (each cell now draws its own lines), pointer cursor on all buttons/tabs (Tailwind 4 removed it),
+  tab buttons no longer jump (a hidden medium-weight copy keeps each tab's width fixed).
+- **FAQ accordion** is now a button-based accordion (`aria-expanded`, `aria-controls`). Closed answers stay in the HTML for SEO.
+- Product image renamed to `product-workspace.webp` so no old cached copy (with the personal name) can be served.

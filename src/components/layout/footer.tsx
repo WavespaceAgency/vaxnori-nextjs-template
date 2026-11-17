@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { socialIcons } from "@/components/icons";
+import { Reveal } from "@/components/motion/reveal";
 import { siteConfig } from "@/config/site";
 import { cn, isExternal } from "@/lib/utils";
 import { NewsletterForm } from "./newsletter-form";
@@ -65,7 +66,7 @@ export function Footer() {
         className="-z-10 hidden object-cover md:block"
       />
 
-      <div className="@container relative mx-auto max-w-site overflow-hidden bg-surface p-3">
+      <Reveal y={40} className="@container relative mx-auto max-w-site overflow-hidden bg-surface p-3">
         <div className="relative z-10 grid grid-cols-2 border-line md:grid-cols-3 xl:grid-cols-[452fr_223fr_222fr_319fr]">
           {/* Tagline + newsletter */}
           <div className="col-span-2 flex flex-col gap-8 border border-line p-5 pt-10 md:col-span-3 md:gap-14 md:p-8 xl:col-span-1 xl:border-r-0 xl:pt-8">
@@ -140,7 +141,7 @@ export function Footer() {
             {siteConfig.name}
           </p>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }

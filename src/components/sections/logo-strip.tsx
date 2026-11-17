@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/reveal";
 import { Container } from "@/components/ui/container";
 import type { HomePage } from "@/config/pages/home";
 
@@ -45,9 +46,11 @@ export function LogoStrip({ content }: { content: HomePage["logos"] }) {
   return (
     <section aria-labelledby="logos-title">
       <Container bordered className="bg-canvas py-12 lg:py-[60px]">
-        <h2 id="logos-title" className="px-4 text-center text-base leading-6 text-subtle">
-          {content.title}
-        </h2>
+        <Reveal as="div" y={12}>
+          <h2 id="logos-title" className="px-4 text-center text-base leading-6 text-subtle">
+            {content.title}
+          </h2>
+        </Reveal>
         <div className="group mt-8 flex overflow-hidden motion-safe:[mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
           {list()}
           <div className="contents motion-reduce:hidden">{list(true)}</div>
