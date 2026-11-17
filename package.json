@@ -1,9 +1,25 @@
 {
   "name": "vaxnori-nextjs-template",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "Vaxnori AI – a free, open-source Next.js (App Router) template for AI SaaS landing pages.",
+  "description": "Vaxnori AI \u2013 a free, open-source Next.js (App Router) template for AI and SaaS products.",
   "license": "MIT",
+  "author": "Wavespace",
+  "homepage": "https://vaxnori-nextjs-template.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WavespaceAgency/vaxnori-nextjs-template.git"
+  },
+  "keywords": [
+    "nextjs",
+    "template",
+    "tailwindcss",
+    "saas",
+    "landing-page",
+    "mdx",
+    "motion",
+    "vercel"
+  ],
   "engines": {
     "node": ">=20.9.0"
   },
@@ -17,7 +33,6 @@
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.4.6",
-    "@types/mdx": "^2.0.14",
     "motion": "^14.14.0",
     "next": "16.4.6",
     "react": "19.3.0",
@@ -26,6 +41,7 @@
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "4.3.3",
+    "@types/mdx": "^2.0.14",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
