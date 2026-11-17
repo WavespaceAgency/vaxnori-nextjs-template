@@ -27,3 +27,24 @@ export async function subscribeToNewsletter(_prev: FormState, formData: FormData
 
   return { status: "success" };
 }
+
+export async function sendContactMessage(_prev: FormState, formData: FormData): Promise<FormState> {
+  const data = {
+    name: String(formData.get("name") ?? "").trim(),
+    email: String(formData.get("email") ?? "").trim(),
+    company: String(formData.get("company") ?? "").trim(),
+    topic: String(formData.get("topic") ?? "").trim(),
+    message: String(formData.get("message") ?? "").trim(),
+  };
+
+  const errors: Record<string, string> = {};
+  if (data.name.length < 2) errors.name = "Please enter your name.";
+  if (!EMAIL_PATTERN.test(data.email)) errors.email = "Please enter a valid email address.";
+  if (data.message.length < 10) errors.message = "Please write at least a short sentence (10+ characters).";
+  if (Object.keys(errors).length) return { status: "error", errors };
+
+  // TODO: Send `data` to your inbox or helpdesk (Resend, Postmark, HubSpot, a Slack webhook, …).
+  console.log("[contact] new message:", data);
+
+  return { status: "success" };
+}

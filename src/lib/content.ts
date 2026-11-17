@@ -17,7 +17,7 @@ import type { Job, JobMeta, Post, PostMeta } from "./content-types";
 
 const ROOT = path.join(process.cwd(), "src", "content");
 
-function slugsIn(folder: "blog" | "careers") {
+function slugsIn(folder: "blog" | "careers" | "legal") {
   return fs
     .readdirSync(path.join(ROOT, folder))
     .filter((file) => file.endsWith(".mdx"))
@@ -32,6 +32,10 @@ export async function loadPost(slug: string) {
 
 export async function loadJob(slug: string) {
   return (await import(`@/content/careers/${slug}.mdx`)) as MdxModule<JobMeta>;
+}
+
+export async function loadLegal(slug: "privacy" | "terms") {
+  return (await import(`@/content/legal/${slug}.mdx`)) as MdxModule<import("@/components/sections/legal-page").LegalMeta>;
 }
 
 /** All posts, newest first. */
@@ -59,6 +63,6 @@ export function headingsFromMdx(source: string) {
   return [...source.matchAll(/^## (.+)$/gm)].map((m) => m[1].trim());
 }
 
-export function readSource(folder: "blog" | "careers", slug: string) {
+export function readSource(folder: "blog" | "careers" | "legal", slug: string) {
   return fs.readFileSync(path.join(ROOT, folder, `${slug}.mdx`), "utf8");
 }

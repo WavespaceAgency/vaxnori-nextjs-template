@@ -11,27 +11,37 @@ function slugify(text: string) {
 }
 
 /** "On this page" list. Highlights the section you are reading. */
-export function TableOfContents({ title, headings }: { title: string; headings: string[] }) {
+export function TableOfContents({ title, headings, size = "sm", showTitle = true }: { title: string; headings: string[]; size?: "sm" | "lg"; showTitle?: boolean }) {
   const [active, setActive] = useState(headings[0] ? slugify(headings[0]) : "");
 
   useEffect(() => {
-    const els = headings.map((h) => document.getElementById(slugify(h))).filter((el): el is HTMLElement => Boolean(el));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-80px 0px -60% 0px" },
-    );
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    // Active = the last section whose heading has scrolled past the top third of the screen.
+    const ids = headings.map(slugify);
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        let current = ids[0];
+        for (const id of ids) {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top < window.innerHeight * 0.33) current = id;
+        }
+        setActive(current);
+      });
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", update);
+      cancelAnimationFrame(frame);
+    };
   }, [headings]);
 
   if (!headings.length) return null;
   return (
     <nav aria-label={title}>
-      <p className="text-sm tracking-[0.02em] text-brand-strong uppercase">{title}</p>
-      <ul className="mt-4 flex flex-col border-l border-line">
+      <p className={showTitle ? "mb-4 text-sm tracking-[0.02em] text-brand-strong uppercase" : "sr-only"}>{title}</p>
+      <ul className={cn("flex flex-col border-l border-line", size === "lg" && "gap-5")}>
         {headings.map((heading) => {
           const id = slugify(heading);
           const isActive = active === id;
@@ -41,8 +51,11 @@ export function TableOfContents({ title, headings }: { title: string; headings: 
                 href={`#${id}`}
                 aria-current={isActive ? "location" : undefined}
                 className={cn(
-                  "-ml-px block border-l py-2 pl-4 text-sm transition-colors duration-300",
-                  isActive ? "border-brand font-medium text-ink" : "border-transparent text-subtle hover:text-ink",
+                  "-ml-px block border-l pl-4 transition-colors duration-300",
+                  size === "lg" ? "text-xl leading-6 font-medium" : "py-2 text-sm",
+                  isActive
+                    ? cn("text-ink", size === "lg" ? "border-l-2 border-brand-strong" : "border-brand font-medium")
+                    : "border-transparent text-subtle hover:text-ink",
                 )}
               >
                 {heading}

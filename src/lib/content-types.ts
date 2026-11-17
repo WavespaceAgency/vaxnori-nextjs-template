@@ -37,7 +37,7 @@ export type Post = PostMeta & { slug: string };
 export type Job = JobMeta & { slug: string };
 
 /** "2026-09-02" → "Sep 2, 2026" */
-export function formatDate(iso: string) {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+export function formatDate(iso: string, month: "short" | "long" = "short") {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { month, day: "numeric", year: "numeric", timeZone: "UTC" });
 }
 

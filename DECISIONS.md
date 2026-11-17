@@ -178,3 +178,18 @@ template rules needed a change. It will move into the README in Phase 8.
 - **Sharper blog images:** cards, article images and the post hero re-exported from Figma at 4× (3× for the hero), WebP q92,
   and served by next/image at quality 90 (`images.qualities: [75, 90]` – required list in Next 16). Retina screens now
   get a sharp 750px file for each 364px card.
+
+## Phase 5 – Contact, FAQ, Privacy, Terms, 404
+- **Contact:** four contact channels, office card, contact form (browser check + Server Action `sendContactMessage`
+  in `src/lib/actions.ts` that only logs – connect your helpdesk at the `TODO`), three locations.
+  Real-looking addresses/emails replaced with `@example.com`; Figma's "hello@kickoff.co" (old brand) removed.
+  Location labels fixed: Figma said "London / New York" above San Francisco / Lisbon – labels now match the city.
+  Figma's mobile locations reused How-it-works cards; the template shows the maps on all sizes.
+  "Most answer already" → "Most answers already"; "Responsive Time" → "Response Time"; the message box placeholder said "Your Company".
+  Office card: the map is an image, the text is real HTML (the Figma export had text baked in).
+- **FAQ:** three groups with a sticky side list that follows the scroll, accordion answers, FAQPage JSON-LD
+  (all questions are visible). Answers 2+ written for the template (Figma only had the first).
+- **Privacy / Terms:** MDX files in `src/content/legal/` (sample text – have your lawyer review), sticky contents list
+  that follows the scroll, "How to control this" callouts. Terms "Description of Service" had no body in Figma – written.
+  Typos fixed: "Vaxnori Al", "cookies tor sessions".
+- **404:** no Figma frame – built from the inner-page hero pattern with two buttons. Unknown blog/job slugs also show it.

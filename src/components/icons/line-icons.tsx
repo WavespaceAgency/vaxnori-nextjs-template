@@ -161,6 +161,19 @@ const paths = {
     </>
   ),
   arrowRight: <path d="M5 12h14M13 6l6 6-6 6" />,
+  info: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5M12 8h.01" />
+    </>
+  ),
+  puzzle: <path d="M9 4h4a2 2 0 1 1 4 0v4h-1a2 2 0 1 0 0 4h1v6H5v-6h1a2 2 0 1 0 0-4H5V4h4Z" />,
+  mic: (
+    <>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+    </>
+  ),
   calendar: (
     <>
       <rect x="4" y="5" width="16" height="15" rx="2" />
