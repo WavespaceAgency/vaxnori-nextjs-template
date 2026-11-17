@@ -126,3 +126,15 @@ template rules needed a change. It will move into the README in Phase 8.
 - Removed my extras that the live site does not have: blur, word-by-word heading, 3D tilt, parallax.
 - Logo row is now a marquee on all screen sizes (it was static on desktop to match the Figma frame).
 - FAQ items now appear one after another, like the live site.
+
+## Animated mockups (matched to the live Framer site)
+- Recorded the live site frame by frame and rebuilt the same loops with Motion:
+  - **Hero preview:** 4-step loop (~3.2s per step): Kickoff 18% → Build 51% → Outreach 82% → Live 100%.
+    Step pill with dots, bars ease to new values and turn green on Live, statuses change, the active card glows orange,
+    a red dot travels along the connector, toast text changes ("Checking domain…", "Registering…", "Filing LLC…", "Launched – mobain.co is live").
+    Step data lives in `homePage.hero.mockup.steps` (edit labels, bar values and toasts there).
+  - **How-it-works cards:** idea is typed (card glows) → "12 tasks drafted" → tasks pop in with green tags;
+    cursor moves to Approve and clicks → button + badge turn green "Approved";
+    activity items ship one by one, the counter climbs, progress fills to 75% then turns green "Website live 100%".
+- Loops only run while on screen (`useLoop` + `useInView`), so they cost nothing off-screen.
+- With "reduce motion" on, the final state is shown without movement.

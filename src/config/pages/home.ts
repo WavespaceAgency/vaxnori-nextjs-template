@@ -8,7 +8,6 @@
  * "Vaxnori AI" brand. Replace them with your own before you launch.
  */
 import type { LineIconName } from "@/components/icons/line-icons";
-import type { StatusTone } from "@/components/ui/badge";
 import { siteConfig } from "@/config/site";
 
 export const homePage = {
@@ -37,18 +36,44 @@ export const homePage = {
         { title: "Task: Outreach", subtitle: "Assigned to agent" },
       ],
       detailsLabel: "Task Details",
-      toast: { title: "Registering...", subtitle: "Mobain.co" },
-      checklist: {
-        title: "Launch To-Do's",
-        progress: "75%",
-        items: [
-          { label: "Website", value: 92, status: "In progress", tone: "progress" },
-          { label: "Brand kit", value: 60, status: "In progress", tone: "progress" },
-          { label: "LLC filing", value: 0, status: "To do", tone: "todo" },
-          { label: "Domain", value: 100, status: "Done", tone: "done" },
-          { label: "Outreach", value: 100, status: "Done", tone: "done" },
-        ] satisfies { label: string; value: number; status: string; tone: StatusTone }[],
-      },
+      checklistTitle: "Launch To-Do's",
+      /**
+       * The preview plays these steps in a loop (about 3 seconds each), like the live site.
+       * `bars` = progress per checklist row (0–100). `highlight` = which card glows.
+       */
+      rows: ["Website", "Brand kit", "LLC filing", "Domain", "Outreach"],
+      steps: [
+        {
+          label: "Kickoff",
+          progress: 18,
+          highlight: "agent",
+          bars: [20, 25, 0, 40, 0],
+          toast: { title: "Checking domain...", subtitle: "mobain.co" },
+        },
+        {
+          label: "Build",
+          progress: 51,
+          highlight: "launch",
+          bars: [60, 70, 25, 100, 0],
+          toast: { title: "Registering...", subtitle: "Mobain.co" },
+        },
+        {
+          label: "Outreach",
+          progress: 82,
+          highlight: "outreach",
+          bars: [90, 100, 70, 100, 45],
+          toast: { title: "Filing LLC...", subtitle: "Delaware, US" },
+        },
+        {
+          label: "Live",
+          progress: 100,
+          highlight: "none",
+          bars: [100, 100, 100, 100, 100],
+          toast: { title: "Launched", subtitle: "mobain.co is live" },
+          live: true,
+        },
+      ] satisfies { label: string; progress: number; highlight: "agent" | "launch" | "outreach" | "none"; bars: number[]; toast: { title: string; subtitle: string }; live?: boolean }[],
+      statusLabels: { todo: "To do", progress: "In progress", done: "Done" },
     },
   },
 
@@ -169,6 +194,7 @@ export const homePage = {
           type: "approve",
           title: "Register mobain.co",
           status: "Needs approval",
+          approvedLabel: "Approved",
           rows: [
             ["Cost", "$14.00/yr"],
             ["Registrar", "Your registrar"],
@@ -184,13 +210,14 @@ export const homePage = {
         card: {
           type: "activity",
           title: "Activity",
-          status: "4 shipped",
+          /** Counter label: "{n} shipped". */
+          shippedLabel: "shipped",
           items: [
             { icon: "sparkle", label: "Branding identity", meta: "9:00" },
             { icon: "globe", label: "Domain secured", meta: "9:12" },
             { icon: "building", label: "LLC filed in NY", meta: "9:28" },
           ] satisfies { icon: LineIconName; label: string; meta: string }[],
-          progress: { icon: "globe" as LineIconName, label: "Website in progress", value: 75 },
+          progress: { icon: "globe" as LineIconName, label: "Website in progress", value: 75, liveLabel: "Website live" },
         },
       },
     ],

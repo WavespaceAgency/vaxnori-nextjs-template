@@ -65,7 +65,7 @@ export function PricingPlans({ plans, billing }: { plans: readonly Plan[]; billi
         gap={0.12}
         className="relative grid border-b border-dashed border-line sm:px-8 lg:grid-cols-3 lg:gap-8 lg:px-12 lg:pb-[75px]"
       >
-        {plans.map((plan, index) => {
+        {plans.map((plan) => {
           const price = yearly ? plan.yearly : plan.monthly;
           const featured = Boolean(plan.featured);
           return (
