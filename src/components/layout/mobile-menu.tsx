@@ -3,10 +3,9 @@
 import { AnimatePresence, m } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CloseLargeIcon, MenuIcon } from "@/components/icons";
 import { EASE } from "@/components/motion/reveal";
-import { Logo } from "@/components/ui/logo";
 import type { NavLink } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -16,35 +15,46 @@ type MobileMenuProps = {
 
 const list = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } },
 };
 const item = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
 };
 
-/** Full-screen menu for small screens. Closes with Escape, the close button or a link click. */
+/**
+ * Menu for small screens.
+ * The navbar stays on top and the same button turns from ☰ into ✕ in place,
+ * so the logo and the icon never move when the menu opens or closes.
+ * The panel fills the screen below the navbar. Closes with Escape, the button or a link click.
+ */
 export function MobileMenu({ links }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
+  const [top, setTop] = useState(45);
   const pathname = usePathname();
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
 
-  const close = useCallback(() => {
-    setOpen(false);
-    toggleRef.current?.focus();
-  }, []);
+  const toggle = () => {
+    if (!open) {
+      // Start the panel exactly at the bottom edge of the navbar.
+      const header = toggleRef.current?.closest("header");
+      if (header) setTop(Math.round(header.getBoundingClientRect().bottom));
+    }
+    setOpen(!open);
+  };
 
   useEffect(() => {
     if (!open) return;
-    closeRef.current?.focus();
     const { overflow, paddingRight } = document.body.style;
-    // Keep the page from shifting sideways when the scrollbar disappears.
+    // Keep the page (and the navbar) from shifting sideways when the scrollbar disappears.
     const scrollbar = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
     if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close();
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
     };
     const desktop = window.matchMedia("(min-width: 64rem)");
     const onResize = () => desktop.matches && setOpen(false);
@@ -56,7 +66,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
       document.removeEventListener("keydown", onKey);
       desktop.removeEventListener("change", onResize);
     };
-  }, [open, close]);
+  }, [open]);
 
   return (
     <>
@@ -65,11 +75,23 @@ export function MobileMenu({ links }: MobileMenuProps) {
         type="button"
         aria-expanded={open}
         aria-controls="mobile-menu"
-        aria-label="Open menu"
-        onClick={() => setOpen(true)}
-        className="-mr-2 flex size-11 items-center justify-center rounded-button text-ink hover:bg-canvas"
+        aria-label={open ? "Close menu" : "Open menu"}
+        onClick={toggle}
+        className="relative -mr-2 flex size-11 items-center justify-center rounded-button text-ink hover:bg-canvas"
       >
-        <MenuIcon className="size-7" />
+        {/* Both icons sit in the same 28px box and cross-fade, so the button never changes size or place. */}
+        <MenuIcon
+          className={cn(
+            "absolute size-7 transition-[opacity,rotate,scale] duration-300 ease-out-expo",
+            open ? "scale-75 rotate-90 opacity-0" : "opacity-100",
+          )}
+        />
+        <CloseLargeIcon
+          className={cn(
+            "absolute size-7 transition-[opacity,rotate,scale] duration-300 ease-out-expo",
+            open ? "opacity-100" : "scale-75 -rotate-90 opacity-0",
+          )}
+        />
       </button>
 
       <AnimatePresence>
@@ -77,28 +99,13 @@ export function MobileMenu({ links }: MobileMenuProps) {
           <m.div
             key="menu"
             id="mobile-menu"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: EASE }}
-            className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-surface"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            style={{ top }}
+            className="fixed inset-x-0 bottom-0 z-50 overflow-y-auto bg-surface"
           >
-            {/* Same size and position as the closed navbar row, so nothing jumps when the menu opens. */}
-            <div className="flex h-11 shrink-0 items-center justify-between border-b border-line px-4 box-content sm:px-6">
-              <Logo showName size="xs" />
-              <button
-                ref={closeRef}
-                type="button"
-                aria-label="Close menu"
-                onClick={close}
-                className="-mr-2 flex size-11 items-center justify-center rounded-button text-ink hover:bg-canvas"
-              >
-                <CloseLargeIcon className="size-7" />
-              </button>
-            </div>
             <nav aria-label="Mobile">
               <m.ul variants={list} initial="hidden" animate="show" className="flex flex-col py-2">
                 {links.map((link) => {
@@ -121,7 +128,6 @@ export function MobileMenu({ links }: MobileMenuProps) {
                 })}
               </m.ul>
             </nav>
-
           </m.div>
         ) : null}
       </AnimatePresence>
