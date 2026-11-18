@@ -112,7 +112,7 @@ export const siteConfig = {
     ],
     copyright: `© ${year} ${legalName}`,
     /** Template credit under the copyright. Remove it or point it at your own studio. */
-    credit: { prefix: "Designed & developed by", label: "Wavespace", href: "https://github.com/WavespaceAgency" },
+    credit: { prefix: "Designed & developed by", label: "Wavespace", href: "https://www.wavespace.agency" },
     background: {
       desktop: "/images/patterns/tiles-yellow.webp",
       mobile: "/images/patterns/tiles-yellow-tall.webp",

@@ -190,7 +190,7 @@ DECISIONS.md            Design and build notes (what changed from the Figma file
 
 ## Credits
 
-- **Design:** Vaxnori AI by [Wavespace](https://github.com/WavespaceAgency)
+- **Design:** Vaxnori AI by [Wavespace](https://www.wavespace.agency)
 - **Fonts:** [Inter](https://fonts.google.com/specimen/Inter), [Google Sans Flex](https://fonts.google.com/specimen/Google+Sans+Flex),
   [Geist Pixel](https://fonts.google.com/specimen/Geist+Pixel) – SIL Open Font License 1.1
 - **Images:** AI-generated or made by Wavespace for this template – free to use with the template
