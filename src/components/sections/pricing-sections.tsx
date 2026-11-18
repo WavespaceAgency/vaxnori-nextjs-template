@@ -37,7 +37,7 @@ export function ComparisonTable({ comparison }: { comparison: Comparison }) {
                     scope="col"
                     className={cn(
                       "h-[52px] px-2 font-normal tracking-[0.02em] uppercase sm:px-4 lg:h-[76px] lg:px-5",
-                      i === 0 ? "pl-4 sm:pl-6 lg:pl-12" : "border-l border-dashed border-line",
+                      i === 0 ? "pl-4 sm:pl-6 lg:pl-12" : "border-l border-dashed border-line-strong",
                       i === hi ? "text-brand-strong" : "text-ink",
                     )}
                   >
@@ -55,7 +55,7 @@ export function ComparisonTable({ comparison }: { comparison: Comparison }) {
                         {cell}
                       </th>
                     ) : (
-                      <td key={i} className={cn("h-[60px] border-l border-dashed border-line px-2 sm:px-4 lg:h-[76px] lg:px-5", i === hi ? "font-semibold text-ink" : "text-ink")}>
+                      <td key={i} className={cn("h-[60px] border-l border-dashed border-line-strong px-2 sm:px-4 lg:h-[76px] lg:px-5", i === hi ? "font-semibold text-ink" : "text-ink")}>
                         {cell === "-" ? <span aria-label="Not included">-</span> : cell}
                       </td>
                     ),
@@ -65,9 +65,9 @@ export function ComparisonTable({ comparison }: { comparison: Comparison }) {
               {/* Empty row: the column lines continue below the table, as in the design */}
               <tr aria-hidden="true" className="hidden lg:table-row">
                 <td className="h-[75px]" />
-                <td className="border-l border-dashed border-line" />
-                <td className="border-l border-dashed border-line" />
-                <td className="border-l border-dashed border-line" />
+                <td className="border-l border-dashed border-line-strong" />
+                <td className="border-l border-dashed border-line-strong" />
+                <td className="border-l border-dashed border-line-strong" />
               </tr>
             </tbody>
           </table>
@@ -88,7 +88,7 @@ export function PromiseBand({ items }: { items: readonly { icon: LineIconName; t
               as="li"
               key={item.title}
               className={cn(
-                "flex flex-col justify-between gap-12 border-dashed border-white/20 px-6 pt-10 pb-8 not-last:border-b sm:not-last:border-b-0 lg:h-[264px] lg:pr-6 lg:pb-[26px]",
+                "flex flex-col justify-between gap-12 border-dashed border-white/20 [border-image:none] px-6 pt-10 pb-8 not-last:border-b sm:not-last:border-b-0 lg:h-[264px] lg:pr-6 lg:pb-[26px]",
                 i === 0 ? "lg:pl-12" : "lg:border-l lg:pl-6",
               )}
             >

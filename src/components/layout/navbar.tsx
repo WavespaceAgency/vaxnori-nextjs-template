@@ -22,7 +22,7 @@ export function Navbar() {
 
       {/* Mobile and tablet */}
       <div className="flex h-11 items-center justify-between px-4 sm:px-6 lg:hidden">
-        <Logo showName size="xs" alt />
+        <Logo showName size="xs" />
         <MobileMenu links={siteConfig.nav.mobile} />
       </div>
     </header>

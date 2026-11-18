@@ -4,7 +4,7 @@ import type { HomePage } from "@/config/pages/home";
 
 type LogoItem = HomePage["logos"]["items"][number];
 
-/** Neutral placeholder logo: a simple shape + a wordmark. */
+/** Neutral placeholder logo: a simple shape + a wordmark, in the Figma logo colour (#7e7f80 at 65%). */
 function PlaceholderLogo({ name, shape }: LogoItem) {
   const mark = {
     circle: <circle cx="12" cy="12" r="9" />,
@@ -20,7 +20,7 @@ function PlaceholderLogo({ name, shape }: LogoItem) {
     diamond: <path d="M12 2 22 12 12 22 2 12 12 2Z" />,
   }[shape];
   return (
-    <span role="img" aria-label={name} className="flex items-center gap-2 text-subtle transition-colors duration-300 hover:text-ink">
+    <span role="img" aria-label={name} className="flex items-center gap-2 text-[#7e7f80]/65 transition-colors duration-300 hover:text-ink">
       <svg viewBox="0 0 24 24" className="size-5 lg:size-6" fill="currentColor" aria-hidden="true">
         {mark}
       </svg>

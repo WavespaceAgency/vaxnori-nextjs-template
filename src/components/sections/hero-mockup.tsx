@@ -109,7 +109,7 @@ export function HeroMockup({ mockup, backgroundSrc }: { mockup: Mockup; backgrou
         <div className={cn(card, glow(step.highlight === "agent"), "absolute top-10 left-[321px] flex w-60 flex-col gap-2.5 px-2.5 py-2")}>
           <div className="flex items-center gap-2">
             <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand text-white">
-              <LogoMark className="h-[17px] w-auto" />
+              <LogoMark className="h-auto w-[13.06px]" />
             </span>
             <div className="min-w-0">
               <p className="text-xs leading-[14px] font-semibold text-ink">{mockup.agent.name}</p>

@@ -73,7 +73,7 @@ export default async function JobPage({ params }: Props) {
 
         <div className="grid gap-10 pt-6 pb-14 lg:grid-cols-[minmax(0,732px)_288px] lg:justify-between lg:px-[55px] lg:pb-[100px]">
           <div>
-            <HeroReveal className="border-b border-dashed border-line pb-8">
+            <HeroReveal className="border-b border-dashed border-line-strong pb-8">
               <h1 className="font-heading-flex text-[32px] leading-10 font-medium tracking-[-0.03em] text-ink lg:text-[40px] lg:leading-[44px]">{meta.title}</h1>
               <p className="mt-2 text-base text-muted">{meta.location.includes("Remote") ? "Remote in US or EU unless noted" : meta.location}</p>
               <ul className="mt-5 flex flex-wrap gap-2">

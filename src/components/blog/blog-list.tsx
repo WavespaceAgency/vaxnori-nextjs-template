@@ -21,7 +21,7 @@ export function BlogList({ posts, labels }: { posts: Post[]; labels: Labels }) {
 
   return (
     <div>
-      <div className="border-y border-dashed border-line">
+      <div className="border-y border-dashed border-line-strong">
         <div role="tablist" aria-label="Filter posts by category" className="flex overflow-x-auto [scrollbar-width:none] sm:gap-4 sm:px-4 lg:pl-[50px]">
           {tabs.map((tab) => {
             const selected = tab === active;
@@ -38,7 +38,7 @@ export function BlogList({ posts, labels }: { posts: Post[]; labels: Labels }) {
                 }}
                 className={cn(
                   "relative shrink-0 border-b border-transparent px-4 py-4 text-[15px] leading-6 whitespace-nowrap transition-colors duration-300 first:pl-6 sm:first:pl-4 lg:py-5 lg:text-base",
-                  selected ? "text-ink" : "text-subtle hover:text-ink",
+                  selected ? "text-ink" : "text-grey-3 hover:text-ink",
                 )}
               >
                 <span className="grid">

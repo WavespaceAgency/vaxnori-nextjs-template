@@ -87,8 +87,8 @@ export function CanvasVisual({
         ))}
       </svg>
       <div className="absolute top-1/2 left-1/2 flex -translate-1/2 items-center gap-2 rounded-full border border-line bg-surface py-2 pr-4 pl-2 shadow-[0_0_0_8px_rgb(0_0_0/0.03)]">
-        <span className="flex size-8 items-center justify-center rounded-lg bg-ink text-white">
-          <LogoMark className="h-[18px] w-auto" />
+        <span className="flex size-8 items-center justify-center rounded-lg bg-ink text-white [--mark-bg:var(--ink)]">
+          <LogoMark className="h-auto w-[13.83px]" />
         </span>
         <span className="font-heading-flex text-base font-semibold text-ink">{center}</span>
       </div>

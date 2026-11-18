@@ -12,7 +12,7 @@ export default function PricingPage() {
   return (
     <>
       <PageHero {...pricingPage.hero}>
-        <div className="mt-9 border-t border-dashed border-line">
+        <div className="mt-9 border-t border-dashed border-line-strong">
           <PricingPlans plans={pricingPage.plans} billing={pricingPage.billing} />
         </div>
       </PageHero>

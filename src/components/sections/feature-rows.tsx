@@ -26,7 +26,7 @@ export function FeatureRows({ content, accentBreakMobile = false }: { content: r
           return (
             <article
               key={feature.eyebrow}
-              className={cn("grid items-center gap-8 border-t border-dashed border-line px-6 py-14 first:border-t-0 sm:px-8 lg:gap-20 lg:px-[50px] lg:py-[100px]", flipped ? "lg:grid-cols-[504fr_556fr]" : "lg:grid-cols-[556fr_504fr]")}
+              className={cn("grid items-center gap-8 border-t border-dashed border-line-strong px-6 py-14 first:border-t-0 sm:px-8 lg:gap-20 lg:px-[50px] lg:py-[100px]", flipped ? "lg:grid-cols-[504fr_556fr]" : "lg:grid-cols-[556fr_504fr]")}
             >
               <Reveal className={cn("max-w-[556px]", flipped && "lg:order-2")}>
               <SectionHeading

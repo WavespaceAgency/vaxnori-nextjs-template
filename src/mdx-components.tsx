@@ -40,7 +40,7 @@ const components: MDXComponents = {
     />
   ),
   strong: (props) => <strong className="font-semibold text-ink" {...props} />,
-  hr: () => <hr className="my-10 border-dashed border-line" />,
+  hr: () => <hr className="my-10 border-dashed border-line-strong" />,
   /** Use <Figure src="/images/…" width={…} height={…} alt="…" /> for images in MDX. */
   Figure: ({ alt, ...props }: ImageProps) => (
     <Image sizes="(min-width: 1024px) 724px, 100vw" quality={90} className="my-8 h-auto w-full border border-line" alt={alt} {...props} />

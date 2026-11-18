@@ -29,9 +29,9 @@ export function Logo({
         )}
       >
         {alt ? (
-          <LogoMarkAlt className={{ xs: "size-[15px]", sm: "size-[17.5px]", md: "size-5" }[size]} />
+          <LogoMarkAlt className={{ xs: "h-[15px] w-auto", sm: "h-[17.5px] w-auto", md: "h-5 w-auto" }[size]} />
         ) : (
-          <LogoMark className={{ xs: "h-[15px] w-auto", sm: "h-[18px] w-auto", md: "h-5 w-auto" }[size]} />
+          <LogoMark className={{ xs: "h-auto w-[11.52px]", sm: "h-auto w-[13.44px]", md: "h-auto w-[15.36px]" }[size]} />
         )}
       </span>
       {showName ? <span className={cn("font-semibold text-ink", size === "xs" ? "text-sm leading-5" : "text-base leading-6")}>{siteConfig.name}</span> : null}

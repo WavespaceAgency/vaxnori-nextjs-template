@@ -10,12 +10,12 @@ export function Principles({ items }: { items: readonly { icon: LineIconName; ti
   return (
     <section aria-label="What we believe">
       <Container bordered className="pt-[30px]">
-        <Stagger as="ul" gap={0.12} className="grid border-y border-dashed border-line md:grid-cols-3">
+        <Stagger as="ul" gap={0.12} className="grid border-y border-dashed border-line-strong md:grid-cols-3">
           {items.map((item) => (
             <StaggerItem
               as="li"
               key={item.title}
-              className="flex flex-col gap-8 border-dashed border-line px-6 py-10 not-last:border-b md:gap-12 md:not-last:border-r md:not-last:border-b-0 lg:px-12 lg:py-[72px]"
+              className="flex flex-col gap-8 border-dashed border-line-strong px-6 py-10 not-last:border-b md:gap-12 md:not-last:border-r md:not-last:border-b-0 lg:px-12 lg:py-[72px]"
             >
               <LineIcon name={item.icon} className="size-9 text-ink" />
               <div className="flex flex-col gap-2">

@@ -11,6 +11,9 @@ export type NavLink = {
   href: string;
 };
 
+/** Optional footer credit line. Delete `credit` in `footer` below to remove it. */
+export type FooterCredit = { prefix: string; label: string; href: string };
+
 export type SocialPlatform = "linkedin" | "x" | "youtube";
 
 export type SocialLink = {
@@ -108,6 +111,8 @@ export const siteConfig = {
       { label: "Terms & conditions", href: "/terms" },
     ],
     copyright: `© ${year} ${legalName}`,
+    /** Template credit under the copyright. Remove it or point it at your own studio. */
+    credit: { prefix: "Designed & developed by", label: "Wavespace", href: "https://github.com/WavespaceAgency" },
     background: {
       desktop: "/images/patterns/tiles-yellow.webp",
       mobile: "/images/patterns/tiles-yellow-tall.webp",

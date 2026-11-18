@@ -4,7 +4,7 @@ import { AnimatePresence, m } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { CloseIcon, MenuIcon } from "@/components/icons";
+import { CloseLargeIcon, MenuIcon } from "@/components/icons";
 import { EASE } from "@/components/motion/reveal";
 import { Logo } from "@/components/ui/logo";
 import type { NavLink } from "@/config/site";
@@ -38,8 +38,11 @@ export function MobileMenu({ links }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return;
     closeRef.current?.focus();
-    const previousOverflow = document.body.style.overflow;
+    const { overflow, paddingRight } = document.body.style;
+    // Keep the page from shifting sideways when the scrollbar disappears.
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
+    if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
     };
@@ -48,7 +51,8 @@ export function MobileMenu({ links }: MobileMenuProps) {
     document.addEventListener("keydown", onKey);
     desktop.addEventListener("change", onResize);
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = overflow;
+      document.body.style.paddingRight = paddingRight;
       document.removeEventListener("keydown", onKey);
       desktop.removeEventListener("change", onResize);
     };
@@ -76,24 +80,23 @@ export function MobileMenu({ links }: MobileMenuProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-            animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
-            exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-            transition={{ duration: 0.45, ease: EASE }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: EASE }}
             className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-surface"
           >
-            <div className="flex items-center justify-between border-b border-line-soft px-5 py-2.5 sm:px-6">
-              <Logo showName size="sm" alt />
+            {/* Same size and position as the closed navbar row, so nothing jumps when the menu opens. */}
+            <div className="flex h-11 shrink-0 items-center justify-between border-b border-line px-4 box-content sm:px-6">
+              <Logo showName size="xs" />
               <button
                 ref={closeRef}
                 type="button"
                 aria-label="Close menu"
                 onClick={close}
-                className="flex size-11 items-center justify-center rounded-button"
+                className="-mr-2 flex size-11 items-center justify-center rounded-button text-ink hover:bg-canvas"
               >
-                <span className="flex size-6 items-center justify-center rounded-[4px] border border-line-soft bg-canvas">
-                  <CloseIcon className="size-3.5" />
-                </span>
+                <CloseLargeIcon className="size-7" />
               </button>
             </div>
             <nav aria-label="Mobile">

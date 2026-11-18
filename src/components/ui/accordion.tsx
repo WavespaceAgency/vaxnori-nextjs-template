@@ -11,7 +11,7 @@ const variants = {
   /** Dashed rows with large questions (home page FAQ). */
   dashed: {
     root: "",
-    item: "border-b border-dashed border-line px-6 py-6 last:border-b-0 lg:px-8 lg:py-8",
+    item: "border-b border-dashed border-line-strong px-6 py-6 last:border-b-0 lg:px-8 lg:py-8",
     hit: "before:-inset-x-6 before:-top-6 before:-bottom-3 lg:before:-inset-x-8 lg:before:-top-8 lg:before:-bottom-4",
     question: "font-heading-flex text-lg leading-6 font-medium tracking-[-0.03em] text-ink lg:text-h4",
     answer: "pt-2 pr-[72px] text-sm leading-[22px] lg:pr-[56px] lg:text-base lg:leading-6",
@@ -37,8 +37,11 @@ export function Accordion({
   defaultOpen = 0,
   variant = "simple",
   headingLevel = 3,
+  lastBorder = false,
   className,
 }: {
+  /** Keep the dividing line under the last row too (FAQ page groups, as in Figma). */
+  lastBorder?: boolean;
   items: readonly AccordionItem[];
   defaultOpen?: number | null;
   variant?: keyof typeof variants;
@@ -48,6 +51,7 @@ export function Accordion({
   const [open, setOpen] = useState<number | null>(defaultOpen);
   const baseId = useId();
   const v = variants[variant];
+  const itemClass = lastBorder ? v.item.replace(/\s?last:border-b-0/, "") : v.item;
   const Heading = `h${headingLevel}` as const;
 
   return (
@@ -57,7 +61,7 @@ export function Accordion({
         const buttonId = `${baseId}-button-${index}`;
         const panelId = `${baseId}-panel-${index}`;
         return (
-          <m.div key={item.question} variants={staggerItem} className={cn("relative transition-colors hover:bg-canvas", v.item)}>
+          <m.div key={item.question} variants={staggerItem} className={cn("relative transition-colors hover:bg-canvas", itemClass)}>
             <Heading>
               <button
                 id={buttonId}
@@ -75,20 +79,24 @@ export function Accordion({
               </button>
             </Heading>
             {/* Icon stays vertically centred in the whole row (as in Figma) */}
-            <span
+            <svg
               aria-hidden="true"
-              className={cn(
-                "pointer-events-none absolute flex size-6 items-center justify-center rounded-full border-[1.5px] border-brand text-brand",
-                v.icon,
-              )}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              className={cn("pointer-events-none absolute size-6 text-brand", v.icon)}
             >
-              <span className="absolute h-[1.5px] w-2.5 bg-current" />
-              <m.span
-                className="absolute h-2.5 w-[1.5px] bg-current"
+              <circle cx="12" cy="12" r="9" />
+              <path d="M9 12h6" />
+              <m.path
+                d="M12 9v6"
+                style={{ originX: "50%", originY: "50%", transformBox: "fill-box" }}
                 animate={{ scaleY: isOpen ? 0 : 1, rotate: isOpen ? 90 : 0 }}
                 transition={{ duration: 0.35, ease: EASE }}
               />
-            </span>
+            </svg>
 
             <m.div
               id={panelId}

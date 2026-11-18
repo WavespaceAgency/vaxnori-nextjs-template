@@ -36,7 +36,7 @@ export function ogImage({ eyebrow, title, subtitle }: { eyebrow: string; title: 
           <div style={{ fontSize: 34, fontWeight: 700, color: "#000" }}>{siteConfig.name}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 1000 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 24, color: "#cc340b", textTransform: "uppercase", letterSpacing: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 24, color: "#ff4820", textTransform: "uppercase", letterSpacing: 1 }}>
             <div style={{ width: 40, height: 2, background: "#ff4820" }} />
             {eyebrow}
           </div>

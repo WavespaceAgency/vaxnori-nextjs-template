@@ -68,7 +68,7 @@ export function PageHero({
         </div>
 
         {primaryCta || secondaryCta ? (
-          <div className="mt-[42px] border-y border-dashed border-line py-8 lg:mt-9">
+          <div className="mt-[42px] border-y border-dashed border-line-strong py-8 lg:mt-9">
             <HeroReveal delay={0.4} className="flex flex-wrap justify-center gap-4 px-4">
               {primaryCta ? (
                 <Button href={primaryCta.href} size="lg">

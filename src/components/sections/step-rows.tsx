@@ -27,7 +27,7 @@ export function StepRows({ content }: { content: { eyebrow: string; title: strin
             key={row.eyebrow}
             className={cn(
               "grid items-center gap-8 px-6 py-14 sm:px-8 lg:grid-cols-[556fr_504fr] lg:gap-20 lg:px-[50px]",
-              index === 0 ? "lg:pt-0 lg:pb-[49px]" : "border-t border-dashed border-line lg:py-12",
+              index === 0 ? "lg:pt-0 lg:pb-[49px]" : "border-t border-dashed border-line-strong lg:py-12",
             )}
           >
             <Reveal className="flex max-w-[556px] flex-col gap-4">

@@ -10,8 +10,8 @@
 :root {
   /* Brand */
   --brand: #ff4820; /* Figma "Primary" – decorative fills, icons, large shapes */
-  --brand-strong: #cc340b; /* Buttons + small brand text (4.5:1+ on white and on #fbfbfb) */
-  --brand-hover: #b02d09;
+  --brand-strong: #ff4820; /* Buttons + small brand text (Figma "Primary") */
+  --brand-hover: #e63b15;
   --brand-soft: #fff1ec;
 
   /* Neutrals */
@@ -19,6 +19,8 @@
   --ink-soft: #050505;
   --muted: #5e5e5e; /* Figma "Grey 1" – body copy */
   --subtle: #737373; /* Small labels. Figma "Grey 3" (#999) darkened for 4.5:1 */
+  --grey-3: #999999; /* Figma "Grey 3" – blog meta (date, read time) */
+  --grey-2: #6b6b6b; /* Figma "Gray 2" – blog card date + excerpt */
   --accent-text: #5e5e5e; /* Pixel accent words in headings (Figma "Grey 1") */
   --surface-muted: #f0f0f0; /* Secondary button */
   --ink-raised: #333333; /* Dark button on black */
@@ -50,6 +52,8 @@
   --color-ink-soft: var(--ink-soft);
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
+  --color-grey-3: var(--grey-3);
+  --color-grey-2: var(--grey-2);
   --color-accent-text: var(--accent-text);
   --color-surface-muted: var(--surface-muted);
   --color-ink-raised: var(--ink-raised);
@@ -239,5 +243,17 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * Figma dashed strokes: 1px "Stroke 1" (#d4d4d4), 2px dash / 2px gap.
+ * The browser's own `dashed` style draws longer, heavier dashes, so every
+ * `border-dashed` uses this tiny SVG pattern instead. Add `[border-image:none]`
+ * to an element to get the plain browser dash (e.g. on dark backgrounds).
+ */
+@layer utilities {
+  .border-dashed {
+    border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Cpath fill='%23d4d4d4' d='M0 0h1v1H0zM5 0h1v1H5zM0 5h1v1H0zM5 5h1v1H5zM1 0h2v1H1zM1 5h2v1H1zM0 1h1v2H0zM5 1h1v2H5z'/%3E%3C/svg%3E") 1 round;
   }
 }

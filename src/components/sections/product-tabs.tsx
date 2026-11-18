@@ -44,7 +44,7 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
 
   return (
     <div>
-      <div className="border-y border-dashed border-line">
+      <div className="border-y border-dashed border-line-strong">
         <div
           role="tablist"
           aria-label="Product features"

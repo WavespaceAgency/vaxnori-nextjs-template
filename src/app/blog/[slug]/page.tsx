@@ -76,7 +76,7 @@ export default async function PostPage({ params }: Props) {
             </h1>
           </HeroReveal>
         </div>
-        <HeroReveal delay={0.3} className="mt-9 border-y border-dashed border-line py-8">
+        <HeroReveal delay={0.3} className="mt-9 border-y border-dashed border-line-strong py-8">
           <div className="flex items-center justify-center gap-3.5">
             <Image src={meta.author.avatar} alt="" width={48} height={48} className="size-12 rounded-full object-cover" />
             <div className="text-left">
@@ -104,8 +104,8 @@ export default async function PostPage({ params }: Props) {
       </Container>
 
       {/* Body + sidebar */}
-      <Container bordered className="grid border-t border-dashed border-t-line lg:grid-cols-[minmax(0,806fr)_minmax(0,434fr)]">
-        <div className="px-6 py-10 sm:px-8 lg:border-r lg:border-dashed lg:border-line lg:px-10 lg:py-10">
+      <Container bordered className="grid border-t border-dashed border-t-line-strong lg:grid-cols-[minmax(0,806fr)_minmax(0,434fr)]">
+        <div className="px-6 py-10 sm:px-8 lg:border-r lg:border-dashed lg:border-line-strong lg:px-10 lg:py-10">
           <div className="max-w-[724px]">
             <Content />
           </div>

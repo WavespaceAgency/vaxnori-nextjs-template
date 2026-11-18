@@ -2,11 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { socialIcons } from "@/components/icons";
 import { Reveal } from "@/components/motion/reveal";
-import { siteConfig } from "@/config/site";
+import { siteConfig, type FooterCredit } from "@/config/site";
 import { cn, isExternal } from "@/lib/utils";
 import { NewsletterForm } from "./newsletter-form";
 
 const { footer, socials, brand } = siteConfig;
+// Optional: delete `credit` in siteConfig.footer to remove the line.
+const credit = (footer as { credit?: FooterCredit }).credit;
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   const className =
@@ -146,10 +148,23 @@ export function Footer() {
             />
           </div>
 
-          {/* Bottom row: copyright | privacy | terms */}
-          <p className="flex items-center justify-center border-t border-r border-line px-2 py-6 text-sm leading-5 whitespace-nowrap text-ink md:justify-start md:border-t-0 md:border-b md:border-l md:px-[19px] md:py-8">
-            {footer.copyright}
-          </p>
+          {/* Bottom row: copyright + credit | privacy | terms */}
+          <div className="flex flex-col items-center justify-center gap-1 border-t border-r border-line px-2 py-6 text-center md:items-start md:border-t-0 md:border-b md:border-l md:px-[19px] md:py-8 md:text-left">
+            <p className="text-sm leading-5 whitespace-nowrap text-ink">{footer.copyright}</p>
+            {credit ? (
+              <p className="text-xs leading-4 text-subtle">
+                {credit.prefix}{" "}
+                <a
+                  href={credit.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-ink underline decoration-line-strong underline-offset-2 transition-colors hover:text-brand hover:decoration-brand"
+                >
+                  {credit.label}
+                </a>
+              </p>
+            ) : null}
+          </div>
           <div className="flex items-center justify-center border-t border-line px-4 py-6 md:justify-start md:border-t-0 md:border-r md:border-b md:px-[19px] md:py-8 xl:col-span-2 xl:border-r-0 xl:border-l">
             <FooterLink href={privacy.href}>{privacy.label}</FooterLink>
           </div>

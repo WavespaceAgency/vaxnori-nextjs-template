@@ -53,7 +53,7 @@ export function ValuesScroller({ values }: { values: readonly Value[] }) {
         aria-label="How we work"
         aria-orientation="vertical"
         onKeyDown={onKeyDown}
-        className="-mx-6 flex border-y border-dashed border-line sm:-mx-8 lg:mx-0 lg:flex-col lg:gap-2 lg:self-start lg:border-y-0 lg:border-l lg:border-solid"
+        className="-mx-6 flex border-y border-dashed border-line-strong sm:-mx-8 lg:mx-0 lg:flex-col lg:gap-2 lg:self-start lg:border-y-0 lg:border-l lg:border-solid"
       >
         {values.map((v, i) => {
           const selected = i === active;

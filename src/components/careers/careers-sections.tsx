@@ -18,7 +18,7 @@ const teamIcons: Record<string, LineIconName> = {
 export function RolesTable({ jobs, title, note, viewRole }: { jobs: Job[]; title: string; note: string; viewRole: string }) {
   return (
     <section aria-labelledby="roles-title" id="roles">
-      <Container bordered className="border-t border-dashed border-t-line bg-canvas px-6 py-14 sm:px-8 lg:px-[49px] lg:py-[49px]">
+      <Container bordered className="border-t border-dashed border-t-line-strong bg-canvas px-6 py-14 sm:px-8 lg:px-[49px] lg:py-[49px]">
         <Reveal className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 id="roles-title" className="font-heading-flex text-2xl leading-7 font-medium tracking-[-0.03em] text-ink lg:text-h2 lg:leading-[44px]">
             {title}
@@ -70,12 +70,12 @@ export function Benefits({ title, accent, items }: { title: string; accent: stri
             {title} <span className="font-pixel-line text-accent-text max-lg:block">{accent}</span>
           </h2>
         </Reveal>
-        <Stagger as="ul" gap={0.08} className="grid border-t border-dashed border-line sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger as="ul" gap={0.08} className="grid border-t border-dashed border-line-strong sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
             <StaggerItem
               as="li"
               key={item.title}
-              className="flex flex-col gap-8 border-b border-dashed border-line px-6 py-7 sm:border-r lg:min-h-[272px] lg:gap-12 lg:px-10 lg:py-10 lg:[&:nth-child(3n)]:border-r-0"
+              className="flex flex-col gap-8 border-b border-dashed border-line-strong px-6 py-7 sm:border-r lg:min-h-[272px] lg:gap-12 lg:px-10 lg:py-10 lg:[&:nth-child(3n)]:border-r-0"
             >
               <LineIcon name={item.icon} className="size-8 text-ink" />
               <div className="flex flex-col gap-2">
@@ -101,14 +101,14 @@ export function HiringProcess({ eyebrow, title, accent, steps }: { eyebrow: stri
           <SectionHeading id="hiring-title" eyebrow={eyebrow} title={title} accent={accent} titleClassName="max-w-[320px] lg:max-w-[440px]" />
         </Reveal>
         <div className="relative mt-6 lg:mt-12">
-          <span aria-hidden="true" className="absolute inset-x-0 top-[50px] hidden border-t border-dashed border-line md:block" />
-          <span aria-hidden="true" className="absolute inset-x-0 bottom-[50px] hidden border-t border-dashed border-line md:block" />
+          <span aria-hidden="true" className="absolute inset-x-0 top-[50px] hidden border-t border-dashed border-line-strong md:block" />
+          <span aria-hidden="true" className="absolute inset-x-0 bottom-[50px] hidden border-t border-dashed border-line-strong md:block" />
           <Stagger as="ol" gap={0.12} className="relative grid px-6 sm:grid-cols-2 md:px-4 lg:grid-cols-4 lg:px-[50px]">
             {steps.map((step, index) => (
               <StaggerItem
                 as="li"
                 key={step.title}
-                className="flex flex-col border-dashed border-line-strong max-md:border-x max-md:not-last:border-b md:border-r md:border-line md:first:border-l"
+                className="flex flex-col border-dashed border-line-strong max-md:border-x max-md:not-last:border-b md:border-r md:border-line-strong md:first:border-l"
               >
                 <p className="flex h-10 items-center px-4 font-heading-italic text-[13px] font-medium text-brand-strong md:h-[50px] md:items-start md:px-5 md:pt-3 md:text-lg">
                   {String(index + 1).padStart(2, "0")}

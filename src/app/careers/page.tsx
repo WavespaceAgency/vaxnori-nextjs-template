@@ -15,7 +15,7 @@ export default async function CareersPage() {
     <>
       <PageHero {...careersPage.hero} className="pb-[30px]" />
       <section aria-label="How we work">
-        <Container bordered className="border-t border-dashed border-t-line">
+        <Container bordered className="border-t border-dashed border-t-line-strong">
           <ValuesScroller values={careersPage.values} />
         </Container>
       </section>

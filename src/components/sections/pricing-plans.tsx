@@ -9,11 +9,15 @@ import { cn } from "@/lib/utils";
 
 type Billing = { monthly: string; yearly: string; yearlyNote: string; perMonth: string };
 
+/** Figma "Check mark": filled tick in an 18px circle. Lime 15px tick on the featured (dark) card, black 12px tick otherwise. */
 function Check({ featured }: { featured?: boolean }) {
   return (
-    <span className={cn("flex size-[18px] shrink-0 items-center justify-center rounded-full", featured ? "bg-white/15 text-white" : "bg-line text-ink")}>
-      <svg viewBox="0 0 12 12" className="size-3" fill="none" aria-hidden="true">
-        <path d="m3 6.2 2 2 4-4.4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    <span className={cn("flex size-[18px] shrink-0 items-center justify-center rounded-full", featured ? "bg-white/14" : "bg-line")}>
+      <svg viewBox="0 0 15 15" className={featured ? "size-[15px]" : "size-3"} aria-hidden="true">
+        <path
+          d="M6.24981 9.48181L11.9951 3.73657L12.8789 4.62046L6.24981 11.2496L2.27234 7.27212L3.15622 6.38825L6.24981 9.48181Z"
+          fill={featured ? "#a6ff00" : "#000"}
+        />
       </svg>
     </span>
   );
@@ -28,10 +32,10 @@ export function PricingPlans({ plans, billing }: { plans: readonly Plan[]; billi
       {/* Full-height dashed dividers between the plans (desktop) */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden grid-cols-3 gap-8 px-12 lg:grid">
         <span />
-        <span className="relative before:absolute before:inset-y-0 before:-left-4 before:border-l before:border-dashed before:border-line" />
-        <span className="relative before:absolute before:inset-y-0 before:-left-4 before:border-l before:border-dashed before:border-line" />
+        <span className="relative before:absolute before:inset-y-0 before:-left-4 before:border-l before:border-dashed before:border-line-strong" />
+        <span className="relative before:absolute before:inset-y-0 before:-left-4 before:border-l before:border-dashed before:border-line-strong" />
       </div>
-      <div className="flex justify-center border-b border-dashed border-line px-4 py-8 lg:border-b-0 lg:pt-[37px] lg:pb-[73px]">
+      <div className="flex justify-center border-b border-dashed border-line-strong px-4 py-8 lg:border-b-0 lg:pt-[37px] lg:pb-[73px]">
         <div role="radiogroup" aria-label="Billing period" className="relative flex rounded-full bg-surface-muted p-1">
           {[false, true].map((isYearly) => {
             const active = yearly === isYearly;
@@ -63,7 +67,7 @@ export function PricingPlans({ plans, billing }: { plans: readonly Plan[]; billi
       <Stagger
         as="ul"
         gap={0.12}
-        className="relative grid border-b border-dashed border-line sm:px-8 lg:grid-cols-3 lg:gap-8 lg:px-12 lg:pb-[75px]"
+        className="relative grid border-b border-dashed border-line-strong sm:px-8 lg:grid-cols-3 lg:gap-8 lg:px-12 lg:pb-[75px]"
       >
         {plans.map((plan) => {
           const price = yearly ? plan.yearly : plan.monthly;
@@ -72,7 +76,7 @@ export function PricingPlans({ plans, billing }: { plans: readonly Plan[]; billi
             <StaggerItem
               as="li"
               key={plan.name}
-              className="flex border-dashed border-line px-6 py-16 not-last:border-b sm:px-0 lg:border-0 lg:p-0"
+              className="flex border-dashed border-line-strong px-6 py-16 not-last:border-b sm:px-0 lg:border-0 lg:p-0"
             >
               <article
                 className={cn(

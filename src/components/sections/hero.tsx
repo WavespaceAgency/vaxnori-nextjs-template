@@ -19,8 +19,8 @@ export function CornerSquares({ side }: { side: "left" | "right" }) {
       {squares.map(([x, y], i) => (
         <span
           key={i}
-          className="absolute size-[52px] bg-[linear-gradient(133deg,#f5f5f5_4%,#fff_100%)] motion-safe:animate-float"
-          style={{ [side === "left" ? "left" : "right"]: x, top: y, animationDelay: `${i * 0.4}s` } as CSSProperties}
+          className="absolute size-[52px] bg-[linear-gradient(132.87deg,#fafafa_4.01%,#fff_100%)]"
+          style={{ [side === "left" ? "left" : "right"]: x, top: y } as CSSProperties}
         />
       ))}
     </div>
@@ -53,7 +53,7 @@ export function Hero({ content, backgroundSrc }: { content: HomePage["hero"]; ba
           </HeroReveal>
         </div>
 
-        <div className="mt-[42px] border-y border-dashed border-line py-8 lg:mt-9">
+        <div className="mt-[42px] border-y border-dashed border-line-strong py-8 lg:mt-9">
           <HeroReveal delay={0.3} className="flex flex-wrap justify-center gap-4 px-4">
             <Button href={content.primaryCta.href} size="lg">
               {content.primaryCta.label}

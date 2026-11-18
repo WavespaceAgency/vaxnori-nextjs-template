@@ -138,7 +138,7 @@ function ApproveCard({ card: c }: { card: Extract<Step["card"], { type: "approve
           <m.span
             className="relative flex-1 overflow-hidden rounded-[4px] py-1.5 text-center text-[10px] leading-4 font-medium text-white"
             initial={false}
-            animate={{ backgroundColor: approved ? "#15803d" : "#cc340b", scale: phase === 2 ? 0.95 : 1 }}
+            animate={{ backgroundColor: approved ? "#15803d" : "#ff4820", scale: phase === 2 ? 0.95 : 1 }}
             transition={{ backgroundColor: { duration: 0.25, ease: "easeOut" }, scale: SOFT_SPRING }}
           >
             {/* click ripple */}

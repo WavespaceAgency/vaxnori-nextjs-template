@@ -197,6 +197,10 @@ DECISIONS.md            Design and build notes (what changed from the Figma file
 - **Icons:** custom line icons in `src/components/icons/`
 - **Customer logos:** neutral placeholders (Acme, Logoipsum, …) – not real companies
 
+**Footer credit:** the footer shows "Designed & developed by Wavespace". You are free to keep, change or remove it –
+edit or delete `credit` in `siteConfig.footer` (`src/config/site.ts`). The MIT license only asks you to keep the
+`LICENSE` file, not the footer line.
+
 All names, numbers, quotes and people in the sample content are fictional.
 
 ## License

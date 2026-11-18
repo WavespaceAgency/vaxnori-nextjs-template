@@ -40,13 +40,13 @@ export function CtaBanner({
               <h2 id={id} className="font-heading-flex text-[28px] leading-9 font-medium tracking-[-0.03em] text-white lg:text-h2 lg:leading-[44px]">
                 {mobileSplit ? (
                   <>
-                    {content.title} <span className="lg:font-pixel-line lg:text-white/75">{firstAccent}</span>{" "}
+                    {content.title} <span className="lg:font-pixel-line">{firstAccent}</span>{" "}
                     <br className="lg:hidden" />
-                    <span className="font-pixel-line text-white/75">{restAccent.join(" ")}</span>
+                    <span className="font-pixel-line text-white">{restAccent.join(" ")}</span>
                   </>
                 ) : (
                   <>
-                    {content.title} <span className="font-pixel-line text-white/75">{content.accent}</span>
+                    {content.title} <span className="font-pixel-line text-white">{content.accent}</span>
                   </>
                 )}
               </h2>

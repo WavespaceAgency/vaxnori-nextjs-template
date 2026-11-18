@@ -331,15 +331,22 @@ export const homePage = {
     accent: "you already have.",
     /** Generic categories – swap in your real integrations. */
     items: [
-      { icon: "mail", name: "Email", description: "Sends and triages outreach", color: "#ea4335" },
-      { icon: "card", name: "Payments", description: "Invoices and chases payment", color: "#635bff" },
-      { icon: "globe", name: "Domains", description: "Buys and points domains", color: "#ef7a73" },
-      { icon: "chat", name: "Team chat", description: "Asks you before it acts", color: "#36c5f0" },
-      { icon: "doc", name: "Docs & wiki", description: "Keeps the company wiki current", color: "#111111" },
-      { icon: "bag", name: "Storefront", description: "Lists products and fixes copy", color: "#5e8e3e" },
-      { icon: "receipt", name: "Accounting", description: "Files receipts weekly", color: "#2ca01c" },
-      { icon: "megaphone", name: "Ads", description: "Runs and trims campaigns", color: "#4285f4" },
-    ] satisfies { icon: LineIconName; name: string; description: string; color: string }[],
+      { icon: "mail", name: "Email", description: "Sends and triages outreach", from: "#fd7a77", to: "#fc413d" },
+      { icon: "card", name: "Payments", description: "Invoices and chases payment", from: "#8a84ff", to: "#635bff" },
+      { icon: "globe", name: "Domains", description: "Buys and points domains", from: "#f39a9a", to: "#ef7878" },
+      { icon: "chat", name: "Team chat", description: "Asks you before it acts", from: "#6cd5f4", to: "#36c5f0" },
+      { icon: "doc", name: "Docs & wiki", description: "Keeps the company wiki current", from: "#333333", to: "#000000" },
+      { icon: "bag", name: "Storefront", description: "Lists products and fixes copy", from: "#95bf46", to: "#5e8e3e" },
+      { icon: "receipt", name: "Accounting", description: "Files receipts weekly", from: "#46ac38", to: "#2ca01c" },
+      { icon: "megaphone", name: "Ads", description: "Runs and trims campaigns", from: "#71a4f7", to: "#4285f4" },
+    ] satisfies {
+      icon: LineIconName;
+      name: string;
+      description: string;
+      /** App-icon gradient. `to` is the brand colour from the Figma integration logo, `from` a lighter tint. */
+      from: string;
+      to: string;
+    }[],
   },
 
   faq: {

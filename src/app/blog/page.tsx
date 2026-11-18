@@ -27,15 +27,15 @@ export default async function BlogPage() {
 
       {/* Featured post */}
       <section aria-labelledby="featured-title">
-        <Container bordered className="border-t border-dashed border-t-line bg-canvas">
+        <Container bordered className="border-t border-dashed border-t-line-strong bg-canvas">
           <div className="grid items-center gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[minmax(0,556fr)_minmax(0,504fr)] lg:gap-20 lg:px-[50px] lg:py-[50px]">
             <Reveal className="flex flex-col gap-4">
-              <Eyebrow>
+              <Eyebrow className="flex-wrap tracking-[0.02em] lg:text-sm">
                 {featured.category}
-                <span aria-hidden="true">·</span>
-                <time dateTime={featured.date}>{formatDate(featured.date)}</time>
-                <span aria-hidden="true">·</span>
-                {featured.readingTime}
+                <span aria-hidden="true" className="size-0.5 rounded-full bg-brand" />
+                <time dateTime={featured.date} className="text-grey-3">{formatDate(featured.date)}</time>
+                <span aria-hidden="true" className="size-0.5 rounded-full bg-brand" />
+                <span className="text-grey-3">{featured.readingTime}</span>
               </Eyebrow>
               <h2 id="featured-title" className="max-w-[460px] font-heading-flex text-2xl leading-8 font-medium tracking-[-0.03em] text-ink lg:text-[36px] lg:leading-[42px]">
                 {featured.title}
@@ -63,7 +63,7 @@ export default async function BlogPage() {
 
       {/* All posts */}
       <section aria-labelledby="posts-title">
-        <Container bordered className="border-t border-dashed border-t-line pt-14 lg:pt-[50px]">
+        <Container bordered className="border-t border-dashed border-t-line-strong pt-14 lg:pt-[50px]">
           <Reveal className="mb-6 px-6 sm:px-8 lg:mb-[50px] lg:px-[50px]">
             <SectionHeading id="posts-title" eyebrow={blogPage.list.eyebrow} title={blogPage.list.title} accent={blogPage.list.accent} titleClassName="max-w-[300px] lg:max-w-[420px]" />
           </Reveal>

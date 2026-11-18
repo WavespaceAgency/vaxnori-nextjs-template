@@ -223,3 +223,13 @@ template rules needed a change. It will move into the README in Phase 8.
   Careers 99, Contact 98 (Performance/Accessibility/Best Practices/SEO). Lighthouse's default *simulated* mode
   under-reports on localhost (it treats every file as a dependency because they load in <75 ms); the real recorded
   LCP is 66 ms. Re-check on the live Vercel URL.
+- **2026-11-18 Integrations icons:** generic icons restyled as bold "app icon" tiles (40px rounded square, two-tone gradient, white glyph, glossy top, coloured shadow, lift + tilt on hover) to match the visual weight of the Figma brand logos while staying trademark-safe. Colours live in `src/config/pages/home.ts` (`from` / `to` per item).
+- **2026-11-18 Figma polish pass:**
+  - Primary colour `#ff4820` is used for buttons and small brand text too (was `#cc340b`). White on `#ff4820` is ~3.2:1, below WCAG AA 4.5:1 for small text – accepted to match Figma.
+  - Dashed lines everywhere: Figma "Stroke 1" `#d4d4d4`, 2px dash / 2px gap, drawn with a tiny SVG `border-image` (globals.css). `[border-image:none]` opts out.
+  - Blog: featured meta = orange category + dots, `#999` date/read time; cards follow Figma (8px image box, `#f1f1f1` chip, `#6b6b6b` meta/excerpt, orange underlined "Read more"); inactive tabs `#999`.
+  - Pricing: Figma "Check mark" (black tick on `#e3e3e3`, lime `#a6ff00` tick on the dark card).
+  - CTA accent words are pure white (Figma). FAQ icon = Figma 24px SVG; FAQ page list column 800px with 41px right gap and lines under every row.
+  - Integration tiles use the Figma logo brand colours; placeholder customer logos use Figma `#7e7f80` at 65%.
+  - Legal-page TOC: click = instant active + smooth scroll, sliding active bar, last item active at page bottom.
+  - Footer credit "Designed & developed by Wavespace" (siteConfig.footer.credit).
