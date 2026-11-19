@@ -14,7 +14,7 @@ export function LegalPage({ meta, headings, Content }: { meta: LegalMeta; headin
     <>
       <PageHero eyebrow="Legal" title={meta.title} accent={meta.accent} description={`Last updated: ${formatDate(meta.updated, "long")}`} className="pb-[44px]" />
       <Container bordered className="grid border-t border-dashed border-t-line-strong lg:grid-cols-[minmax(0,355px)_minmax(0,885px)]">
-        <aside className="hidden pt-10 pl-10 lg:block">
+        <aside className="hidden pt-10 pb-16 pl-10 lg:block">
           <div className="sticky top-24">
             <TableOfContents title="Contents" headings={headings} size="lg" showTitle={false} />
           </div>

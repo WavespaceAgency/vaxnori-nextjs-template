@@ -80,7 +80,7 @@ export function ValuesScroller({ values }: { values: readonly Value[] }) {
                   layoutId={`${baseId}-marker`}
                   transition={{ type: "spring", stiffness: 400, damping: 34 }}
                   aria-hidden="true"
-                  className="absolute inset-x-0 -bottom-px h-px bg-ink lg:inset-x-auto lg:inset-y-0 lg:bottom-auto lg:-left-px lg:h-auto lg:w-px"
+                  className="absolute inset-x-0 -bottom-px h-px bg-ink lg:inset-x-auto lg:inset-y-0 lg:-left-px lg:h-auto lg:w-px"
                 />
               ) : null}
               {v.label}
