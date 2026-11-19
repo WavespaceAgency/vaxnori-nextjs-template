@@ -149,7 +149,7 @@ export function Footer() {
           </div>
 
           {/* Bottom row: copyright + credit | privacy | terms */}
-          <div className="flex flex-col items-center justify-center gap-1 border-t border-r border-line px-2 py-6 text-center md:items-start md:border-t-0 md:border-b md:border-l md:px-[19px] md:py-8 md:text-left">
+          <div className="flex flex-col items-center justify-center gap-1 border-t border-r border-line px-2 py-6 text-center md:items-start md:border-t-0 md:border-b md:border-l md:px-[19px] md:py-8 md:text-left xl:border-r-0">
             <p className="text-sm leading-5 whitespace-nowrap text-ink">{footer.copyright}</p>
             {credit ? (
               <p className="text-xs leading-4 text-subtle">

@@ -85,6 +85,7 @@ export default function ContactPage() {
           </Reveal>
           <div className="relative mt-8 lg:mt-12">
             <span aria-hidden="true" className="absolute inset-x-0 top-[50px] hidden border-t border-dashed border-line-strong md:block" />
+            <span aria-hidden="true" className="absolute inset-x-0 bottom-0 hidden border-t border-dashed border-line-strong md:block" />
             <Stagger as="ul" gap={0.12} className="relative grid px-6 md:grid-cols-3 md:px-4 lg:px-[50px]">
               {locations.items.map((l) => (
                 <StaggerItem as="li" key={l.city} className="flex flex-col border-dashed border-line-strong max-md:border-x max-md:not-last:border-b md:border-r md:border-line-strong md:first:border-l">
