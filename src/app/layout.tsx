@@ -36,7 +36,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="en"
       className={`${fontSans.variable} ${fontHeading.variable} ${fontPixel.variable} antialiased`}
     >
-      <body className="flex min-h-dvh flex-col">
+      {/* suppressHydrationWarning: browser extensions (ColorZilla, Grammarly…) add attributes to <body> before React loads. */}
+      <body className="flex min-h-dvh flex-col" suppressHydrationWarning>
         <JsonLd
           data={{
             "@context": "https://schema.org",

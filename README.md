@@ -151,7 +151,11 @@ The contact form and the newsletter form are validated in the browser and on the
 
 ### 10. Video
 
-Add an `.mp4` file or a YouTube/Vimeo embed URL to `video.src` in `src/config/pages/how-it-works.ts`.
+Add an `.mp4` file (for example `public/videos/demo.mp4` → `"/videos/demo.mp4"`) or a YouTube/Vimeo embed URL
+(`https://www.youtube.com/embed/VIDEO_ID?autoplay=1`) to `src` in `src/config/demo-video.ts`.
+Every "Watch a Demo" button (Home and How it works) and the video block on How it works open this video in a popup.
+The sample video in `public/videos/` is a screen recording of this template – replace it with your own.
+While `src` is empty, the popup shows a "coming soon" note. The video only loads when someone opens it.
 
 ### 11. Site URL
 
@@ -195,6 +199,7 @@ DECISIONS.md            Design and build notes (what changed from the Figma file
   [Geist Pixel](https://fonts.google.com/specimen/Geist+Pixel) – SIL Open Font License 1.1
 - **Images:** AI-generated or made by Wavespace for this template – free to use with the template
 - **Icons:** custom line icons in `src/components/icons/`
+- **Demo video:** `public/videos/vaxnori-demo.mp4` is a screen recording of this template made by Wavespace – free to use with the template
 - **Customer logos:** neutral placeholders (Acme, Logoipsum, …) – not real companies
 
 **Footer credit:** the footer shows "Designed & developed by Wavespace". You are free to keep, change or remove it –

@@ -4,9 +4,12 @@ import { Eyebrow } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
+import type { DemoVideo } from "@/config/demo-video";
 import { CornerSquares } from "./hero";
+import { VideoCta } from "./video-cta";
 
-type Cta = { label: string; href: string };
+/** A call to action. With `video` set, it opens the video popup instead of following the link. */
+type Cta = { label: string; href: string; video?: DemoVideo };
 
 /** Hero for inner pages (About, How it works, Pricing…): dotted band, corner squares, centred heading. */
 export function PageHero({
@@ -75,7 +78,9 @@ export function PageHero({
                   {primaryCta.label}
                 </Button>
               ) : null}
-              {secondaryCta ? (
+              {secondaryCta?.video ? (
+                <VideoCta label={secondaryCta.label} href={secondaryCta.href} video={secondaryCta.video} size="lg" variant="secondary" />
+              ) : secondaryCta ? (
                 <Button href={secondaryCta.href} size="lg" variant="secondary">
                   {secondaryCta.label}
                 </Button>

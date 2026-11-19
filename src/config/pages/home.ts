@@ -8,6 +8,7 @@
  * "Vaxnori AI" brand. Replace them with your own before you launch.
  */
 import type { LineIconName } from "@/components/icons/line-icons";
+import { demoVideo } from "@/config/demo-video";
 import { siteConfig } from "@/config/site";
 
 export const homePage = {
@@ -25,7 +26,8 @@ export const homePage = {
       "It takes care of everything from your brand identity and domain to business paperwork and website launch,",
     descriptionHighlight: "built into every important step",
     primaryCta: { label: "Try it for Free", href: "/pricing" },
-    secondaryCta: { label: "Watch a Demo", href: "/how-it-works" },
+    /** Opens the demo video popup (src/config/demo-video.ts). Without JavaScript it links to How it works. */
+    secondaryCta: { label: "Watch a Demo", href: "/how-it-works#video", video: demoVideo },
     /** The animated product preview under the hero. */
     mockup: {
       label: "Product preview: an AI agent managing a launch checklist",

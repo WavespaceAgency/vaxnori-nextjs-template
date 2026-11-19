@@ -108,7 +108,7 @@ template rules needed a change. It will move into the README in Phase 8.
   Typos fixed: "Vaxnori Al" → "Vaxnori AI", "dmin saved per founder per wes" → "Admin hours saved per founder per week",
   first team member's role showed a name ("James Anderson") → "Founder & CEO".
 - **How it works:** hero + video poster with a "Play the video" bar. The video opens in an accessible dialog; add an .mp4 or
-  YouTube/Vimeo URL in `src/config/pages/how-it-works.ts` (empty = "coming soon" note, no dead link).
+  YouTube/Vimeo URL in `src/config/demo-video.ts` (empty = "coming soon" note, no dead link).
   Steps: large rows on desktop; on phones the stacked Home-style step cards (as in the Figma mobile frame).
   "How it work" → "How it works". "Porkbun" in the approve card → "Your registrar".
   The Figma CTA on this page reused the careers text ("None of these quite you? … roles"); the template uses the Home CTA text instead.
@@ -233,3 +233,5 @@ template rules needed a change. It will move into the README in Phase 8.
   - Integration tiles use the Figma logo brand colours; placeholder customer logos use Figma `#7e7f80` at 65%.
   - Legal-page TOC: click = instant active + smooth scroll, sliding active bar, last item active at page bottom.
   - Footer credit "Designed & developed by Wavespace" (siteConfig.footer.credit).
+  - "Watch a Demo" buttons (Home hero and How it works hero) open the same demo-video popup (`VideoCta` + `VideoDialog`,
+    rendered into <body> through a portal so the hero animation cannot trap it). Without JavaScript they link to `/how-it-works#video`.

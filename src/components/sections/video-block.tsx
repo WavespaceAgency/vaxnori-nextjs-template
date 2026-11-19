@@ -1,42 +1,18 @@
 "use client";
 
-import { AnimatePresence, m } from "motion/react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { CloseIcon } from "@/components/icons";
-import { EASE } from "@/components/motion/reveal";
-
-type Video = { poster: string; alt: string; label: string; src: string; emptyNote: string };
-
-function isEmbed(src: string) {
-  return /youtube\.com|youtu\.be|vimeo\.com/.test(src);
-}
+import { useCallback, useState } from "react";
+import type { DemoVideo } from "@/config/demo-video";
+import { VideoDialog } from "./video-dialog";
 
 /** Poster image with a "Play the video" bar. Opens the video in an accessible dialog. */
-export function VideoBlock({ video }: { video: Video }) {
+export function VideoBlock({ video }: { video: DemoVideo }) {
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    closeRef.current?.focus();
-    const trigger = triggerRef.current;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    document.addEventListener("keydown", onKey);
-    const overflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = overflow;
-      trigger?.focus();
-    };
-  }, [open]);
+  const close = useCallback(() => setOpen(false), []);
 
   return (
     <>
       <button
-        ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
         className="group relative block aspect-[322/183] w-full overflow-hidden text-left sm:aspect-[1140/552]"
@@ -59,53 +35,7 @@ export function VideoBlock({ video }: { video: Video }) {
         </span>
       </button>
 
-      <AnimatePresence>
-        {open ? (
-          <m.div
-            role="dialog"
-            aria-modal="true"
-            aria-label={video.label}
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-          >
-            <m.div
-              initial={{ scale: 0.94, y: 16 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.96, y: 8 }}
-              transition={{ duration: 0.4, ease: EASE }}
-              className="relative w-full max-w-5xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                ref={closeRef}
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close video"
-                className="absolute -top-12 right-0 flex size-11 items-center justify-center rounded-full bg-white text-ink"
-              >
-                <CloseIcon className="size-4" />
-              </button>
-              <div className="relative aspect-video overflow-hidden rounded-card bg-black">
-                {video.src ? (
-                  isEmbed(video.src) ? (
-                    <iframe src={video.src} title={video.label} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen className="size-full" />
-                  ) : (
-                    <video src={video.src} poster={video.poster} controls autoPlay playsInline className="size-full" />
-                  )
-                ) : (
-                  <>
-                    <Image src={video.poster} alt="" fill sizes="100vw" className="object-cover opacity-40" />
-                    <p className="absolute inset-0 flex items-center justify-center p-6 text-center text-base text-white">{video.emptyNote}</p>
-                  </>
-                )}
-              </div>
-            </m.div>
-          </m.div>
-        ) : null}
-      </AnimatePresence>
+      <VideoDialog video={video} open={open} onClose={close} />
     </>
   );
 }

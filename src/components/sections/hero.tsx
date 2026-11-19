@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import type { HomePage } from "@/config/pages/home";
 import { HeroMockup } from "./hero-mockup";
+import { VideoCta } from "./video-cta";
 
 /** Faint squares in the top corners of the hero (decorative). 182px on desktop, 72px on phones (as in Figma). */
 export function CornerSquares({ side }: { side: "left" | "right" }) {
@@ -58,9 +59,7 @@ export function Hero({ content, backgroundSrc }: { content: HomePage["hero"]; ba
             <Button href={content.primaryCta.href} size="lg">
               {content.primaryCta.label}
             </Button>
-            <Button href={content.secondaryCta.href} size="lg" variant="secondary">
-              {content.secondaryCta.label}
-            </Button>
+            <VideoCta {...content.secondaryCta} size="lg" variant="secondary" />
           </HeroReveal>
         </div>
 

@@ -1,4 +1,5 @@
 /** How it works page content. Sample content for the fictional "Vaxnori AI" brand. */
+import { demoVideo } from "@/config/demo-video";
 import { homePage } from "./home";
 
 const [ideaStep, approveStep, shipStep] = homePage.howItWorks.steps;
@@ -15,16 +16,11 @@ export const howItWorksPage = {
     accent: "automatically.",
     description: "Vaxnori transforms simple ideas into structured plans, completed tasks, and real business progress.",
     primaryCta: { label: "Try it for Free", href: "/pricing" },
-    secondaryCta: { label: "Watch a Demo", href: "#video" },
+    /** Opens the demo video popup (src/config/demo-video.ts). Without JavaScript it jumps to the video block. */
+    secondaryCta: { label: "Watch a Demo", href: "#video", video: demoVideo },
   },
-  video: {
-    poster: "/images/how-it-works/video-poster.webp",
-    alt: "Founder smiling at a laptop next to a whiteboard sketch: idea, Vaxnori AI service, build together",
-    label: "Play the video",
-    /** Add a link to an .mp4 file or a YouTube/Vimeo embed URL. Leave empty to show the "coming soon" note. */
-    src: "",
-    emptyNote: "The demo video is coming soon. Add your own video URL in src/config/pages/how-it-works.ts.",
-  },
+  /** The video block under the hero – edit the video in src/config/demo-video.ts. */
+  video: demoVideo,
   steps: {
     eyebrow: "How it works",
     title: "From one sentence to a",
