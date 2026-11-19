@@ -4,7 +4,7 @@ A free, open-source Next.js (App Router) template for AI and SaaS products: 13 p
 
 ![Vaxnori AI template preview](public/readme/preview.png)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FWavespaceAgency%2Fvaxnori-nextjs-template&project-name=vaxnori-nextjs-template&repository-name=vaxnori-nextjs-template)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FWavespaceAgency%2Fvaxnori-nextjs-template&project-name=vaxnori-ai-saas-landing-page&repository-name=vaxnori-ai-saas-landing-page&demo-title=Vaxnori+AI+%E2%80%93+SaaS+Landing+Page&demo-description=Free+AI+and+SaaS+website%3A+animated+landing+page%2C+pricing%2C+MDX+blog+and+careers.&demo-url=https%3A%2F%2Fvaxnori-ai.vercel.app&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2FWavespaceAgency%2Fvaxnori-nextjs-template%2Fmain%2Fpublic%2Freadme%2Fpreview.png&build-command=npm+run+build&install-command=npm+install)
 
 **Live demo:** https://vaxnori-ai.vercel.app
 
